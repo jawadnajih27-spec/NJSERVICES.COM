@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>NJ SERVICES</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body {
   margin: 0;
@@ -13,32 +12,46 @@ body {
   color: #1E293B;
 }
 
-/* HEADER */
 header {
   background: linear-gradient(135deg, #020617, #0F172A);
   color: white;
-  padding: 70px 20px;
+  padding: 60px 20px;
   text-align: center;
-}
-
-header h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-}
-
-header p {
-  font-size: 18px;
-  color: #CBD5E1;
-}
-
-/* NAV */
-nav {
-  margin-top: 25px;
 }
 
 nav a {
   color: #C9A227;
   margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* HERO */
+.hero {
+  height: 70vh;
+  background: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f") center/cover no-repeat;
+}
+
+.hero-overlay {
+  background: rgba(0,0,0,0.55);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+.hero-overlay h2 {
+  font-size: 42px;
+}
+
+.hero-btn {
+  background: #d4af37;
+  color: #000;
+  padding: 12px 30px;
+  border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
 }
@@ -49,42 +62,7 @@ section {
   margin: auto;
   padding: 60px 20px;
 }
-
-h2 {
-  font-size: 28px;
-  margin-bottom: 30px;
-  border-left: 5px solid #C9A227;
-  padding-left: 12px;
-}
-
-/* CARDS */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-}
-
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-.card h3 {
-  margin-top: 0;
-  color: #020617;
-}
-
-.card p {
-  color: #475569;
-}
-
+</style>
 /* BUTTON */
 button {
   margin-top: 15px;
