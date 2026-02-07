@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NJSERVICES.COM - متجر وخدمات إلكترونية</title>
+<title>NJSERVICES.COM - واجهة مستخدم فخمة</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
@@ -11,10 +11,10 @@ body{background:#f2f2f2;color:#333;}
 
 /* ألوان فخمة */
 :root{
-    --primary:#1f1f2e; /* داكن فخم */
-    --accent:#d4af37; /* ذهبي */
-    --secondary:#fff; /* أبيض نظيف */
-    --highlight:#f39c12; /* برتقالي جذاب */
+    --primary:#1f1f2e;
+    --accent:#d4af37;
+    --secondary:#fff;
+    --highlight:#f39c12;
 }
 
 /* الهيدر */
@@ -35,23 +35,23 @@ nav a:hover{color:var(--highlight);}
 section{padding:80px 50px;}
 h2.section-title{text-align:center;margin-bottom:50px;color:var(--primary);}
 
-/* المنتجات والخدمات والبائعين */
+/* تصميم الشبكة للبطاقات */
 .grid-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;}
-.card{background:var(--secondary);border-radius:20px;overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,0.15);transition:0.4s;position:relative;}
-.card img{width:100%;height:200px;object-fit:cover;}
+.card{background:var(--secondary);border-radius:20px;overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,0.15);transition:0.4s;position:relative;height:320px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.card img{width:100%;height:180px;object-fit:cover;border-bottom:1px solid #eee;border-radius:20px 20px 0 0;}
 .card h3{margin:15px;font-size:22px;color:var(--primary);}
 .card p{margin:0 15px 15px 15px;font-size:16px;color:#555;}
-.card button{margin:0 15px 20px 15px;padding:10px 20px;font-size:16px;font-weight:600;border:none;border-radius:8px;background:var(--primary);color:var(--secondary);cursor:pointer;transition:0.3s;}
+.card button{margin-top:auto;margin-bottom:20px;padding:10px 20px;font-size:16px;font-weight:600;border:none;border-radius:8px;background:var(--primary);color:var(--secondary);cursor:pointer;transition:0.3s;}
 .card button:hover{background:var(--highlight);color:var(--primary);}
-
-/* فوتر */
-footer{background:var(--primary);color:var(--secondary);text-align:center;padding:40px 50px;margin-top:50px;}
-footer p{font-size:16px;}
 
 /* معرض الصور */
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
 .gallery img{width:100%;border-radius:15px;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;}
 .gallery img:hover{transform:scale(1.05);box-shadow:0 15px 35px rgba(0,0,0,0.3);}
+
+/* الفوتر */
+footer{background:var(--primary);color:var(--secondary);text-align:center;padding:40px 50px;margin-top:50px;}
+footer p{font-size:16px;}
 </style>
 </head>
 <body>
@@ -70,88 +70,55 @@ footer p{font-size:16px;}
 
 <div class="banner">
 <div>
-<h2>مرحبا بك في NJSERVICES.COM</h2>
-<button onclick="window.location='#products'">ابدأ التسوق</button>
+<h2>واجهة فخمة واحترافية لموقعك</h2>
+<button onclick="window.location='#products'">ابدأ الآن</button>
 </div>
 </div>
 
 <section id="products">
-<h2 class="section-title">منتجاتنا الفاخرة</h2>
+<h2 class="section-title">منتجاتنا</h2>
 <div class="grid-container">
-<div class="card">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<h3>ساعة فاخرة</h3>
-<p>ساعة أنيقة تضيف لمسة فاخرة لمظهرك.</p>
-<button>أضف للسلة</button>
-</div>
-<div class="card">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<h3>سماعة بلوتوث</h3>
-<p>سماعة بجودة صوت عالية ومظهر أنيق.</p>
-<button>أضف للسلة</button>
-</div>
-<div class="card">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<h3>حقيبة فاخرة</h3>
-<p>حقيبة أنيقة تناسب جميع المناسبات.</p>
-<button>أضف للسلة</button>
-</div>
+<!-- بطاقات فارغة للمنتجات -->
+<div class="card"><h3>منتج 1</h3><p>وصف المنتج يظهر هنا لاحقًا</p><button>أضف للسلة</button></div>
+<div class="card"><h3>منتج 2</h3><p>وصف المنتج يظهر هنا لاحقًا</p><button>أضف للسلة</button></div>
+<div class="card"><h3>منتج 3</h3><p>وصف المنتج يظهر هنا لاحقًا</p><button>أضف للسلة</button></div>
 </div>
 </section>
 
 <section id="services">
 <h2 class="section-title">خدماتنا الإلكترونية</h2>
 <div class="grid-container">
-<div class="card">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<h3>تصميم مواقع</h3>
-<p>خدمة تصميم مواقع احترافية وسريعة.</p>
-<button>اطلب الخدمة</button>
-</div>
-<div class="card">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<h3>تسويق إلكتروني</h3>
-<p>خدمة تسويق مبتكرة لزيادة مبيعاتك.</p>
-<button>اطلب الخدمة</button>
-</div>
+<div class="card"><h3>خدمة 1</h3><p>وصف الخدمة يظهر هنا لاحقًا</p><button>اطلب الخدمة</button></div>
+<div class="card"><h3>خدمة 2</h3><p>وصف الخدمة يظهر هنا لاحقًا</p><button>اطلب الخدمة</button></div>
 </div>
 </section>
 
 <section id="vendors">
 <h2 class="section-title">البائعون المميزون</h2>
 <div class="grid-container">
-<div class="card">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<h3>البائع أحمد</h3>
-<p>متخصص في الساعات والإكسسوارات الفاخرة.</p>
-<button>تواصل معه</button>
-</div>
-<div class="card">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<h3>البائعة ليلى</h3>
-<p>متخصصة في الحقائب والملابس الفاخرة.</p>
-<button>تواصل معها</button>
-</div>
+<div class="card"><h3>البائع 1</h3><p>وصف البائع يظهر هنا لاحقًا</p><button>تواصل معه</button></div>
+<div class="card"><h3>البائع 2</h3><p>وصف البائع يظهر هنا لاحقًا</p><button>تواصل معه</button></div>
 </div>
 </section>
 
 <section id="gallery">
 <h2 class="section-title">معرض الصور</h2>
 <div class="gallery">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
-<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...">
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD..." alt="صورة 1">
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD..." alt="صورة 2">
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD..." alt="صورة 3">
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD..." alt="صورة 4">
 </div>
 </section>
 
 <section id="about">
 <h2 class="section-title">عن NJSERVICES.COM</h2>
-<p>NJSERVICES.COM هو موقع فاخر للتجارة والخدمات الإلكترونية يجمع بين التصميم الأنيق، المنتجات عالية الجودة، وخدمات احترافية لتلبية جميع احتياجاتك.</p>
+<p>موقع فاخر للتجارة والخدمات الإلكترونية، تصميم أنيق وتجربة مستخدم سلسة ومناسبة لجميع الأجهزة.</p>
 </section>
 
 <footer>
 <p>&copy; 2026 NJSERVICES.COM. جميع الحقوق محفوظة.</p>
 </footer>
+
 </body>
 </html>
