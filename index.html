@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع فخم للتجارة والخدمات الإلكترونية</title>
+    <title>NJSERVICES.COM - التجارة والخدمات الإلكترونية الفاخرة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* إعدادات عامة */
@@ -12,6 +12,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
         }
         body {
             background-color: #f5f5f5;
@@ -20,16 +21,23 @@
 
         /* الهيدر */
         header {
-            background: linear-gradient(90deg, #1c1c1c, #3b3b3b);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(28, 28, 28, 0.95);
             color: #fff;
             padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
+            transition: 0.3s;
         }
         header h1 {
             font-size: 28px;
             font-weight: 700;
+            letter-spacing: 1px;
         }
         nav a {
             color: #fff;
@@ -46,7 +54,7 @@
         .banner {
             position: relative;
             background: url('https://images.unsplash.com/photo-1605902711622-cfb43c4433c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dGVjaHxlbnwwfHx8fDE2OTU4Nzc2MzE&ixlib=rb-4.0.3&q=80&w=1080') center/cover no-repeat;
-            height: 500px;
+            height: 600px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -54,45 +62,103 @@
             color: #fff;
         }
         .banner h2 {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 700;
-            background-color: rgba(0,0,0,0.5);
-            padding: 20px 40px;
-            border-radius: 15px;
+            background-color: rgba(0,0,0,0.6);
+            padding: 25px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .banner button {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            background: #f39c12;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .banner button:hover {
+            background: #e67e22;
         }
 
         /* الأقسام */
         section {
-            padding: 60px 50px;
+            padding: 80px 50px;
         }
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
         }
         .service-card {
             background: #fff;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: 0.3s;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: 0.4s;
         }
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
         }
         .service-card img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
+            transition: 0.3s;
         }
         .service-card h3 {
             margin: 15px;
-            font-size: 22px;
+            font-size: 24px;
         }
         .service-card p {
-            margin: 0 15px 15px 15px;
+            margin: 0 15px 20px 15px;
             font-size: 16px;
             color: #555;
+        }
+        .service-card button {
+            margin: 0 15px 20px 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            background: #1c1c1c;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .service-card button:hover {
+            background: #f39c12;
+        }
+
+        /* معرض الصور */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* قسم عن الموقع */
+        #about p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.7;
+            text-align: center;
         }
 
         /* الفوتر */
@@ -100,62 +166,112 @@
             background: #1c1c1c;
             color: #fff;
             text-align: center;
-            padding: 30px 50px;
+            padding: 40px 50px;
         }
         footer p {
             font-size: 16px;
+        }
+
+        /* تأثيرات التمرير */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- الهيدر -->
     <header>
-        <h1>LuxuryTech</h1>
+        <h1>NJSERVICES.COM</h1>
         <nav>
             <a href="#services">خدماتنا</a>
             <a href="#about">عن الموقع</a>
+            <a href="#gallery">معرض الصور</a>
             <a href="#contact">تواصل معنا</a>
         </nav>
     </header>
 
     <!-- البانر -->
     <div class="banner">
-        <h2>تجربة تجارة إلكترونية فاخرة</h2>
+        <div>
+            <h2>تجربة تجارة وخدمات إلكترونية فاخرة</h2>
+            <button onclick="window.location='#services'">ابدأ الآن</button>
+        </div>
     </div>
 
     <!-- قسم الخدمات -->
     <section id="services">
-        <h2 style="text-align:center; margin-bottom:40px;">خدماتنا</h2>
+        <h2 style="text-align:center; margin-bottom:50px;">خدماتنا</h2>
         <div class="services">
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1581092335185-53e12ef5b9a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dGVjaHxlbnwwfHx8fDE2OTU4Nzc3NjA&ixlib=rb-4.0.3&q=80&w=1080" alt="خدمة 1">
+            <div class="service-card fade-up">
+                <img src="https://images.unsplash.com/photo-1581092335185-53e12ef5b9a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="خدمة 1">
                 <h3>منتجات فاخرة</h3>
                 <p>استعرض مجموعة منتجاتنا الراقية بأفضل جودة وتصميم جذاب.</p>
+                <button>استعرض الآن</button>
             </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1600180758890-1e4f5769e2b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dGVjaHxlbnwwfHx8fDE2OTU4Nzc3OTk&ixlib=rb-4.0.3&q=80&w=1080" alt="خدمة 2">
+            <div class="service-card fade-up">
+                <img src="https://images.unsplash.com/photo-1600180758890-1e4f5769e2b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="خدمة 2">
                 <h3>دعم متميز</h3>
                 <p>فريقنا جاهز لتقديم أفضل دعم لعملائنا على مدار الساعة.</p>
+                <button>تواصل معنا</button>
             </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dGVjaHxlbnwwfHx8fDE2OTU4Nzc4MTY&ixlib=rb-4.0.3&q=80&w=1080" alt="خدمة 3">
+            <div class="service-card fade-up">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="خدمة 3">
                 <h3>تجربة مستخدم ممتازة</h3>
                 <p>واجهة سهلة الاستخدام وتجربة شراء سلسة وآمنة.</p>
+                <button>اكتشف المزيد</button>
             </div>
         </div>
     </section>
 
+    <!-- معرض الصور -->
+    <section id="gallery" style="background:#f0f0f0;">
+        <h2 style="text-align:center; margin-bottom:50px;">معرض الصور</h2>
+        <div class="gallery fade-up">
+            <img src="https://images.unsplash.com/photo-1590608897129-79e5ed6b6d4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="صورة 1">
+            <img src="https://images.unsplash.com/photo-1590608896997-9c86d4efb4b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="صورة 2">
+            <img src="https://images.unsplash.com/photo-1590608897195-8b50ff4c891b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="صورة 3">
+            <img src="https://images.unsplash.com/photo-1590608897295-1d52d7f6d7d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="صورة 4">
+        </div>
+    </section>
+
     <!-- قسم عن الموقع -->
-    <section id="about" style="background:#f0f0f0;">
-        <h2 style="text-align:center; margin-bottom:40px;">عن الموقع</h2>
-        <p style="max-width:800px; margin: auto; font-size:18px; line-height:1.7;">
-            نقدم لك منصة تجارة إلكترونية فاخرة تضم مجموعة من المنتجات والخدمات عالية الجودة، مع تصميم أنيق وسهل الاستخدام، لتجربة تسوق استثنائية تلبي جميع احتياجاتك.
+    <section id="about">
+        <h2 style="text-align:center; margin-bottom:50px;">عن NJSERVICES.COM</h2>
+        <p>
+            NJSERVICES.COM هي منصة تجارة وخدمات إلكترونية فاخرة، تجمع بين التصميم الأنيق والمنتجات عالية الجودة، مع تجربة مستخدم سلسة وواجهة احترافية لتلبية جميع احتياجاتك الإلكترونية بسهولة وثقة.
         </p>
     </section>
 
     <!-- الفوتر -->
-    <footer>
-        <p>&copy; 2026 LuxuryTech. جميع الحقوق محفوظة.</p>
+    <footer id="contact">
+        <p>&copy; 2026 NJSERVICES.COM. جميع الحقوق محفوظة.</p>
     </footer>
+
+    <script>
+        // تأثير التمرير على العناصر
+        const faders = document.querySelectorAll('.fade-up');
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
+            entries.forEach(entry => {
+                if(!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
 </body>
 </html>
+
