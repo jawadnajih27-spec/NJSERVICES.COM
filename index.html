@@ -6,78 +6,64 @@
 <title>NJSERVICES.COM - متجر إلكتروني فاخر</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Cairo', sans-serif; scroll-behavior:smooth;}
-    body {background:#f5f5f5; color:#333;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;scroll-behavior:smooth;}
+body{background:#f5f5f5;color:#333;}
 
-    /* الهيدر */
-    header {
-        position: fixed; top:0; left:0; width:100%;
-        background: rgba(28,28,28,0.95); color:#fff; z-index:1000;
-        display:flex; justify-content:space-between; align-items:center;
-        padding:20px 50px; transition:0.3s;
-    }
-    header h1 {font-size:28px; font-weight:700; letter-spacing:1px;}
-    nav a {color:#fff; text-decoration:none; margin-left:25px; font-weight:500; transition:0.3s;}
-    nav a:hover {color:#f39c12;}
-    #cart-btn {background:#f39c12; padding:8px 15px; border-radius:8px; cursor:pointer;}
-    #cart-btn:hover {background:#e67e22;}
+/* الهيدر */
+header{position:fixed;top:0;left:0;width:100%;background:rgba(28,28,28,0.95);color:#fff;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:20px 50px;transition:0.3s;}
+header h1{font-size:28px;font-weight:700;letter-spacing:1px;}
+nav a{color:#fff;text-decoration:none;margin-left:25px;font-weight:500;transition:0.3s;}
+nav a:hover{color:#f39c12;}
+#cart-btn{background:#f39c12;padding:8px 15px;border-radius:8px;cursor:pointer;}
+#cart-btn:hover{background:#e67e22;}
 
-    /* البانر */
-    .banner {
-        background: url('https://images.unsplash.com/photo-1605902711622-cfb43c4433c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080') center/cover no-repeat;
-        height:600px; display:flex; justify-content:center; align-items:center; text-align:center; color:#fff;
-    }
-    .banner h2 {font-size:52px; font-weight:700; background:rgba(0,0,0,0.6); padding:25px 50px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.4);}
-    .banner button {margin-top:30px; padding:15px 40px; font-size:18px; font-weight:600; border:none; border-radius:10px; background:#f39c12; cursor:pointer; transition:0.3s;}
-    .banner button:hover {background:#e67e22;}
+/* البانر */
+.banner{background:url('https://images.unsplash.com/photo-1605902711622-cfb43c4433c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080') center/cover no-repeat;height:600px;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;}
+.banner h2{font-size:52px;font-weight:700;background:rgba(0,0,0,0.6);padding:25px 50px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,0.4);}
+.banner button{margin-top:30px;padding:15px 40px;font-size:18px;font-weight:600;border:none;border-radius:10px;background:#f39c12;cursor:pointer;transition:0.3s;}
+.banner button:hover{background:#e67e22;}
 
-    /* أقسام */
-    section {padding:80px 50px;}
-    h2.section-title {text-align:center; margin-bottom:50px;}
+/* الأقسام */
+section{padding:80px 50px;}
+h2.section-title{text-align:center;margin-bottom:50px;}
 
-    /* متجر المنتجات */
-    .products {
-        display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:35px;
-    }
-    .product-card {
-        background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 15px 35px rgba(0,0,0,0.15); transition:0.4s;
-    }
-    .product-card:hover {transform:translateY(-15px);}
-    .product-card img {width:100%; height:200px; object-fit:cover;}
-    .product-card h3 {margin:15px; font-size:22px;}
-    .product-card p {margin:0 15px 15px 15px; font-size:16px; color:#555;}
-    .product-card button {margin:0 15px 20px 15px; padding:10px 20px; font-size:16px; font-weight:600; border:none; border-radius:8px; background:#1c1c1c; color:#fff; cursor:pointer; transition:0.3s;}
-    .product-card button:hover {background:#f39c12;}
+/* متجر المنتجات */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:35px;}
+.product-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,0.15);transition:0.4s;position:relative;}
+.product-card:hover{transform:translateY(-10px);}
+.product-card img{width:100%;height:200px;object-fit:cover;transition:0.3s;}
+.product-card h3{margin:15px;font-size:22px;}
+.product-card p{margin:0 15px 15px 15px;font-size:16px;color:#555;}
+.product-card button{margin:0 15px 20px 15px;padding:10px 20px;font-size:16px;font-weight:600;border:none;border-radius:8px;background:#1c1c1c;color:#fff;cursor:pointer;transition:0.3s;position:relative;overflow:hidden;}
+.product-card button:hover{background:#f39c12;}
+.product-card .added {position:absolute;top:10px;right:10px;background:#27ae60;color:#fff;padding:5px 10px;border-radius:8px;font-size:14px;opacity:0;transition:0.5s;}
 
-    /* سلة الشراء */
-    #cart {
-        position: fixed; top:0; right:-400px; width:350px; height:100%; background:#fff; box-shadow:-5px 0 35px rgba(0,0,0,0.3);
-        padding:20px; transition:0.4s; z-index:2000; overflow-y:auto;
-    }
-    #cart.active {right:0;}
-    #cart h2 {text-align:center; margin-bottom:20px;}
-    .cart-item {display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;}
-    .cart-item img {width:60px; height:60px; object-fit:cover; border-radius:8px;}
-    .cart-item-details {flex:1; margin-left:10px;}
-    .cart-item-details h4 {font-size:16px;}
-    .cart-item-details p {font-size:14px; color:#555;}
-    .remove-btn {background:red; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;}
+/* سلة الشراء */
+#cart{position:fixed;top:0;right:-400px;width:380px;height:100%;background:#fff;box-shadow:-5px 0 35px rgba(0,0,0,0.3);padding:20px;transition:0.4s;z-index:2000;overflow-y:auto;}
+#cart.active{right:0;}
+#cart h2{text-align:center;margin-bottom:20px;}
+.cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;position:relative;}
+.cart-item img{width:60px;height:60px;object-fit:cover;border-radius:8px;}
+.cart-item-details{flex:1;margin-left:10px;}
+.cart-item-details h4{font-size:16px;}
+.cart-item-details p{font-size:14px;color:#555;}
+.remove-btn{background:red;color:#fff;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;margin-left:5px;}
+.qty-input{width:45px;padding:5px;border:1px solid #ccc;border-radius:5px;text-align:center;margin-left:5px;}
 
-    /* معرض الصور */
-    .gallery {display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px;}
-    .gallery img {width:100%; border-radius:15px; transition:transform 0.3s, box-shadow 0.3s; cursor:pointer;}
-    .gallery img:hover {transform:scale(1.05); box-shadow:0 15px 35px rgba(0,0,0,0.3);}
+/* معرض الصور */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.gallery img{width:100%;border-radius:15px;transition:transform 0.3s, box-shadow 0.3s;cursor:pointer;}
+.gallery img:hover{transform:scale(1.05);box-shadow:0 15px 35px rgba(0,0,0,0.3);}
 
-    /* قسم عن الموقع */
-    #about p {max-width:800px; margin:auto; font-size:18px; line-height:1.7; text-align:center;}
+/* قسم عن الموقع */
+#about p{max-width:800px;margin:auto;font-size:18px;line-height:1.7;text-align:center;}
 
-    /* الفوتر */
-    footer {background:#1c1c1c; color:#fff; text-align:center; padding:40px 50px;}
-    footer p {font-size:16px;}
+/* الفوتر */
+footer{background:#1c1c1c;color:#fff;text-align:center;padding:40px 50px;}
+footer p{font-size:16px;}
 </style>
 </head>
 <body>
-<!-- الهيدر -->
 <header>
     <h1>NJSERVICES.COM</h1>
     <nav>
@@ -88,7 +74,6 @@
     </nav>
 </header>
 
-<!-- البانر -->
 <div class="banner">
     <div>
         <h2>تجربة تجارة وخدمات إلكترونية فاخرة</h2>
@@ -96,111 +81,115 @@
     </div>
 </div>
 
-<!-- متجر المنتجات -->
 <section id="products">
-    <h2 class="section-title">منتجاتنا</h2>
-    <div class="products">
-        <div class="product-card" data-name="ساعة فاخرة" data-price="350">
-            <img src="https://images.unsplash.com/photo-1600180758890-1e4f5769e2b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="ساعة فاخرة">
-            <h3>ساعة فاخرة</h3>
-            <p>ساعة أنيقة تضيف لمسة فاخرة لمظهرك.</p>
-            <button class="add-to-cart">أضف للسلة</button>
-        </div>
-        <div class="product-card" data-name="سماعة بلوتوث" data-price="120">
-            <img src="https://images.unsplash.com/photo-1590608897129-79e5ed6b6d4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="سماعة بلوتوث">
-            <h3>سماعة بلوتوث</h3>
-            <p>سماعة بجودة صوت عالية ومظهر أنيق.</p>
-            <button class="add-to-cart">أضف للسلة</button>
-        </div>
-        <div class="product-card" data-name="حقيبة فاخرة" data-price="220">
-            <img src="https://images.unsplash.com/photo-1581092335185-53e12ef5b9a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="حقيبة فاخرة">
-            <h3>حقيبة فاخرة</h3>
-            <p>حقيبة أنيقة تناسب جميع المناسبات.</p>
-            <button class="add-to-cart">أضف للسلة</button>
-        </div>
+<h2 class="section-title">منتجاتنا</h2>
+<div class="products">
+    <div class="product-card" data-name="ساعة فاخرة" data-price="350">
+        <img src="https://images.unsplash.com/photo-1600180758890-1e4f5769e2b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="ساعة فاخرة">
+        <h3>ساعة فاخرة</h3>
+        <p>ساعة أنيقة تضيف لمسة فاخرة لمظهرك.</p>
+        <button class="add-to-cart">أضف للسلة</button>
+        <span class="added">تمت الإضافة!</span>
     </div>
+    <div class="product-card" data-name="سماعة بلوتوث" data-price="120">
+        <img src="https://images.unsplash.com/photo-1590608897129-79e5ed6b6d4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="سماعة بلوتوث">
+        <h3>سماعة بلوتوث</h3>
+        <p>سماعة بجودة صوت عالية ومظهر أنيق.</p>
+        <button class="add-to-cart">أضف للسلة</button>
+        <span class="added">تمت الإضافة!</span>
+    </div>
+    <div class="product-card" data-name="حقيبة فاخرة" data-price="220">
+        <img src="https://images.unsplash.com/photo-1581092335185-53e12ef5b9a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="حقيبة فاخرة">
+        <h3>حقيبة فاخرة</h3>
+        <p>حقيبة أنيقة تناسب جميع المناسبات.</p>
+        <button class="add-to-cart">أضف للسلة</button>
+        <span class="added">تمت الإضافة!</span>
+    </div>
+</div>
 </section>
 
-<!-- معرض الصور -->
 <section id="gallery" style="background:#f0f0f0;">
-    <h2 class="section-title">معرض الصور</h2>
-    <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1590608897129-79e5ed6b6d4d" alt="صورة 1">
-        <img src="https://images.unsplash.com/photo-1590608896997-9c86d4efb4b0" alt="صورة 2">
-        <img src="https://images.unsplash.com/photo-1590608897195-8b50ff4c891b" alt="صورة 3">
-        <img src="https://images.unsplash.com/photo-1590608897295-1d52d7f6d7d2" alt="صورة 4">
-    </div>
+<h2 class="section-title">معرض الصور</h2>
+<div class="gallery">
+    <img src="https://images.unsplash.com/photo-1590608897129-79e5ed6b6d4d" alt="صورة 1">
+    <img src="https://images.unsplash.com/photo-1590608896997-9c86d4efb4b0" alt="صورة 2">
+    <img src="https://images.unsplash.com/photo-1590608897195-8b50ff4c891b" alt="صورة 3">
+    <img src="https://images.unsplash.com/photo-1590608897295-1d52d7f6d7d2" alt="صورة 4">
+</div>
 </section>
 
-<!-- قسم عن الموقع -->
 <section id="about">
-    <h2 class="section-title">عن NJSERVICES.COM</h2>
-    <p>NJSERVICES.COM هي منصة تجارة وخدمات إلكترونية فاخرة، تجمع بين التصميم الأنيق والمنتجات عالية الجودة، مع تجربة مستخدم سلسة وواجهة احترافية لتلبية جميع احتياجاتك بسهولة وثقة.</p>
+<h2 class="section-title">عن NJSERVICES.COM</h2>
+<p>NJSERVICES.COM هي منصة تجارة وخدمات إلكترونية فاخرة، تجمع بين التصميم الأنيق والمنتجات عالية الجودة، مع تجربة مستخدم سلسة وواجهة احترافية لتلبية جميع احتياجاتك بسهولة وثقة.</p>
 </section>
 
-<!-- الفوتر -->
 <footer>
-    <p>&copy; 2026 NJSERVICES.COM. جميع الحقوق محفوظة.</p>
+<p>&copy; 2026 NJSERVICES.COM. جميع الحقوق محفوظة.</p>
 </footer>
 
-<!-- سلة الشراء -->
 <div id="cart">
-    <h2>سلة الشراء</h2>
-    <div id="cart-items"></div>
-    <h3 id="cart-total">المجموع: 0$</h3>
+<h2>سلة الشراء</h2>
+<div id="cart-items"></div>
+<h3 id="cart-total">المجموع: 0$</h3>
 </div>
 
 <script>
-    // فتح وغلق سلة الشراء
-    const cartBtn = document.getElementById('cart-btn');
-    const cart = document.getElementById('cart');
-    cartBtn.addEventListener('click', () => cart.classList.toggle('active'));
+// فتح وغلق السلة
+const cartBtn=document.getElementById('cart-btn');
+const cart=document.getElementById('cart');
+cartBtn.addEventListener('click',()=>cart.classList.toggle('active'));
 
-    // إضافة منتجات للسلة
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    let cartItems = [];
+// إضافة منتجات للسلة مع عداد الكمية وأنيميشن
+const addToCartButtons=document.querySelectorAll('.add-to-cart');
+const cartItemsContainer=document.getElementById('cart-items');
+const cartTotal=document.getElementById('cart-total');
+let cartItems=[];
 
-    addToCartButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const productCard = btn.parentElement;
-            const name = productCard.dataset.name;
-            const price = parseFloat(productCard.dataset.price);
+addToCartButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        const productCard=btn.parentElement;
+        const name=productCard.dataset.name;
+        const price=parseFloat(productCard.dataset.price);
 
-            const existingItem = cartItems.find(item => item.name === name);
-            if(existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cartItems.push({name, price, quantity:1});
-            }
+        const addedLabel=productCard.querySelector('.added');
+        addedLabel.style.opacity='1';
+        setTimeout(()=>{addedLabel.style.opacity='0';},800);
+
+        const existingItem=cartItems.find(item=>item.name===name);
+        if(existingItem){existingItem.quantity+=1;}
+        else{cartItems.push({name, price, quantity:1});}
+        updateCart();
+    });
+});
+
+function updateCart(){
+    cartItemsContainer.innerHTML='';
+    let total=0;
+    cartItems.forEach(item=>{
+        total+=item.price*item.quantity;
+        const div=document.createElement('div');
+        div.classList.add('cart-item');
+        div.innerHTML=`
+            <img src="https://via.placeholder.com/60" alt="${item.name}">
+            <div class="cart-item-details">
+                <h4>${item.name}</h4>
+                <p><input type="number" class="qty-input" min="1" value="${item.quantity}"> × ${item.price}$</p>
+            </div>
+            <button class="remove-btn">حذف</button>
+        `;
+        // تحديث الكمية مباشرة
+        div.querySelector('.qty-input').addEventListener('change', e=>{
+            item.quantity=parseInt(e.target.value);
             updateCart();
         });
-    });
-
-    function updateCart() {
-        cartItemsContainer.innerHTML = '';
-        let total = 0;
-        cartItems.forEach(item => {
-            total += item.price * item.quantity;
-            const div = document.createElement('div');
-            div.classList.add('cart-item');
-            div.innerHTML = `
-                <img src="https://via.placeholder.com/60" alt="${item.name}">
-                <div class="cart-item-details">
-                    <h4>${item.name}</h4>
-                    <p>${item.quantity} × ${item.price}$</p>
-                </div>
-                <button class="remove-btn">حذف</button>
-            `;
-            div.querySelector('.remove-btn').addEventListener('click', () => {
-                cartItems = cartItems.filter(i => i.name !== item.name);
-                updateCart();
-            });
-            cartItemsContainer.appendChild(div);
+        div.querySelector('.remove-btn').addEventListener('click',()=>{
+            cartItems=cartItems.filter(i=>i.name!==item.name);
+            updateCart();
         });
-        cartTotal.innerText = `المجموع: ${total}$`;
-    }
+        cartItemsContainer.appendChild(div);
+    });
+    cartTotal.innerText=`المجموع: ${total}$`;
+}
 </script>
 </body>
 </html>
