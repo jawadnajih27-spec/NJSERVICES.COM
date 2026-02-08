@@ -1,33 +1,39 @@
-name: Gemini Code Review
+name: "Gemini AI Manager"
 
 on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  review:
+  gemini-manager:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: AI Code Analysis
-        run: |
-          curl https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${{ secrets.GEMINI_API_KEY }} \
-          -H 'Content-Type: application/json' \
-          -X POST \
-          -d '{
-            "contents": [{
-              "parts": [{
-                "text": "قم بمراجعة كود HTML/JS التالي واكتشف الأخطاء أو اقترح تحسينات للفخامة والأداء: $(cat index.html)"
-              }]
-            }]
-          }' > review_report.json
-
-      - name: Upload Review Results
-        uses: actions/upload-artifact@v4
+      - name: Gemini Automation
+        uses: google-gemini/gemini-github-action@v1.1.0 # تأكد من استخدام أحدث إصدار متاح في 2026
         with:
-          name: gemini-report
-          path: review_report.json
+          apiKey: ${{ secrets.GEMINI_API_KEY }}
+          # هذا الجزء يخبر Gemini أن يقرأ الـ Issue وينفذ ما فيه
+          prompt: |
+            أنت مدير تقني لموقع NJSERVICES. 
+            إذا كان هذا الإجراء ناتجاً عن Issue، اقرأ الطلب المكتوب في العنوان والوصف.
+            قم بتعديل ملف index.html بناءً على طلب المستخدم.
+            أعد الكود الكامل أو التعديلات المقترحة بصيغة Pull Request.
+            سياق الموقع: موقع خدمات رقمية فخم (أسود وذهبي).
+          model: "gemini-1.5-flash"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "تحديث آلي من Gemini Manager بناءً على Issue #${{ github.event.issue.number }}"
+          title: "تحديث محتوى: ${{ github.event.issue.title }}"
+          body: "هذا التعديل تم توليده تلقائياً بواسطة Gemini لإدارة الموقع."
+          branch: "ai-updates-${{ github.event.issue.number }}"
