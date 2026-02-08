@@ -199,27 +199,8 @@
         .modal-view img { max-width: 85%; max-height: 75%; border: 1px solid var(--gold); border-radius: 15px; }
         .close-modal { position: absolute; top: 40px; right: 40px; font-size: 2.5rem; color: #fff; cursor: pointer; }
 
-        /* --- 10. التذييل (Footer) --- */
-        footer {
-            padding: 80px 8% 40px; border-top: 1px solid rgba(212, 175, 55, 0.1);
-            text-align: center;
-        }
+        footer { padding: 80px 8% 40px; border-top: 1px solid rgba(212, 175, 55, 0.1); text-align: center; }
         .footer-logo { font-size: 2.5rem; font-weight: 900; color: var(--gold); margin-bottom: 20px; display: block; }
-        .socials { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
-        .socials a {
-            width: 50px; height: 50px; border: 1px solid #222;
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: var(--gold); text-decoration: none; transition: 0.3s;
-        }
-        .socials a:hover { background: var(--gold); color: #000; border-color: var(--gold); }
-
-        /* التجاوب */
-        @media (max-width: 768px) {
-            header { padding: 15px 5%; }
-            nav { display: none; }
-            .hero h1 { font-size: 2.8rem; }
-            .chat-widget-container { width: 90%; left: 5%; bottom: 100px; }
-        }
     </style>
 </head>
 <body>
@@ -244,160 +225,105 @@
 
     <section class="hero visible" id="home" style="opacity: 1; transform: translateY(0);">
         <h1>نصنع <span>الفخامة</span> في العالم الرقمي</h1>
-        <p>نحن شريكك الإستراتيجي لبناء هوية رقمية تليق بطموحك، نجمع بين ذكاء البرمجة وجمالية التصميم الملكي.</p>
+        <p>نحن شريكك الإستراتيجي لبناء هوية رقمية تليق بطموحك.</p>
         <a href="#portfolio" class="btn-gold">اكتشف إبداعاتنا</a>
     </section>
 
     <section id="services">
-        <div class="sec-title">
-            <h2>خدمات النخبة</h2>
-            <div class="bar"></div>
-        </div>
+        <div class="sec-title"><h2>خدمات النخبة</h2><div class="bar"></div></div>
         <div class="grid-services">
-            <div class="s-card">
-                <i class="fas fa-crown"></i>
-                <h3>متاجر فاخرة</h3>
-                <p>تصميم متاجر إلكترونية فريدة تركز على تجربة المستخدم الفخمة.</p>
-            </div>
-            <div class="s-card">
-                <i class="fas fa-microchip"></i>
-                <h3>حلول ذكية</h3>
-                <p>دمج أنظمة الذكاء الاصطناعي لتطوير أداء عملك الرقمي.</p>
-            </div>
-            <div class="s-card">
-                <i class="fas fa-fingerprint"></i>
-                <h3>هوية بصرية</h3>
-                <p>بناء علامة تجارية تترك بصمة لا تُمحى في أذهان عملائك.</p>
-            </div>
+            <div class="s-card"><i class="fas fa-crown"></i><h3>متاجر فاخرة</h3><p>تصميم متاجر إلكترونية فريدة.</p></div>
+            <div class="s-card"><i class="fas fa-microchip"></i><h3>حلول ذكية</h3><p>دمج أنظمة الذكاء الاصطناعي.</p></div>
+            <div class="s-card"><i class="fas fa-fingerprint"></i><h3>هوية بصرية</h3><p>بناء علامة تجارية تترك بصمة.</p></div>
         </div>
     </section>
 
     <section id="portfolio">
-        <div class="sec-title">
-            <h2>معرض الأعمال</h2>
-            <div class="bar"></div>
-        </div>
+        <div class="sec-title"><h2>معرض الأعمال</h2><div class="bar"></div></div>
         <div class="grid-portfolio">
             <div class="p-card" onclick="openModal('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200', 'مشروع أثير')">
                 <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600');"></div>
-                <div class="p-overlay">
-                    <h4>نظام أثير</h4>
-                    <p>برمجيات متطورة</p>
-                </div>
+                <div class="p-overlay"><h4>نظام أثير</h4><p>برمجيات متطورة</p></div>
             </div>
             <div class="p-card" onclick="openModal('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=1200', 'هوية أوروم')">
                 <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=600');"></div>
-                <div class="p-overlay">
-                    <h4>براند أوروم</h4>
-                    <p>تصميم ملكي</p>
-                </div>
-            </div>
-            <div class="p-card" onclick="openModal('https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200', 'تطبيق نيو-جين')">
-                <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600');"></div>
-                <div class="p-overlay">
-                    <h4>تطبيق نيو-جين</h4>
-                    <p>واجهات مستقبلية</p>
-                </div>
+                <div class="p-overlay"><h4>براند أوروم</h4><p>تصميم ملكي</p></div>
             </div>
         </div>
     </section>
-
-    <section id="contact">
-        <div class="sec-title">
-            <h2>لنبدأ رحلتك</h2>
-            <div class="bar"></div>
-        </div>
-        <div style="max-width: 700px; margin: 0 auto; background: var(--card-glass); padding: 50px; border-radius: 40px; border: 1px solid rgba(212,175,55,0.1);">
-            <form>
-                <input type="text" placeholder="اسمك الكريم" style="width: 100%; padding: 18px; background: #000; border: 1px solid #222; border-radius: 12px; color: #fff; margin-bottom: 20px;">
-                <input type="email" placeholder="البريد الإلكتروني" style="width: 100%; padding: 18px; background: #000; border: 1px solid #222; border-radius: 12px; color: #fff; margin-bottom: 20px;">
-                <textarea rows="5" placeholder="تفاصيل مشروعك الفخم..." style="width: 100%; padding: 18px; background: #000; border: 1px solid #222; border-radius: 12px; color: #fff; margin-bottom: 25px;"></textarea>
-                <button type="button" class="btn-gold" style="width: 100%; border: none; cursor: pointer;">إرسال الطلب</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <span class="footer-logo">NJSERVICES</span>
-        <div class="socials">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
-        </div>
-        <p style="color: #444;">&copy; 2026 NJSERVICES.COM | جميع الحقوق محفوظة للفخامة</p>
-    </footer>
 
     <div id="gemini-chat" class="chat-widget-container">
-        <div class="chat-header">
-            <span>مساعد NJ الذكي</span>
-            <i class="fas fa-times" style="cursor: pointer" onclick="toggleChat()"></i>
-        </div>
-        <div id="chat-box" class="chat-messages">
-            <div class="chat-msg ai">مرحباً بك في NJSERVICES. أنا مساعدك المدعوم بـ Gemini، كيف أخدمك اليوم؟</div>
-        </div>
+        <div class="chat-header"><span>مساعد NJ الذكي</span><i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer"></i></div>
+        <div id="chat-box" class="chat-messages"><div class="chat-msg ai">مرحباً! كيف أخدمك اليوم؟</div></div>
         <div class="chat-input-area">
             <input type="text" id="user-input" placeholder="اكتب سؤالك هنا..." onkeypress="if(event.key==='Enter') sendToGemini()">
             <button onclick="sendToGemini()"><i class="fas fa-paper-plane" style="color: #000;"></i></button>
         </div>
     </div>
 
-    <div class="chat-trigger" onclick="toggleChat()">
-        <i class="fas fa-wand-magic-sparkles"></i>
-    </div>
+    <div class="chat-trigger" onclick="toggleChat()"><i class="fas fa-wand-magic-sparkles"></i></div>
 
     <div id="imgModal" class="modal-view">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <img id="modalImg" src="">
-        <h3 id="modalCap" style="color: var(--gold); margin-top: 20px;"></h3>
+        <img id="modalImg" src=""><h3 id="modalCap" style="color: var(--gold); margin-top: 20px;"></h3>
     </div>
 
     <script>
-        // تأكد أن المفتاح هنا هو نفسه الذي استخرجناه
-const MY_KEY = "AIzaSyBS3-BtbJoSe8K5KXCwI4GhK2BmPEel8PA"; 
+        const MY_KEY = "AIzaSyBS3-BtbJoSe8K5KXCwI4GhK2BmPEel8PA";
 
-async function startChat() {
-    const input = document.getElementById('user-msg');
-    const message = input.value.trim();
-    if (!message) return;
-
-    addMessage('user', message);
-    input.value = '';
-
-    const loadingId = 'loading-' + Date.now();
-    addMessage('ai', 'جاري التفكير...', loadingId);
-
-    try {
-        // التعديل هنا: استخدام رابط API الصحيح مع صياغة JSON دقيقة
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${MY_KEY}`;
-        
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: message }]
-                }]
-            })
+        // كشف الأقسام عند التمرير
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('section').forEach(sec => {
+                if(sec.getBoundingClientRect().top < window.innerHeight * 0.8) sec.classList.add('reveal');
+            });
         });
 
-        const data = await response.json();
-
-        // فحص ما إذا كان هناك خطأ في الرد
-        if (data.error) {
-            console.error("Gemini Error:", data.error.message);
-            document.getElementById(loadingId).innerText = "خطأ من جوجل: " + data.error.message;
-            return;
+        function toggleChat() {
+            const chat = document.getElementById('gemini-chat');
+            chat.style.display = (chat.style.display === 'none' || chat.style.display === '') ? 'flex' : 'none';
         }
 
-        if (data.candidates && data.candidates[0].content) {
-            const aiText = data.candidates[0].content.parts[0].text;
-            document.getElementById(loadingId).innerText = aiText;
+        async function sendToGemini() {
+            const input = document.getElementById('user-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addChatMessage('user', message);
+            input.value = '';
+
+            const loadingId = 'loading-' + Date.now();
+            addChatMessage('ai', 'جاري التفكير...', loadingId);
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${MY_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: message }] }] })
+                });
+                const data = await response.json();
+                const aiText = data.candidates[0].content.parts[0].text;
+                document.getElementById(loadingId).innerText = aiText;
+            } catch (e) {
+                document.getElementById(loadingId).innerText = "حدث خطأ في الاتصال.";
+            }
         }
-    } catch (error) {
-        console.error("Fetch Error:", error);
-        document.getElementById(loadingId).innerText = "تعذر الاتصال. تأكد من اتصال الإنترنت.";
-    }
-}
+
+        function addChatMessage(role, text, id = null) {
+            const box = document.getElementById('chat-box');
+            const div = document.createElement('div');
+            div.className = `chat-msg ${role}`;
+            if (id) div.id = id;
+            div.innerText = text;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function openModal(src, cap) {
+            document.getElementById('imgModal').style.display = 'flex';
+            document.getElementById('modalImg').src = src;
+            document.getElementById('modalCap').innerText = cap;
+        }
+        function closeModal() { document.getElementById('imgModal').style.display = 'none'; }
     </script>
 </body>
-</html>
+            </html>
