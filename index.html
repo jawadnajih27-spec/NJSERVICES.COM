@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NJSERVICES | الفخامة في الخدمات الإلكترونية</title>
+    <title>NJSERVICES | معرض الأعمال التفاعلي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -12,115 +12,66 @@
             --primary-gold: #d4af37;
             --dark-bg: #0a0a0a;
             --card-bg: rgba(255, 255, 255, 0.03);
-            --glass: rgba(212, 175, 55, 0.1);
             --text-white: #ffffff;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--dark-bg); color: var(--text-white); overflow-x: hidden; line-height: 1.6; }
-
-        /* تزيين الخلفية */
-        .bg-glow {
-            position: fixed;
-            width: 100vw; height: 100vh;
-            background: radial-gradient(circle at 50% -20%, #1a1a2e, transparent),
-                        radial-gradient(circle at 0% 100%, #1a1500, transparent);
-            z-index: -1;
-        }
+        body { background-color: var(--dark-bg); color: var(--text-white); overflow-x: hidden; }
 
         /* الهيدر */
         header {
-            padding: 20px 8%;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
-        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-gold); text-decoration: none; letter-spacing: 1px; }
-        nav ul { display: flex; list-style: none; gap: 25px; }
-        nav a { color: #ccc; text-decoration: none; transition: var(--transition); font-size: 0.95rem; }
-        nav a:hover { color: var(--primary-gold); }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-gold); text-decoration: none; }
 
-        /* قسم الهيرو */
-        .hero { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 5%; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); background: linear-gradient(45deg, #fff, var(--primary-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; font-weight: 900; }
-        .hero p { color: #aaa; max-width: 600px; margin: 0 auto 30px; font-size: 1.2rem; }
+        /* قسم معرض الأعمال */
+        section { padding: 80px 8%; }
+        .sec-title { text-align: center; margin-bottom: 50px; }
+        .sec-title h2 { font-size: 2.5rem; color: var(--primary-gold); }
 
-        /* الأقسام العامة */
-        section { padding: 100px 8%; }
-        .sec-title { text-align: center; margin-bottom: 60px; }
-        .sec-title h2 { font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 15px; font-weight: 700; }
-        .sec-title p { color: #777; font-size: 1.1rem; }
-
-        /* شبكة الخدمات والمعرض */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
+        /* بطاقة العمل القابلة للضغط */
         .card {
-            background: var(--card-bg);
-            padding: 30px; border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
-            position: relative; overflow: hidden;
-            display: flex; flex-direction: column;
+            background: var(--card-bg); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition); cursor: pointer; position: relative; overflow: hidden;
+            min-height: 350px; display: flex; flex-direction: column; justify-content: flex-end;
         }
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-        }
-        .card i { font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 20px; }
-
-        /* تحسينات معرض الأعمال (العمل الفني) */
-        .portfolio-card {
-            min-height: 400px;
-            background-size: cover !important;
-            background-position: center !important;
-            justify-content: flex-end;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
+        .card:hover { transform: scale(1.03); border-color: var(--primary-gold); }
+        
         .portfolio-info {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 15px;
-            border-top: 2px solid var(--primary-gold);
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
+            padding: 20px; border-top: 2px solid var(--primary-gold);
         }
 
-        /* آراء العملاء */
-        .testimonial-card {
-            background: var(--card-bg);
-            padding: 30px; border-radius: 20px;
-            border-right: 4px solid var(--primary-gold);
+        /* نافذة العرض (Modal) */
+        .modal {
+            display: none; position: fixed; z-index: 2000; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px); justify-content: center; align-items: center;
+            padding: 20px; opacity: 0; transition: opacity 0.4s ease;
         }
-        .user-info { display: flex; align-items: center; gap: 15px; margin-top: 25px; }
-        .user-info .avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(45deg, var(--primary-gold), #8e6d11); }
+        .modal.active { display: flex; opacity: 1; }
 
-        /* نموذج الاتصال */
-        .contact-container {
-            max-width: 700px; margin: 0 auto;
-            background: rgba(255,255,255,0.02); padding: 40px;
-            border-radius: 30px; border: 1px solid rgba(212, 175, 55, 0.1);
+        .modal-content {
+            max-width: 90%; max-height: 80%; border-radius: 15px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--primary-gold);
+            transform: scale(0.7); transition: transform 0.4s ease;
         }
-        .form-group { margin-bottom: 20px; }
-        input, textarea {
-            width: 100%; padding: 18px;
-            background: rgba(0,0,0,0.5); border: 1px solid #222;
-            color: white; border-radius: 12px; outline: none; transition: 0.3s;
-        }
-        input:focus, textarea:focus { border-color: var(--primary-gold); box-shadow: 0 0 10px rgba(212,175,55,0.1); }
-        .btn {
-            width: 100%; padding: 18px;
-            background: var(--primary-gold); border: none;
-            border-radius: 12px; font-weight: 900; cursor: pointer;
-            transition: var(--transition); color: #000; font-size: 1.1rem;
-        }
-        .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .modal.active .modal-content { transform: scale(1); }
 
-        footer { text-align: center; padding: 60px; border-top: 1px solid #111; color: #444; font-size: 0.9rem; }
+        .close-modal {
+            position: absolute; top: 30px; right: 40px; color: white;
+            font-size: 40px; cursor: pointer; transition: 0.3s;
+        }
+        .close-modal:hover { color: var(--primary-gold); transform: rotate(90deg); }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } nav { display: none; } }
+        /* تزيين الخلفية */
+        .bg-glow { position: fixed; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #1a1500, #0a0a0a); z-index: -1; }
     </style>
 </head>
 <body>
@@ -129,130 +80,71 @@
 
     <header>
         <a href="#" class="logo">NJSERVICES</a>
-        <nav>
-            <ul>
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#services">الخدمات</a></li>
-                <li><a href="#portfolio">المعرض</a></li>
-                <li><a href="#testimonials">العملاء</a></li>
-                <li><a href="#contact">تواصل</a></li>
-            </ul>
-        </nav>
-        <div style="width: 100px;"></div> </header>
-
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>إتقان رقمي.. فخامة أبدية</h1>
-            <p>نحن لا نقدم خدمات فقط، بل نصنع هويات رقمية تليق بطموحك الكبير في عالم التجارة الإلكترونية.</p>
-            <a href="#contact" class="btn" style="padding: 15px 40px; text-decoration: none;">ابدأ رحلة النجاح</a>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="sec-title">
-            <h2>خدماتنا النخبوية</h2>
-            <p>حلول مصممة بدقة لتلبية احتياجاتك الرقمية</p>
-        </div>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-gem"></i>
-                <h3>متاجر فاخرة</h3>
-                <p>بناء متاجر إلكترونية فريدة تركز على تجربة المستخدم والتحويل المالي العالي.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>استشارات تقنية</h3>
-                <p>دعم فني واستشارات استراتيجية لضمان استمرارية وتطور أعمالك الإلكترونية.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-magic"></i>
-                <h3>تصميم إبداعي</h3>
-                <p>تحويل الرؤى إلى تصاميم بصرية تأسر الأنظار وتعزز من قيمة علامتك التجارية.</p>
-            </div>
-        </div>
-    </section>
+        <nav style="color: #888;">إضغط على أي عمل لرؤية التفاصيل</nav>
+    </header>
 
     <section id="portfolio">
         <div class="sec-title">
             <h2>معرض الأعمال الفني</h2>
-            <p>استعراض لأبرز المشاريع التي نفخر بها</p>
+            <p>انقر على البطاقة لتكبير العمل الفني</p>
         </div>
         <div class="grid">
             
-            <div class="card portfolio-card" style="background: linear-gradient(135deg, #1a1a1a 0%, #000 100%); position: relative;">
-                <div style="position: absolute; top: 20%; left: 20%; width: 150px; height: 150px; background: var(--primary-gold); filter: blur(80px); opacity: 0.3; border-radius: 50%;"></div>
-                <div style="position: absolute; bottom: 10%; right: 10%; width: 100px; height: 100px; background: #6c5ce7; filter: blur(60px); opacity: 0.2; border-radius: 50%;"></div>
-                <div class="portfolio-info" style="z-index: 2;">
-                    <i class="fas fa-palette" style="font-size: 1.5rem; display: block; margin-bottom: 10px;"></i>
-                    <h4>لوحة "أثير" الرقمية</h4>
-                    <p>عمل فني يجسد سرعة البيانات والذكاء الاصطناعي</p>
+            <div class="card" onclick="openModal('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1200&q=80', 'نظام أثير الرقمي')" 
+                 style="background: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=600&q=80'); background-size: cover;">
+                <div class="portfolio-info">
+                    <h4>نظام "أثير" الرقمي</h4>
+                    <p>استعراض البنية التحتية للبيانات</p>
                 </div>
             </div>
 
-            <div class="card portfolio-card" style="background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&w=800&q=80'); background-size: cover; border: 1px solid var(--primary-gold);">
+            <div class="card" onclick="openModal('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&w=1200&q=80', 'متجر أوروم الذهبي')" 
+                 style="background: url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&w=600&q=80'); background-size: cover;">
                 <div class="portfolio-info">
-                    <i class="fas fa-crown" style="font-size: 1.5rem; display: block; margin-bottom: 10px;"></i>
                     <h4>متجر أوروم العالمي</h4>
-                    <p>واجهة متجر إلكتروني لبيع الساعات والمجوهرات</p>
+                    <p>واجهة التجارة الإلكترونية الفاخرة</p>
                 </div>
             </div>
 
-            <div class="card portfolio-card" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80'); background-size: cover;">
+            <div class="card" onclick="openModal('https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=1200&q=80', 'برمجيات نيو-جين')" 
+                 style="background: url('https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=600&q=80'); background-size: cover;">
                 <div class="portfolio-info">
-                    <i class="fas fa-code" style="font-size: 1.5rem; display: block; margin-bottom: 10px;"></i>
-                    <h4>تطبيق نيو-جين</h4>
-                    <p>برمجة وتصميم واجهة تطبيق مالي متطور</p>
+                    <h4>برمجة نيو-جين</h4>
+                    <p>تطبيقات مالية مستقبلية</p>
                 </div>
             </div>
 
         </div>
     </section>
-    <section id="testimonials">
-        <div class="sec-title">
-            <h2>شركاء النجاح</h2>
-        </div>
-        <div class="grid">
-            <div class="testimonial-card">
-                <p>"NJSERVICES هي العنوان الحقيقي للرقي في التعامل والجودة في التنفيذ. ممتن جداً للنتائج."</p>
-                <div class="user-info">
-                    <div class="avatar"></div>
-                    <div><h4>عبد الله بن محمد</h4><small>رئيس شركة سمو</small></div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <p>"سرعة الرد واللمسة الفنية في التصميم جعلت متجري يتفوق على المنافسين في وقت قياسي."</p>
-                <div class="user-info">
-                    <div class="avatar"></div>
-                    <div><h4>نورة العتيبي</h4><small>صاحبة متجر بريق</small></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="contact">
-        <div class="sec-title">
-            <h2>اطلب خدمتك الآن</h2>
-            <p>دعنا نبدأ في بناء مستقبلك الرقمي اليوم</p>
-        </div>
-        <div class="contact-container">
-            <form id="njForm">
-                <div class="form-group"><input type="text" placeholder="اسمك الكريم" required></div>
-                <div class="form-group"><input type="email" placeholder="بريدك الإلكتروني" required></div>
-                <div class="form-group"><textarea rows="4" placeholder="تفاصيل الخدمة المطلوبة..."></textarea></div>
-                <button type="submit" class="btn">إرسال الطلب للفريق</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 جميع الحقوق محفوظة لـ NJSERVICES.COM | التميز هو معيارنا</p>
-    </footer>
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <h3 id="modalCaption" style="position: absolute; bottom: 5%; color: var(--primary-gold); font-size: 1.5rem;"></h3>
+    </div>
 
     <script>
-        document.getElementById('njForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('تم استلام طلبك بنجاح. سيتواصل معك مستشارنا الخاص قريباً.');
-            this.reset();
+        function openModal(imgSrc, caption) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            modal.style.display = "flex";
+            setTimeout(() => modal.classList.add('active'), 10);
+            
+            modalImg.src = imgSrc;
+            modalCaption.innerText = caption;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = "none", 400);
+        }
+
+        // إغلاق النافذة عند ضغط زر Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeModal();
         });
     </script>
 </body>
