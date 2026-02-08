@@ -1,0 +1,34 @@
+name: Gemini Code Review
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: AI Code Analysis
+        run: |
+          # هذا السكربت يرسل الكود لـ Gemini ويطلب منه المراجعة
+          curl https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${{ secrets.GEMINI_API_KEY }} \
+          -H 'Content-Type: application/json' \
+          -X POST \
+          -d '{
+            "contents": [{
+              "parts": [{
+                "text": "قم بمراجعة كود HTML/JS التالي واكتشف الأخطاء أو اقترح تحسينات للفخامة والأداء: $(cat index.html)"
+              }]
+            }]
+          }' > review_report.json
+
+      - name: Upload Review Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: gemini-report
+          path: review_report.json
