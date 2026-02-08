@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NJSERVICES | المنصة الرقمية الفاخرة</title>
+    <title>NJSERVICES | الفخامة في الخدمات الإلكترونية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -12,13 +12,13 @@
             --primary-gold: #d4af37;
             --dark-bg: #0a0a0a;
             --card-bg: rgba(255, 255, 255, 0.03);
-            --glass: rgba(255, 255, 255, 0.05);
+            --glass: rgba(212, 175, 55, 0.1);
             --text-white: #ffffff;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--dark-bg); color: var(--text-white); overflow-x: hidden; }
+        body { background-color: var(--dark-bg); color: var(--text-white); overflow-x: hidden; line-height: 1.6; }
 
         /* تزيين الخلفية */
         .bg-glow {
@@ -38,82 +38,89 @@
             position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
-        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-gold); text-decoration: none; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-gold); text-decoration: none; letter-spacing: 1px; }
         nav ul { display: flex; list-style: none; gap: 25px; }
         nav a { color: #ccc; text-decoration: none; transition: var(--transition); font-size: 0.95rem; }
         nav a:hover { color: var(--primary-gold); }
 
         /* قسم الهيرو */
-        .hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 5%; }
-        .hero h1 { font-size: 3.5rem; background: linear-gradient(45deg, #fff, var(--primary-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+        .hero { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 5%; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); background: linear-gradient(45deg, #fff, var(--primary-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; font-weight: 900; }
+        .hero p { color: #aaa; max-width: 600px; margin: 0 auto 30px; font-size: 1.2rem; }
 
         /* الأقسام العامة */
-        section { padding: 80px 8%; }
-        .sec-title { text-align: center; margin-bottom: 50px; }
-        .sec-title h2 { font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 10px; }
-        .sec-title p { color: #888; }
+        section { padding: 100px 8%; }
+        .sec-title { text-align: center; margin-bottom: 60px; }
+        .sec-title h2 { font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 15px; font-weight: 700; }
+        .sec-title p { color: #777; font-size: 1.1rem; }
 
         /* شبكة الخدمات والمعرض */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        /* البطاقات الفخمة */
         .card {
             background: var(--card-bg);
-            padding: 30px; border-radius: 15px;
+            padding: 30px; border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.05);
             transition: var(--transition);
             position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
         }
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--primary-gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
         .card i { font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 20px; }
 
-        /* معرض الأعمال */
-        .portfolio-img {
-            width: 100%; height: 200px;
-            background: #1a1a1a; border-radius: 10px;
-            margin-bottom: 15px;
-            display: flex; align-items: center; justify-content: center;
-            color: #444; font-weight: bold;
+        /* تحسينات معرض الأعمال (العمل الفني) */
+        .portfolio-card {
+            min-height: 400px;
+            background-size: cover !important;
+            background-position: center !important;
+            justify-content: flex-end;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .portfolio-info {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            border-top: 2px solid var(--primary-gold);
         }
 
-        /* آراء العملاء (Glassmorphism) */
+        /* آراء العملاء */
         .testimonial-card {
-            background: var(--glass);
+            background: var(--card-bg);
             padding: 30px; border-radius: 20px;
-            backdrop-filter: blur(5px);
-            border-left: 4px solid var(--primary-gold);
+            border-right: 4px solid var(--primary-gold);
         }
-        .user-info { display: flex; align-items: center; gap: 15px; margin-top: 20px; }
-        .user-info img { width: 50px; height: 50px; border-radius: 50%; background: var(--primary-gold); }
+        .user-info { display: flex; align-items: center; gap: 15px; margin-top: 25px; }
+        .user-info .avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(45deg, var(--primary-gold), #8e6d11); }
 
         /* نموذج الاتصال */
         .contact-container {
-            max-width: 800px; margin: 0 auto;
-            background: var(--card-bg); padding: 40px;
-            border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2);
+            max-width: 700px; margin: 0 auto;
+            background: rgba(255,255,255,0.02); padding: 40px;
+            border-radius: 30px; border: 1px solid rgba(212, 175, 55, 0.1);
         }
         .form-group { margin-bottom: 20px; }
         input, textarea {
-            width: 100%; padding: 15px;
-            background: rgba(0,0,0,0.3); border: 1px solid #333;
-            color: white; border-radius: 8px; outline: none;
+            width: 100%; padding: 18px;
+            background: rgba(0,0,0,0.5); border: 1px solid #222;
+            color: white; border-radius: 12px; outline: none; transition: 0.3s;
         }
-        input:focus { border-color: var(--primary-gold); }
+        input:focus, textarea:focus { border-color: var(--primary-gold); box-shadow: 0 0 10px rgba(212,175,55,0.1); }
         .btn {
-            width: 100%; padding: 15px;
+            width: 100%; padding: 18px;
             background: var(--primary-gold); border: none;
-            border-radius: 8px; font-weight: bold; cursor: pointer;
-            transition: var(--transition);
+            border-radius: 12px; font-weight: 900; cursor: pointer;
+            transition: var(--transition); color: #000; font-size: 1.1rem;
         }
-        .btn:hover { letter-spacing: 2px; opacity: 0.9; }
+        .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
 
-        footer { text-align: center; padding: 40px; border-top: 1px solid #222; color: #555; }
+        footer { text-align: center; padding: 60px; border-top: 1px solid #111; color: #444; font-size: 0.9rem; }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } nav { display: none; } }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } nav { display: none; } }
     </style>
 </head>
 <body>
@@ -127,89 +134,92 @@
                 <li><a href="#home">الرئيسية</a></li>
                 <li><a href="#services">الخدمات</a></li>
                 <li><a href="#portfolio">المعرض</a></li>
-                <li><a href="#testimonials">آراء العملاء</a></li>
-                <li><a href="#contact">اتصل بنا</a></li>
+                <li><a href="#testimonials">العملاء</a></li>
+                <li><a href="#contact">تواصل</a></li>
             </ul>
         </nav>
-        <button class="btn" style="width: auto; padding: 8px 20px;">ابدأ الآن</button>
-    </header>
+        <div style="width: 100px;"></div> </header>
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>NJSERVICES<br>حيث تلتقي الفخامة بالتقنية</h1>
-            <p>حلول إلكترونية متكاملة صُممت خصيصاً للنخبة من رواد الأعمال.</p>
+            <h1>إتقان رقمي.. فخامة أبدية</h1>
+            <p>نحن لا نقدم خدمات فقط، بل نصنع هويات رقمية تليق بطموحك الكبير في عالم التجارة الإلكترونية.</p>
+            <a href="#contact" class="btn" style="padding: 15px 40px; text-decoration: none;">ابدأ رحلة النجاح</a>
         </div>
     </section>
 
     <section id="services">
         <div class="sec-title">
-            <h2>خدماتنا الفاخرة</h2>
-            <p>نحوّل أفكارك إلى واقع رقمي ملموس</p>
+            <h2>خدماتنا النخبوية</h2>
+            <p>حلول مصممة بدقة لتلبية احتياجاتك الرقمية</p>
         </div>
         <div class="grid">
             <div class="card">
-                <i class="fas fa-crown"></i>
-                <h3>متاجر VIP</h3>
-                <p>متاجر إلكترونية بمعايير عالمية تضمن لك أعلى معدلات التحويل.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-bullseye"></i>
-                <h3>خطط تسويقية</h3>
-                <p>استراتيجيات نمو مبنية على البيانات لضمان تصدرك للسوق.</p>
-            </div>
-            <div class="card">
                 <i class="fas fa-gem"></i>
-                <h3>هوية بصرية</h3>
-                <p>نصمم لك هوية تجارية تنطق بالفخامة والاحترافية.</p>
+                <h3>متاجر فاخرة</h3>
+                <p>بناء متاجر إلكترونية فريدة تركز على تجربة المستخدم والتحويل المالي العالي.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>استشارات تقنية</h3>
+                <p>دعم فني واستشارات استراتيجية لضمان استمرارية وتطور أعمالك الإلكترونية.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-magic"></i>
+                <h3>تصميم إبداعي</h3>
+                <p>تحويل الرؤى إلى تصاميم بصرية تأسر الأنظار وتعزز من قيمة علامتك التجارية.</p>
             </div>
         </div>
     </section>
 
     <section id="portfolio">
         <div class="sec-title">
-            <h2>معرض الأعمال</h2>
-            <p>لمحة عن الإبداع الذي نقدمه لعملائنا</p>
+            <h2>معرض الأعمال الفني</h2>
+            <p>استعراض لأبرز المشاريع التي نفخر بها</p>
         </div>
         <div class="grid">
-            <div class="card">
-                <div class="portfolio-img">مشروع متجر ساعات</div>
-                <h4>براند الساعات الملكية</h4>
+            
+            <div class="card portfolio-card" style="background: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80');">
+                <div class="portfolio-info">
+                    <h4>نظام "أثير" الرقمي</h4>
+                    <p>تطوير منصة تداول إلكترونية حديثة</p>
+                </div>
             </div>
-            <div class="card">
-                <div class="portfolio-img">تطبيق خدمات لوجستية</div>
-                <h4>تطبيق النقل الذكي</h4>
+
+            <div class="card portfolio-card" style="background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80');">
+                <div class="portfolio-info">
+                    <h4>هوية النخبة</h4>
+                    <p>تصميم تجريدي لشركة استثمار عالمية</p>
+                </div>
             </div>
-            <div class="card">
-                <div class="portfolio-img">هوية شركة عقارات</div>
-                <h4>مجموعة "آرك" العقارية</h4>
+
+            <div class="card portfolio-card" style="background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80');">
+                <div class="portfolio-info">
+                    <h4>الأمان السيبراني</h4>
+                    <p>واجهة لوحة تحكم لأنظمة الحماية</p>
+                </div>
             </div>
+
         </div>
     </section>
 
     <section id="testimonials">
         <div class="sec-title">
-            <h2>قالوا عنّا</h2>
-            <p>ثقة عملائنا هي سر نجاحنا</p>
+            <h2>شركاء النجاح</h2>
         </div>
         <div class="grid">
             <div class="testimonial-card">
-                <p>"تجربة استثنائية، الفريق في NJSERVICES حول مشروعي من مجرد فكرة إلى متجر يحقق آلاف المبيعات."</p>
+                <p>"NJSERVICES هي العنوان الحقيقي للرقي في التعامل والجودة في التنفيذ. ممتن جداً للنتائج."</p>
                 <div class="user-info">
-                    <img src="" alt="">
-                    <div>
-                        <h4>أحمد الهاشمي</h4>
-                        <small>رائد أعمال</small>
-                    </div>
+                    <div class="avatar"></div>
+                    <div><h4>عبد الله بن محمد</h4><small>رئيس شركة سمو</small></div>
                 </div>
             </div>
             <div class="testimonial-card">
-                <p>"السرعة والاحترافية والدقة في المواعيد هي أكثر ما يميزهم. أنصح بهم بشدة."</p>
+                <p>"سرعة الرد واللمسة الفنية في التصميم جعلت متجري يتفوق على المنافسين في وقت قياسي."</p>
                 <div class="user-info">
-                    <img src="" alt="">
-                    <div>
-                        <h4>سارة منصور</h4>
-                        <small>مديرة تسويق</small>
-                    </div>
+                    <div class="avatar"></div>
+                    <div><h4>نورة العتيبي</h4><small>صاحبة متجر بريق</small></div>
                 </div>
             </div>
         </div>
@@ -217,33 +227,27 @@
 
     <section id="contact">
         <div class="sec-title">
-            <h2>تواصل مع الخبراء</h2>
-            <p>نحن هنا للإجابة على استفساراتك وبدء رحلتك نحو النجاح</p>
+            <h2>اطلب خدمتك الآن</h2>
+            <p>دعنا نبدأ في بناء مستقبلك الرقمي اليوم</p>
         </div>
         <div class="contact-container">
-            <form id="contactForm">
-                <div class="form-group">
-                    <input type="text" placeholder="الاسم الكامل" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="البريد الإلكتروني" required>
-                </div>
-                <div class="form-group">
-                    <textarea rows="5" placeholder="كيف يمكننا مساعدتك؟"></textarea>
-                </div>
-                <button type="submit" class="btn">إرسال الطلب</button>
+            <form id="njForm">
+                <div class="form-group"><input type="text" placeholder="اسمك الكريم" required></div>
+                <div class="form-group"><input type="email" placeholder="بريدك الإلكتروني" required></div>
+                <div class="form-group"><textarea rows="4" placeholder="تفاصيل الخدمة المطلوبة..."></textarea></div>
+                <button type="submit" class="btn">إرسال الطلب للفريق</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 جميع الحقوق محفوظة لشبكة NJSERVICES.COM</p>
+        <p>© 2026 جميع الحقوق محفوظة لـ NJSERVICES.COM | التميز هو معيارنا</p>
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('njForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('شكراً لتواصلك معنا! سيقوم فريق NJSERVICES بالرد عليك خلال أقل من 24 ساعة.');
+            alert('تم استلام طلبك بنجاح. سيتواصل معك مستشارنا الخاص قريباً.');
             this.reset();
         });
     </script>
