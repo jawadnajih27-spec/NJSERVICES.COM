@@ -352,75 +352,52 @@
     </div>
 
     <script>
-        /* --- البرمجة التفاعلية --- */
+        // تأكد أن المفتاح هنا هو نفسه الذي استخرجناه
+const MY_KEY = "AIzaSyBS3-BtbJoSe8K5KXCwI4GhK2BmPEel8PA"; 
 
-        // 1. مفتاح الـ API (ضعه هنا)
-        const GEMINI_KEY = "AIzaSyBS3-BtbJoSe8K5KXCwI4GhK2BmPEel8PA";
+async function startChat() {
+    const input = document.getElementById('user-msg');
+    const message = input.value.trim();
+    if (!message) return;
 
-        // 2. تفعيل الدردشة
-        function toggleChat() {
-            const chat = document.getElementById('gemini-chat');
-            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
-        }
+    addMessage('user', message);
+    input.value = '';
 
-        async function sendToGemini() {
-            const input = document.getElementById('user-input');
-            const msg = input.value.trim();
-            if(!msg) return;
+    const loadingId = 'loading-' + Date.now();
+    addMessage('ai', 'جاري التفكير...', loadingId);
 
-            addMsg('user', msg);
-            input.value = '';
-
-            const loadingId = 'load-' + Date.now();
-            addMsg('ai', 'جاري التفكير في إجابة تليق بك...', loadingId);
-
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: `أنت مساعد NJSERVICES للمقاولات الرقمية والفخامة. أجب باختصار وفخامة: ${msg}` }] }]
-                    })
-                });
-                const data = await response.json();
-                const aiText = data.candidates[0].content.parts[0].text;
-                document.getElementById(loadingId).innerText = aiText;
-            } catch (err) {
-                document.getElementById(loadingId).innerText = "حدث خطأ في الاتصال بخوادم الذكاء الاصطناعي.";
-            }
-        }
-
-        function addMsg(role, text, id = null) {
-            const box = document.getElementById('chat-box');
-            const div = document.createElement('div');
-            div.className = `chat-msg ${role}`;
-            if(id) div.id = id;
-            div.innerText = text;
-            box.appendChild(div);
-            box.scrollTop = box.scrollHeight;
-        }
-
-        // 3. التحكم في نافذة الصور
-        function openModal(src, title) {
-            document.getElementById('imgModal').style.display = 'flex';
-            document.getElementById('modalImg').src = src;
-            document.getElementById('modalCap').innerText = title;
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('imgModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // 4. ظهور الأقسام عند التمرير
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('section').forEach(sec => {
-                const top = window.scrollY;
-                const offset = sec.offsetTop - 500;
-                if (top >= offset) sec.classList.add('reveal');
-            });
+    try {
+        // التعديل هنا: استخدام رابط API الصحيح مع صياغة JSON دقيقة
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${MY_KEY}`;
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: message }]
+                }]
+            })
         });
+
+        const data = await response.json();
+
+        // فحص ما إذا كان هناك خطأ في الرد
+        if (data.error) {
+            console.error("Gemini Error:", data.error.message);
+            document.getElementById(loadingId).innerText = "خطأ من جوجل: " + data.error.message;
+            return;
+        }
+
+        if (data.candidates && data.candidates[0].content) {
+            const aiText = data.candidates[0].content.parts[0].text;
+            document.getElementById(loadingId).innerText = aiText;
+        }
+    } catch (error) {
+        console.error("Fetch Error:", error);
+        document.getElementById(loadingId).innerText = "تعذر الاتصال. تأكد من اتصال الإنترنت.";
+    }
+}
     </script>
 </body>
 </html>
