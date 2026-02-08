@@ -11,11 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: AI Code Analysis
         run: |
-          # هذا السكربت يرسل الكود لـ Gemini ويطلب منه المراجعة
           curl https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${{ secrets.GEMINI_API_KEY }} \
           -H 'Content-Type: application/json' \
           -X POST \
@@ -28,7 +27,7 @@ jobs:
           }' > review_report.json
 
       - name: Upload Review Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: gemini-report
           path: review_report.json
