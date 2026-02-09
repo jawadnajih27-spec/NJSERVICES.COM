@@ -34,7 +34,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "تحديث آلي من Gemini"
-          title: "إضافة المحتوى المطلوب من Issue #${{ github.event.issue.number }}"
-          body_path: suggestion.md
-          branch: "ai-update-${{ github.event.issue.number }}"
+          commit-message: "تحديث آلي من Gemini: إضافة زر الدردشة"
+          title: "إضافة زر الدردشة الذكية في الهيدر"
+          body: "تم توليد هذا التعديل بناءً على طلبك في الـ Issue. يرجى المراجعة والدمج."
+          branch: "gemini-chat-fix"
