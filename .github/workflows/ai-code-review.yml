@@ -16,24 +16,25 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Gemini Automation
-        uses: google-gemini/gemini-github-action@v1.1.0 # تأكد من استخدام أحدث إصدار متاح في 2026
-        with:
-          apiKey: ${{ secrets.GEMINI_API_KEY }}
-          # هذا الجزء يخبر Gemini أن يقرأ الـ Issue وينفذ ما فيه
-          prompt: |
-            أنت مدير تقني لموقع NJSERVICES. 
-            إذا كان هذا الإجراء ناتجاً عن Issue، اقرأ الطلب المكتوب في العنوان والوصف.
-            قم بتعديل ملف index.html بناءً على طلب المستخدم.
-            أعد الكود الكامل أو التعديلات المقترحة بصيغة Pull Request.
-            سياق الموقع: موقع خدمات رقمية فخم (أسود وذهبي).
-          model: "gemini-1.5-flash"
+      - name: Gemini AI Processing
+        run: |
+          RESPONSE=$(curl https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${{ secrets.GEMINI_API_KEY }} \
+            -H 'Content-Type: application/json' \
+            -X POST \
+            -d '{
+              "contents": [{
+                "parts":[{"text": "أنت مدير موقع NJSERVICES. اقرأ الطلب من العنوان: ${{ github.event.issue.title }} والوصف: ${{ github.event.issue.body }}. قم بتوليد كود HTML كامل للمشاريع المطلوبة ليتم وضعها في ملف index.html."}]
+              }]
+            }')
+          echo $RESPONSE > gemini_response.json
+          # استخراج النص فقط من الرد (يتطلب وجود jq في البيئة وهو افتراضي في GitHub)
+          echo $(echo $RESPONSE | jq -r '.candidates[0].content.parts[0].text') > suggestion.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "تحديث آلي من Gemini Manager بناءً على Issue #${{ github.event.issue.number }}"
-          title: "تحديث محتوى: ${{ github.event.issue.title }}"
-          body: "هذا التعديل تم توليده تلقائياً بواسطة Gemini لإدارة الموقع."
-          branch: "ai-updates-${{ github.event.issue.number }}"
+          commit-message: "تحديث آلي من Gemini"
+          title: "إضافة المحتوى المطلوب من Issue #${{ github.event.issue.number }}"
+          body_path: suggestion.md
+          branch: "ai-update-${{ github.event.issue.number }}"
