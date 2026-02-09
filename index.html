@@ -158,7 +158,54 @@
         .modal-body { max-width: 80%; text-align: center; }
         .modal-body img { width: 100%; border-radius: 20px; border: 1px solid var(--gold); }
         .close-btn { position: absolute; top: 40px; right: 50px; font-size: 2rem; color: #fff; cursor: pointer; }
+<section id="portfolio" style="padding: 80px 20px; background-color: #050505; color: #fff; text-align: center;">
+    
+    <div style="margin-bottom: 50px;">
+        <h2 style="color: #d4af37; font-size: 2.5rem; margin-bottom: 10px; font-family: 'serif';">معرض الفخامة الرقمية</h2>
+        <p style="color: #aaa; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+            نحن لا نسلم مشاريع، نحن نبني هويات رقمية تفرض حضورها في السوق. اطلع على بعض نماذجنا الحصرية.
+        </p>
+    </div>
 
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+        
+        <div class="project-card" style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 15px; transition: 0.3s;">
+            <div style="height: 200px; background: url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=500&q=60') center/cover; border-radius: 10px; margin-bottom: 20px;"></div>
+            <h3 style="color: #d4af37; margin-bottom: 10px;">L'Élégance Perfumes</h3>
+            <p style="font-size: 0.9rem; color: #ccc; line-height: 1.5; margin-bottom: 15px;">
+                تصميم متجر إلكتروني فاخر متخصص في العطور النادرة، يركز على تجربة مستخدم (UX) تحاكي رقي المنتج.
+            </p>
+            <span style="display: inline-block; padding: 5px 15px; border: 1px solid #d4af37; color: #d4af37; border-radius: 20px; font-size: 0.8rem;">E-commerce</span>
+        </div>
+
+        <div class="project-card" style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 15px; transition: 0.3s;">
+            <div style="height: 200px; background: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=500&q=60') center/cover; border-radius: 10px; margin-bottom: 20px;"></div>
+            <h3 style="color: #d4af37; margin-bottom: 10px;">Elite Real Estate</h3>
+            <p style="font-size: 0.9rem; color: #ccc; line-height: 1.5; margin-bottom: 15px;">
+                منصة عقارية متكاملة لعرض القصور والفيلات الفخمة، مع نظام تصفح ذكي وربط مباشر بمعاينة الواقع الافتراضي.
+            </p>
+            <span style="display: inline-block; padding: 5px 15px; border: 1px solid #d4af37; color: #d4af37; border-radius: 20px; font-size: 0.8rem;">Real Estate</span>
+        </div>
+
+        <div class="project-card" style="background: #111; border: 1px solid #222; padding: 20px; border-radius: 15px; transition: 0.3s;">
+            <div style="height: 200px; background: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=500&q=60') center/cover; border-radius: 10px; margin-bottom: 20px;"></div>
+            <h3 style="color: #d4af37; margin-bottom: 10px;">Justice & Partners</h3>
+            <p style="font-size: 0.9rem; color: #ccc; line-height: 1.5; margin-bottom: 15px;">
+                موقع تعريفي لمكتب محاماة دولي، يعكس الهيبة والمصداقية من خلال تصميم كلاسيكي متطور وخطوط واضحة.
+            </p>
+            <span style="display: inline-block; padding: 5px 15px; border: 1px solid #d4af37; color: #d4af37; border-radius: 20px; font-size: 0.8rem;">Corporate</span>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .project-card:hover {
+        transform: translateY(-10px);
+        border-color: #d4af37 !important;
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+    }
+</style>
         /* --- التذييل --- */
         footer {
             background: #020202; padding: 80px 10% 40px;
