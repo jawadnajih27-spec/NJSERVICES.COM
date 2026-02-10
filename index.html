@@ -1,297 +1,183 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJSERVICES | حلول رقمية فاخرة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0f0f0f;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-white: #ffffff;
+            --accent-purple: #6c5ce7;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
-<title>NJSERVICES.COM | منصة الخدمات الرقمية الاحترافية</title>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
 
-<meta name="description" content="NJSERVICES منصة احترافية للخدمات الرقمية، تصميم مواقع، برمجة، تسويق إلكتروني، وبائعين محترفين.">
-<meta name="keywords" content="خدمات رقمية, تصميم مواقع, برمجة, تسويق إلكتروني, منصة خدمات">
-<meta name="author" content="NJSERVICES">
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+        .bg-gradient {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
 
-<style>
-:root{
-  --dark:#020617;
-  --primary:#0f172a;
-  --gold:#d4af37;
-  --light:#f8fafc;
-  --gray:#64748b;
-}
+        header {
+            padding: 15px 10%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Cairo', sans-serif;
-}
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-gold); text-decoration: none; letter-spacing: 2px; }
 
-body{
-  background:var(--light);
-  color:var(--primary);
-  line-height:1.8;
-}
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { color: white; text-decoration: none; transition: 0.3s; font-size: 0.95rem; }
+        nav a:hover { color: var(--primary-gold); }
 
-/* Header */
-header{
-  background:rgba(2,6,23,.95);
-  padding:18px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
+        /* Hero */
+        .hero { height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--primary-gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
+        }
 
-header h1{
-  color:var(--gold);
-  font-size:26px;
-  letter-spacing:1px;
-}
+        .btn-main {
+            padding: 15px 45px; background: var(--primary-gold); color: black;
+            text-decoration: none; border-radius: 50px; font-weight: bold;
+            transition: var(--transition); display: inline-block;
+        }
+        .btn-main:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); }
 
-nav a{
-  color:#e5e7eb;
-  margin-right:18px;
-  text-decoration:none;
-  font-weight:500;
-}
+        /* Projects Section */
+        .portfolio { padding: 100px 10%; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .project-card {
+            background: var(--card-bg); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden; transition: var(--transition); cursor: pointer;
+        }
+        .project-card:hover { transform: scale(1.03); border-color: var(--primary-gold); }
+        .project-card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .project-info { padding: 25px; }
+        .project-info h3 { color: var(--primary-gold); margin-bottom: 10px; }
+        .project-info p { color: #aaa; font-size: 0.9rem; }
 
-nav a:hover{
-  color:var(--gold);
-}
+        /* Modal */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-content {
+            background: #151515; max-width: 800px; width: 100%; border-radius: 25px;
+            padding: 40px; border: 1px solid var(--primary-gold); position: relative; text-align: center;
+        }
+        .close-btn { position: absolute; top: 20px; right: 20px; color: var(--primary-gold); font-size: 2rem; cursor: pointer; }
 
-/* Hero */
-.hero{
-  min-height:92vh;
-  background:
-    linear-gradient(rgba(2,6,23,.75), rgba(2,6,23,.9)),
-    url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80");
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:30px;
-}
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000;
+        }
 
-.hero h2{
-  color:white;
-  font-size:44px;
-  margin-bottom:20px;
-}
-
-.hero p{
-  color:#e5e7eb;
-  max-width:700px;
-  margin:auto;
-  font-size:18px;
-}
-
-/* Sections */
-section{
-  padding:90px 8%;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:55px;
-}
-
-.section-title h3{
-  font-size:34px;
-}
-
-.section-title span{
-  color:var(--gold);
-}
-
-/* Cards */
-.services, .portfolio, .vendors{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-}
-
-.card{
-  background:white;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 20px 40px rgba(0,0,0,.08);
-  transition:.35s;
-}
-
-.card:hover{
-  transform:translateY(-10px);
-}
-
-.card img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-}
-
-.card-content{
-  padding:25px;
-}
-
-.card-content h4{
-  color:var(--gold);
-  margin-bottom:12px;
-}
-
-.card-content p{
-  color:var(--gray);
-}
-
-/* Portfolio */
-.card-content span{
-  display:block;
-  margin-top:10px;
-  font-size:14px;
-  font-weight:600;
-}
-
-/* Vendors */
-.vendor img{
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-bottom:15px;
-}
-
-/* Footer */
-footer{
-  background:var(--dark);
-  color:#cbd5f5;
-  text-align:center;
-  padding:35px;
-}
-
-footer span{
-  color:var(--gold);
-}
-
-@media(max-width:768px){
-  .hero h2{font-size:30px;}
-}
-</style>
+        footer { padding: 50px 10%; text-align: center; background: #050505; border-top: 1px solid rgba(255,255,255,0.05); color: #666; }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <h1>NJSERVICES</h1>
-  <nav>
-    <a href="#home">الرئيسية</a>
-    <a href="#services">الخدمات</a>
-    <a href="#portfolio">الأعمال</a>
-    <a href="#vendors">البائعون</a>
-  </nav>
-</header>
+    <div class="bg-gradient"></div>
 
-<section class="hero" id="home">
-  <div>
-    <h2>منصة احترافية للخدمات الرقمية</h2>
-    <p>
-      نربطك بخبراء التصميم، البرمجة، والتسويق الإلكتروني
-      داخل بيئة أنيقة وآمنة تساعدك على النمو الرقمي.
-    </p>
-  </div>
-</section>
+    <header>
+        <a href="#" class="logo">NJSERVICES</a>
+        <nav>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#portfolio">معرض الأعمال</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <a href="https://wa.me/2126XXXXXXXX" class="btn-main" style="padding: 10px 25px;">تواصل الآن</a>
+    </header>
 
-<section id="services">
-  <div class="section-title">
-    <h3>خدماتنا <span>الرقمية</span></h3>
-  </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>نحوِّل رؤيتك إلى واقع رقمي</h1>
+            <p>تصميم وتطوير المتاجر الإلكترونية والهويات البصرية بأعلى معايير الفخامة والذكاء التقني.</p>
+            <a href="#portfolio" class="btn-main">شاهد أعمالنا</a>
+        </div>
+    </section>
 
-  <div class="services">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80">
-      <div class="card-content">
-        <h4>تصميم المواقع</h4>
-        <p>مواقع احترافية حديثة، سريعة، ومتجاوبة.</p>
-      </div>
+    <section class="portfolio" id="portfolio">
+        <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; color: var(--primary-gold);">مشاريع مختارة</h2>
+            <p>اضغط على أي مشروع لمشاهدة التفاصيل</p>
+        </div>
+        <div class="portfolio-grid">
+            <div class="project-card" onclick="openModal('متجر لور للعطور', 'متجر إلكتروني فاخر يعتمد على تجربة مستخدم سلسة، مع نظام دفع آلي وتصميم يعكس فخامة المنتجات الفرنسية.', 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800')">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600" alt="Perfume Project">
+                <div class="project-info">
+                    <h3>L'OR Perfumes</h3>
+                    <p>متجر إلكتروني فخم للعطور العالمية.</p>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('عقارات مراكش ديلوكس', 'منصة متكاملة لعرض العقارات والقصور، تتيح للعملاء حجز مواعيد المعاينة وتصفح الوحدات بتقنيات عرض عالية الدقة.', 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800')">
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600" alt="Real Estate">
+                <div class="project-info">
+                    <h3>Marrakech Deluxe</h3>
+                    <p>منصة عقارية للفلل والقصور الفاخرة.</p>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('مؤسسة العدل القانونية', 'هوية بصرية وموقع تعريفي لمكتب محاماة دولي، يركز على الرصانة، المصداقية، وسهولة تواصل الموكلين.', 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800')">
+                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600" alt="Legal Bridge">
+                <div class="project-info">
+                    <h3>Legal Bridge Office</h3>
+                    <p>تصميم موقع تعريفي رسمي لمكتب محاماة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modalImg" src="" style="width: 100%; height: 250px; object-fit: cover; border-radius: 15px; margin-bottom: 20px;">
+            <h2 id="modalTitle" style="color: var(--primary-gold); margin-bottom: 15px;"></h2>
+            <p id="modalDesc" style="color: #ccc; margin-bottom: 30px;"></p>
+            <a href="https://wa.me/2126XXXXXXXX" class="btn-main">اطلب مشروعاً مماثلاً</a>
+        </div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80">
-      <div class="card-content">
-        <h4>البرمجة</h4>
-        <p>حلول تقنية متقدمة تناسب جميع المشاريع.</p>
-      </div>
-    </div>
+    <a href="https://wa.me/2126XXXXXXXX" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=1200&q=80">
-      <div class="card-content">
-        <h4>التسويق الإلكتروني</h4>
-        <p>استراتيجيات رقمية لزيادة الانتشار والأرباح.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 لـ <strong>NJSERVICES.COM</strong></p>
+    </footer>
 
-<section id="portfolio" style="background:#f1f5f9">
-  <div class="section-title">
-    <h3>معرض <span>الأعمال</span></h3>
-  </div>
-
-  <div class="portfolio">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1200&q=80">
-      <div class="card-content">
-        <h4>Landing Page – Digital Services</h4>
-        <p>
-          واجهة احترافية لخدمات رقمية مع تجربة مستخدم سلسة
-          وتصميم أنيق متجاوب.
-        </p>
-        <span>HTML • CSS • UI/UX</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="vendors">
-  <div class="section-title">
-    <h3>بائعون <span>محترفون</span></h3>
-  </div>
-
-  <div class="vendors">
-    <div class="card vendor">
-      <div class="card-content">
-        <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=400&q=80">
-        <h4>مصمم واجهات</h4>
-        <p>UI / UX احترافي</p>
-      </div>
-    </div>
-
-    <div class="card vendor">
-      <div class="card-content">
-        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=400&q=80">
-        <h4>مبرمج</h4>
-        <p>تطبيقات وأنظمة</p>
-      </div>
-    </div>
-
-    <div class="card vendor">
-      <div class="card-content">
-        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=400&q=80">
-        <h4>خبير تسويق</h4>
-        <p>نمو وتحليل</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © 2026 <span>NJSERVICES.COM</span> — جميع الحقوق محفوظة
-</footer>
-
+    <script>
+        function openModal(title, desc, img) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalImg').src = img;
+            document.getElementById('projectModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('projectModal')) { closeModal(); }
+        }
+    </script>
 </body>
 </html>
-
