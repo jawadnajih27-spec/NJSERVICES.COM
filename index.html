@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NJSERVICES.COM | منصة الخدمات الرقمية</title>
+<title>NJSERVICES.COM | منصة الخدمات الرقمية الاحترافية</title>
 
-<meta name="description" content="NJSERVICES منصة احترافية للخدمات والمنتجات الرقمية، تصميم مواقع، برمجة، تسويق إلكتروني، وبائعين محترفين.">
-<meta name="keywords" content="خدمات رقمية, تصميم مواقع, برمجة, تسويق إلكتروني, NJSERVICES">
+<meta name="description" content="NJSERVICES منصة احترافية للخدمات الرقمية، تصميم مواقع، برمجة، تسويق إلكتروني، وبائعين محترفين.">
+<meta name="keywords" content="خدمات رقمية, تصميم مواقع, برمجة, تسويق إلكتروني, منصة خدمات">
 <meta name="author" content="NJSERVICES">
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
   --primary:#0f172a;
   --gold:#d4af37;
   --light:#f8fafc;
-  --gray:#94a3b8;
+  --gray:#64748b;
 }
 
 *{
@@ -31,12 +31,13 @@
 body{
   background:var(--light);
   color:var(--primary);
+  line-height:1.8;
 }
 
 /* Header */
 header{
   background:rgba(2,6,23,.95);
-  padding:20px 8%;
+  padding:18px 8%;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -48,11 +49,12 @@ header{
 header h1{
   color:var(--gold);
   font-size:26px;
+  letter-spacing:1px;
 }
 
 nav a{
   color:#e5e7eb;
-  margin-right:15px;
+  margin-right:18px;
   text-decoration:none;
   font-weight:500;
 }
@@ -63,9 +65,9 @@ nav a:hover{
 
 /* Hero */
 .hero{
-  min-height:90vh;
+  min-height:92vh;
   background:
-    linear-gradient(rgba(2,6,23,.75), rgba(2,6,23,.85)),
+    linear-gradient(rgba(2,6,23,.75), rgba(2,6,23,.9)),
     url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80");
   background-size:cover;
   background-position:center;
@@ -78,84 +80,82 @@ nav a:hover{
 
 .hero h2{
   color:white;
-  font-size:42px;
+  font-size:44px;
   margin-bottom:20px;
 }
 
 .hero p{
   color:#e5e7eb;
-  max-width:650px;
+  max-width:700px;
   margin:auto;
   font-size:18px;
 }
 
-/* Section */
+/* Sections */
 section{
-  padding:80px 8%;
+  padding:90px 8%;
 }
 
 .section-title{
   text-align:center;
-  margin-bottom:50px;
+  margin-bottom:55px;
 }
 
 .section-title h3{
-  font-size:32px;
+  font-size:34px;
 }
 
 .section-title span{
   color:var(--gold);
 }
 
-/* Services */
-.services{
+/* Cards */
+.services, .portfolio, .vendors{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px;
+  gap:30px;
 }
 
 .card{
   background:white;
-  border-radius:18px;
+  border-radius:20px;
   overflow:hidden;
-  box-shadow:0 15px 35px rgba(0,0,0,.08);
-  transition:.3s;
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+  transition:.35s;
 }
 
 .card:hover{
-  transform:translateY(-8px);
+  transform:translateY(-10px);
 }
 
 .card img{
   width:100%;
-  height:180px;
+  height:200px;
   object-fit:cover;
 }
 
-.card div{
-  padding:20px;
+.card-content{
+  padding:25px;
 }
 
-.card h4{
+.card-content h4{
   color:var(--gold);
-  margin-bottom:10px;
+  margin-bottom:12px;
+}
+
+.card-content p{
+  color:var(--gray);
+}
+
+/* Portfolio */
+.card-content span{
+  display:block;
+  margin-top:10px;
+  font-size:14px;
+  font-weight:600;
 }
 
 /* Vendors */
-.vendors{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
-}
-
-.vendor{
-  background:white;
-  padding:30px;
-  border-radius:18px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
 .vendor img{
   width:90px;
   height:90px;
@@ -169,7 +169,7 @@ footer{
   background:var(--dark);
   color:#cbd5f5;
   text-align:center;
-  padding:30px;
+  padding:35px;
 }
 
 footer span{
@@ -189,6 +189,7 @@ footer span{
   <nav>
     <a href="#home">الرئيسية</a>
     <a href="#services">الخدمات</a>
+    <a href="#portfolio">الأعمال</a>
     <a href="#vendors">البائعون</a>
   </nav>
 </header>
@@ -197,8 +198,8 @@ footer span{
   <div>
     <h2>منصة احترافية للخدمات الرقمية</h2>
     <p>
-      نربطك بأفضل الخبرات الرقمية في التصميم، البرمجة، والتسويق
-      داخل بيئة أنيقة وآمنة.
+      نربطك بخبراء التصميم، البرمجة، والتسويق الإلكتروني
+      داخل بيئة أنيقة وآمنة تساعدك على النمو الرقمي.
     </p>
   </div>
 </section>
@@ -211,52 +212,78 @@ footer span{
   <div class="services">
     <div class="card">
       <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80">
-      <div>
+      <div class="card-content">
         <h4>تصميم المواقع</h4>
-        <p>مواقع احترافية، سريعة، ومتوافقة مع جميع الأجهزة.</p>
+        <p>مواقع احترافية حديثة، سريعة، ومتجاوبة.</p>
       </div>
     </div>
 
     <div class="card">
       <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80">
-      <div>
+      <div class="card-content">
         <h4>البرمجة</h4>
-        <p>حلول برمجية ذكية باستخدام أحدث التقنيات.</p>
+        <p>حلول تقنية متقدمة تناسب جميع المشاريع.</p>
       </div>
     </div>
 
     <div class="card">
       <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=1200&q=80">
-      <div>
+      <div class="card-content">
         <h4>التسويق الإلكتروني</h4>
-        <p>استراتيجيات رقمية لبناء علامتك وزيادة أرباحك.</p>
+        <p>استراتيجيات رقمية لزيادة الانتشار والأرباح.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section style="background:#f1f5f9" id="vendors">
+<section id="portfolio" style="background:#f1f5f9">
+  <div class="section-title">
+    <h3>معرض <span>الأعمال</span></h3>
+  </div>
+
+  <div class="portfolio">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1200&q=80">
+      <div class="card-content">
+        <h4>Landing Page – Digital Services</h4>
+        <p>
+          واجهة احترافية لخدمات رقمية مع تجربة مستخدم سلسة
+          وتصميم أنيق متجاوب.
+        </p>
+        <span>HTML • CSS • UI/UX</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vendors">
   <div class="section-title">
     <h3>بائعون <span>محترفون</span></h3>
   </div>
 
   <div class="vendors">
-    <div class="vendor">
-      <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=400&q=80">
-      <h4>مصمم واجهات</h4>
-      <p>UI / UX احترافي</p>
+    <div class="card vendor">
+      <div class="card-content">
+        <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=400&q=80">
+        <h4>مصمم واجهات</h4>
+        <p>UI / UX احترافي</p>
+      </div>
     </div>
 
-    <div class="vendor">
-      <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=400&q=80">
-      <h4>مبرمج</h4>
-      <p>أنظمة وتطبيقات</p>
+    <div class="card vendor">
+      <div class="card-content">
+        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=400&q=80">
+        <h4>مبرمج</h4>
+        <p>تطبيقات وأنظمة</p>
+      </div>
     </div>
 
-    <div class="vendor">
-      <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=400&q=80">
-      <h4>خبير تسويق</h4>
-      <p>تحليل ونمو</p>
+    <div class="card vendor">
+      <div class="card-content">
+        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=400&q=80">
+        <h4>خبير تسويق</h4>
+        <p>نمو وتحليل</p>
+      </div>
     </div>
   </div>
 </section>
