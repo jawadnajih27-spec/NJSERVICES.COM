@@ -1,302 +1,289 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <!-- ================================================= -->
-  <!-- (1) إعدادات أساسية -->
-  <!-- ================================================= -->
+  <!-- ================= META ================= -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NJSERVICES.COM منصة احترافية للخدمات الرقمية والتجارة الإلكترونية">
+  <meta name="keywords" content="خدمات رقمية, تصميم مواقع, تجارة إلكترونية, NJSERVICES">
+  <meta name="author" content="NJSERVICES">
+
   <title>NJSERVICES.COM | خدمات رقمية احترافية</title>
-  <meta name="description" content="NJSERVICES.COM منصة متخصصة في الخدمات الرقمية، تصميم المواقع، المتاجر الإلكترونية، والخدمات التقنية باحترافية عالية.">
 
-  <!-- ================================================= -->
-  <!-- (2) الخط -->
-  <!-- ================================================= -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- ================================================= -->
-  <!-- (3) التنسيقات العامة CSS -->
-  <!-- ================================================= -->
+  <!-- ================= STYLE ================= -->
   <style>
 
-  /* ------------------------------------------------- */
-  /* (4) إعدادات عامة */
-  /* ------------------------------------------------- */
-  body {
-    font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
-    margin: 0;
-    background: #F8FAFC;
-    color: #1E293B;
-    line-height: 1.8;
-  }
+    /* ========== GLOBAL ========== */
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      background: #F8FAFC;
+      color: #1E293B;
+      line-height: 1.8;
+    }
 
-  a {
-    text-decoration: none;
-  }
+    a {
+      text-decoration: none;
+    }
 
-  /* ------------------------------------------------- */
-  /* (5) الهيدر */
-  /* ------------------------------------------------- */
-  header {
-    background: linear-gradient(135deg, #0F172A, #020617);
-    color: white;
-    padding: 70px 20px;
-    text-align: center;
-  }
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-  header h1 {
-    font-size: 38px;
-    margin-bottom: 10px;
-  }
+    /* ========== HEADER ========== */
+    header {
+      background: linear-gradient(135deg, #0F172A, #020617);
+      color: white;
+      padding: 70px 20px;
+      text-align: center;
+    }
 
-  header p {
-    max-width: 700px;
-    margin: auto;
-    opacity: 0.9;
-  }
+    header h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
 
-  /* ------------------------------------------------- */
-  /* (6) شريط التنقل */
-  /* ------------------------------------------------- */
-  nav {
-    margin-top: 30px;
-  }
+    header p {
+      color: #CBD5E1;
+      font-size: 18px;
+      max-width: 700px;
+      margin: auto;
+    }
 
-  nav a {
-    color: #C9A227;
-    margin: 0 15px;
-    font-weight: 600;
-    transition: 0.3s;
-  }
+    /* ========== NAV ========== */
+    nav {
+      margin-top: 30px;
+    }
 
-  nav a:hover {
-    opacity: 0.8;
-  }
+    nav a {
+      color: #C9A227;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
 
-  /* ------------------------------------------------- */
-  /* (7) الأقسام العامة */
-  /* ------------------------------------------------- */
-  section {
-    padding: 70px 20px;
-    max-width: 1100px;
-    margin: auto;
-  }
+    nav a:hover {
+      opacity: 0.8;
+    }
 
-  h2 {
-    color: #0F172A;
-    border-right: 5px solid #C9A227;
-    padding-right: 12px;
-    margin-bottom: 40px;
-    font-size: 28px;
-  }
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
 
-  /* ------------------------------------------------- */
-  /* (8) بطاقات الخدمات */
-  /* ------------------------------------------------- */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-  }
+    h2 {
+      color: #0F172A;
+      border-right: 5px solid #C9A227;
+      padding-right: 12px;
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
 
-  .card {
-    background: white;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
+    /* ========== SERVICES ========== */
+    .service-box {
+      background: white;
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
 
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-  }
+    .service-box:hover {
+      transform: translateY(-6px);
+    }
 
-  .card h3 {
-    margin-top: 0;
-    color: #0F172A;
-  }
+    /* ========== PORTFOLIO ========== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
 
-  /* ------------------------------------------------- */
-  /* (9) زر عام */
-  /* ------------------------------------------------- */
-  .btn {
-    display: inline-block;
-    background: #0F172A;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 30px;
-    margin-top: 20px;
-    font-weight: bold;
-    transition: 0.3s;
-  }
+    .portfolio-item {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
 
-  .btn:hover {
-    background: #C9A227;
-    color: #0F172A;
-  }
+    .portfolio-item img {
+      height: 200px;
+      object-fit: cover;
+    }
 
-  /* ------------------------------------------------- */
-  /* (10) معرض الأعمال */
-  /* ------------------------------------------------- */
-  .portfolio {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-  }
+    .portfolio-item div {
+      padding: 20px;
+    }
 
-  .portfolio-item {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  }
+    /* ========== TESTIMONIALS ========== */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
 
-  .portfolio-item img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
+    .testimonial {
+      background: white;
+      border-radius: 14px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
 
-  .portfolio-item div {
-    padding: 20px;
-  }
+    .testimonial img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: auto;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
 
-  /* ------------------------------------------------- */
-  /* (11) التوصيات */
-  /* ------------------------------------------------- */
-  .testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-  }
+    /* ========== CTA ========== */
+    .cta {
+      background: #0F172A;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      border-radius: 18px;
+    }
 
-  .testimonial {
-    background: white;
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    text-align: center;
-  }
+    .cta button {
+      background: #C9A227;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
 
-  .testimonial img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    object-fit: cover;
-  }
-
-  /* ------------------------------------------------- */
-  /* (12) الفوتر */
-  /* ------------------------------------------------- */
-  footer {
-    background: #020617;
-    color: #CBD5E1;
-    text-align: center;
-    padding: 30px 20px;
-  }
-
-  footer p {
-    margin: 5px 0;
-  }
+    /* ========== FOOTER ========== */
+    footer {
+      background: #020617;
+      color: #CBD5E1;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+    }
 
   </style>
 </head>
 
 <body>
 
-<!-- ================================================= -->
-<!-- (13) الهيدر -->
-<!-- ================================================= -->
-<header>
-  <h1>NJSERVICES.COM</h1>
-  <p>منصة متخصصة في تقديم الخدمات الرقمية، تصميم المواقع والمتاجر الإلكترونية باحترافية عالية</p>
+  <!-- ================= HEADER ================= -->
+  <header>
+    <h1>NJSERVICES.COM</h1>
+    <p>
+      منصة احترافية تقدم حلول رقمية متكاملة تشمل الخدمات الإلكترونية
+      والتجارة الرقمية وبناء العلامات التجارية الحديثة.
+    </p>
 
-  <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="blog.html">المدونة</a>
-    <a href="store.html">المتجر</a>
-  </nav>
-</header>
+    <nav>
+      <a href="#services">الخدمات</a>
+      <a href="#portfolio">أعمالنا</a>
+      <a href="blog.html">المدونة</a>
+      <a href="store.html">المتجر</a>
+    </nav>
+  </header>
 
-<!-- ================================================= -->
-<!-- (14) قسم الخدمات -->
-<!-- ================================================= -->
-<section>
-  <h2>خدماتنا الرقمية</h2>
+  <!-- ================= SERVICES ================= -->
+  <section id="services">
+    <h2>خدماتنا الرقمية</h2>
 
-  <div class="cards">
-    <div class="card">
-      <h3>تصميم المواقع</h3>
-      <p>تصميم مواقع احترافية متوافقة مع جميع الأجهزة ومحركات البحث.</p>
+    <div class="service-box">
+      <h3>تصميم وتطوير المواقع</h3>
+      <p>
+        إنشاء مواقع احترافية متوافقة مع جميع الأجهزة
+        وبأحدث معايير الأداء وتجربة المستخدم.
+      </p>
     </div>
 
-    <div class="card">
-      <h3>المتاجر الإلكترونية</h3>
-      <p>إنشاء متاجر إلكترونية متكاملة وآمنة وجاهزة للبيع.</p>
+    <div class="service-box">
+      <h3>التجارة الإلكترونية</h3>
+      <p>
+        بناء متاجر إلكترونية متكاملة مع حلول دفع
+        آمنة وتجربة شراء سلسة.
+      </p>
     </div>
 
-    <div class="card">
-      <h3>خدمات تقنية</h3>
-      <p>حلول تقنية، صيانة مواقع، وتحسين الأداء.</p>
+    <div class="service-box">
+      <h3>الخدمات الرقمية</h3>
+      <p>
+        حلول تقنية مخصصة للشركات والأفراد
+        لتطوير الحضور الرقمي وزيادة المبيعات.
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================================================= -->
-<!-- (15) معرض الأعمال -->
-<!-- ================================================= -->
-<section>
-  <h2>معرض الأعمال</h2>
+  <!-- ================= PORTFOLIO ================= -->
+  <section id="portfolio">
+    <h2>معرض الأعمال</h2>
 
-  <div class="portfolio">
-    <div class="portfolio-item">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
-      <div>
-        <h4>مشروع موقع خدمات</h4>
-        <p>واجهة احترافية لموقع خدمات رقمية.</p>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80">
+        <div>
+          <h3>منصة خدمات رقمية</h3>
+          <p>
+            تصميم واجهة احترافية لمنصة تقدم
+            خدمات إلكترونية متعددة.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="portfolio-item">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4">
-      <div>
-        <h4>متجر إلكتروني</h4>
-        <p>تصميم متجر عصري متكامل.</p>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section>
+    <h2>آراء العملاء</h2>
+
+    <div class="testimonials">
+
+      <div class="testimonial">
+        <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=200&q=80">
+        <p>خدمة ممتازة وتنفيذ احترافي.</p>
+        <strong>أحمد</strong>
       </div>
+
+      <div class="testimonial">
+        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=200&q=80">
+        <p>أفضل تجربة رقمية تعاملت معها.</p>
+        <strong>محمد</strong>
+      </div>
+
+      <div class="testimonial">
+        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=200&q=80">
+        <p>احترافية عالية ودعم ممتاز.</p>
+        <strong>سارة</strong>
+      </div>
+
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================================================= -->
-<!-- (16) آراء العملاء -->
-<!-- ================================================= -->
-<section>
-  <h2>آراء عملائنا</h2>
-
-  <div class="testimonials">
-    <div class="testimonial">
-      <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe">
-      <p>خدمة ممتازة واحترافية عالية.</p>
-      <strong>أحمد</strong>
+  <!-- ================= CTA ================= -->
+  <section>
+    <div class="cta">
+      <h2>ابدأ مشروعك الرقمي الآن</h2>
+      <p>
+        نحن هنا لمساعدتك في بناء حضور رقمي
+        احترافي يليق بعلامتك التجارية.
+      </p>
+      <button>تواصل معنا</button>
     </div>
+  </section>
 
-    <div class="testimonial">
-      <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
-      <p>أفضل تجربة في تصميم المواقع.</p>
-      <strong>محمد</strong>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================= -->
-<!-- (17) الفوتر -->
-<!-- ================================================= -->
-<footer>
-  <p>© 2026 NJSERVICES.COM</p>
-  <p>جميع الحقوق محفوظة</p>
-</footer>
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    © 2026 NJSERVICES.COM — جميع الحقوق محفوظة
+  </footer>
 
 </body>
 </html>
