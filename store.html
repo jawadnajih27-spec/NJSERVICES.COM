@@ -1,166 +1,120 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المتجر الرقمي | NJSERVICES</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --gold: #d4af37;
-            --dark: #050505;
-            --card: #111111;
-            --text: #ffffff;
-            --muted: #888888;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--dark); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; }
-
-        /* الهيدر */
-        header {
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.9);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .logo { font-family: 'Amiri', serif; font-size: 1.8rem; color: var(--gold); text-decoration: none; }
-        .back-btn { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .back-btn:hover { color: var(--gold); }
-
-        /* عنوان القسم */
-        .store-header { text-align: center; padding: 60px 8% 40px; }
-        .store-header h1 { font-family: 'Amiri', serif; font-size: 3rem; color: var(--gold); margin-bottom: 10px; }
-        .store-header p { color: var(--muted); font-size: 1.1rem; }
-
-        /* شبكة المنتجات */
-        .products-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 0 8% 100px;
-        }
-
-        .product-card {
-            background: var(--card);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.4s;
-            position: relative;
-        }
-        .product-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-
-        .product-img { width: 100%; height: 300px; object-fit: cover; }
-        
-        .product-content { padding: 25px; }
-        .product-tag { 
-            background: var(--gold); color: #000; padding: 2px 12px; 
-            border-radius: 10px; font-size: 0.7rem; font-weight: 700;
-            position: absolute; top: 15px; left: 15px;
-        }
-
-        .product-title { font-size: 1.4rem; margin-bottom: 10px; color: var(--gold); }
-        .product-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; height: 50px; overflow: hidden; }
-        
-        .price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .price { font-size: 1.5rem; font-weight: 700; }
-        .old-price { text-decoration: line-through; color: #ff4d4d; font-size: 0.9rem; margin-right: 10px; }
-
-        .buy-button {
-            display: block;
-            width: 100%;
-            background: var(--gold);
-            color: #000;
-            text-align: center;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .buy-button:hover { background: #fff; transform: scale(1.02); }
-
-        footer { text-align: center; padding: 40px; border-top: 1px solid #111; color: var(--muted); font-size: 0.8rem; }
-
-        @media (max-width: 768px) {
-            .store-header h1 { font-size: 2.2rem; }
-            .products-container { padding: 0 5% 50px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="index.html" class="logo">NJSERVICES</a>
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> العودة للرئيسية</a>
-    </header>
-
-    <div class="store-header">
-        <h1>المتجر الرقمي</h1>
-        <p>مجموعة مختارة من أحدث المنتجات التكنولوجية بضمان الجودة</p>
+<section class="store" id="store" style="padding: 120px 8%; background: #050505;">
+    <div class="section-title reveal" style="text-align: center; margin-bottom: 80px;">
+        <h2 style="font-family: 'Amiri', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--gold-primary); margin-bottom: 20px;">المقتنيات الرقمية المختارة</h2>
+        <p style="color: var(--text-muted); font-size: 1.1rem; letter-spacing: 2px;">تكنولوجيا تليق بمقامك الرفيع</p>
+        <div style="width: 80px; height: 2px; background: var(--gold-primary); margin: 20px auto;"></div>
     </div>
 
-    <div class="products-container">
+    <div class="store-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
         
-        <div class="product-card">
-            <span class="product-tag">الأكثر مبيعاً</span>
-            <img src="https://images.unsplash.com/photo-1508685096489-7aac29625a3b?w=500" alt="Smart Watch" class="product-img">
-            <div class="product-content">
-                <h2 class="product-title">Smart Watch Ultra 2</h2>
-                <p class="product-desc">شاشة AMOLED عالية الدقة، تدعم المكالمات وتتبع الصحة بدقة متناهية. رفيقك الذكي المثالي.</p>
-                <div class="price-row">
-                    <div>
-                        <span class="old-price">599 DH</span>
-                        <span class="price">399 DH</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/212703652247?text=السلام_عليكم_أريد_طلب_ساعة_Smart_Watch_Ultra" class="buy-button">اطلب عبر واتساب <i class="fab fa-whatsapp"></i></a>
+        <div class="product-card reveal" onclick="openProductModal('ساعة النخبة - Ultra II', 'هذه ليست مجرد ساعة، بل هي مساعدك الشخصي الذي يجسد التوازن المثالي بين القوة والفخامة. صُممت خصيصاً لمن يقدرون قيمة الوقت ويبحثون عن التفرد في كل تفصيلة تقنية. مع هيكل تيتانيوم صلب وشاشة Retina الأكثر سطوعاً، تمنحك هيبة الحضور وذكاء المستقبل في معصمك.', 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800', '449 DH')">
+            <span class="badge">الأكثر طلباً</span>
+            <div class="img-container" style="overflow: hidden; aspect-ratio: 1/1;">
+                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800" alt="Smart Watch" class="product-img" style="width:100%; height:100%; object-fit:cover; transition: 0.5s;">
+            </div>
+            <div class="product-info" style="padding: 30px; text-align: center; background: var(--dark-card);">
+                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Smart Watch Ultra 2</h3>
+                <span class="product-price" style="color: var(--gold-primary); font-weight: 700; font-size: 1.3rem;">449 DH</span>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">إضغط لاستكشاف الفخامة</p>
             </div>
         </div>
 
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1535016120720-40c646bebbba?w=500" alt="Projector" class="product-img">
-            <div class="product-content">
-                <h2 class="product-title">Mini Projector Pro</h2>
-                <p class="product-desc">حول غرفتك إلى سينما متكاملة. يدعم 4K، واي فاي، وسهل الحمل لأي مكان.</p>
-                <div class="price-row">
-                    <div>
-                        <span class="old-price">1200 DH</span>
-                        <span class="price">749 DH</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/212703652247?text=السلام_عليكم_أريد_طلب_جهاز_البروجكتر_الذكي" class="buy-button">اطلب عبر واتساب <i class="fab fa-whatsapp"></i></a>
+        <div class="product-card reveal" onclick="openProductModal('السينما الشخصية - HD Projector', 'حول مساحتك الخاصة إلى صالة عرض ملكية. هذا الجهاز الصغير في حجمه، العملاق في أدائه، ينقل لك تفاصيل الصورة بدقة مذهلة تجعل من مشاهدة الأفلام أو عروض العمل تجربة بصرية غامرة. سينما منزلية متكاملة بلمسة عصرية تناسب أسلوب حياتك الراقي.', 'https://images.unsplash.com/photo-1605152276897-4f618f831968?w=800', '899 DH')">
+            <div class="img-container" style="overflow: hidden; aspect-ratio: 1/1;">
+                <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?w=800" alt="Projector" class="product-img" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div class="product-info" style="padding: 30px; text-align: center; background: var(--dark-card);">
+                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Mini Projector HD</h3>
+                <span class="product-price" style="color: var(--gold-primary); font-weight: 700; font-size: 1.3rem;">899 DH</span>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">إضغط لاستكشاف الفخامة</p>
             </div>
         </div>
 
-        <div class="product-card">
-            <span class="product-tag">وصل حديثاً</span>
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="Headphones" class="product-img">
-            <div class="product-content">
-                <h2 class="product-title">AirPods Max Edition</h2>
-                <p class="product-desc">عزل ضوضاء نشط وتجربة صوتية محيطية غامرة. فخامة التصميم مع نقاء الصوت.</p>
-                <div class="price-row">
-                    <div>
-                        <span class="old-price">450 DH</span>
-                        <span class="price">289 DH</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/212703652247?text=السلام_عليكم_أريد_طلب_سماعات_AirPods_Max" class="buy-button">اطلب عبر واتساب <i class="fab fa-whatsapp"></i></a>
+        <div class="product-card reveal" onclick="openProductModal('قاعدة الطاقة الثلاثية', 'في عالم NJSERVICES، حتى الشحن يجب أن يكون أنيقاً. تخلص من فوضى الأسلاك مع منصة الشحن اللاسلكي التي تمنح أجهزتك (هاتفك، ساعتك، وسماعاتك) طاقة كاملة في وقت قياسي وبمظهر انسيابي يزين مكتبك بلمسة من الرقي التكنولوجي.', 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800', '299 DH')">
+            <div class="img-container" style="overflow: hidden; aspect-ratio: 1/1;">
+                <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800" alt="3 in 1 Charger" class="product-img" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div class="product-info" style="padding: 30px; text-align: center; background: var(--dark-card);">
+                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Smart Charger 3-in-1</h3>
+                <span class="product-price" style="color: var(--gold-primary); font-weight: 700; font-size: 1.3rem;">299 DH</span>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">إضغط لاستكشاف الفخامة</p>
+            </div>
+        </div>
+
+        <div class="product-card reveal" onclick="openProductModal('سماعات الصوت النقي - Studio Pro', 'استمع إلى الموسيقى كما لم تسمعها من قبل. عزل ضوضاء فائق وتصميم مريح يغلف أذنيك بجودة صوت استوديو احترافية. إنها القطعة التي تكمل أناقتك الرقمية وتمنحك الهدوء الذي تحتاجه للتركيز والإبداع في عالمك الخاص.', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800', '599 DH')">
+            <span class="badge" style="background: #6c5ce7; color: #fff;">وصل حديثاً</span>
+            <div class="img-container" style="overflow: hidden; aspect-ratio: 1/1;">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800" alt="Headphones" class="product-img" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div class="product-info" style="padding: 30px; text-align: center; background: var(--dark-card);">
+                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Studio Headphones Pro</h3>
+                <span class="product-price" style="color: var(--gold-primary); font-weight: 700; font-size: 1.3rem;">599 DH</span>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">إضغط لاستكشاف الفخامة</p>
             </div>
         </div>
 
     </div>
+</section>
 
-    <footer>
-        جميع الحقوق محفوظة © 2026 - NJSERVICES | الدفع عند الاستلام في كل أنحاء المغرب
-    </footer>
+<div id="productModal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 6000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px);">
+    <div class="modal-content" style="background: var(--dark-card); max-width: 600px; width: 100%; border-radius: 30px; padding: 40px; border: 1px solid var(--gold-primary); text-align: center; position: relative; animation: fadeInDown 0.5s;">
+        <span style="position: absolute; top: 20px; left: 20px; cursor: pointer; color: var(--gold-primary); font-size: 2rem;" onclick="closeProductModal()">&times;</span>
+        
+        <img id="p-modal-img" src="" style="width: 150px; height: 150px; object-fit: cover; border-radius: 20px; margin-bottom: 20px; border: 2px solid var(--gold-primary);">
+        <h2 id="p-modal-title" style="color: var(--gold-primary); margin-bottom: 15px; font-family: 'Amiri', serif; font-size: 2rem;"></h2>
+        <div style="width: 50px; height: 1px; background: var(--gold-primary); margin: 0 auto 20px;"></div>
+        <p id="p-modal-desc" style="color: #eee; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.8; text-align: justify;"></p>
+        <h3 id="p-modal-price" style="color: var(--gold-primary); margin-bottom: 30px;"></h3>
+        
+        <a id="p-modal-link" href="#" class="btn-gold" style="display: block; text-align: center;">اطلب الآن عبر واتساب</a>
+    </div>
+</div>
 
-</body>
-</html>
+<script>
+    // وظائف النافذة المنبثقة للمنتجات
+    function openProductModal(title, desc, img, price) {
+        document.getElementById('p-modal-title').innerText = title;
+        document.getElementById('p-modal-desc').innerText = desc;
+        document.getElementById('p-modal-img').src = img;
+        document.getElementById('p-modal-price').innerText = price;
+        
+        // تجهيز رابط الواتساب تلقائياً
+        const whatsappLink = "https://wa.me/212703652247?text=" + encodeURIComponent("مرحباً NJSERVICES، أريد الاستفسار عن طلب: " + title);
+        document.getElementById('p-modal-link').href = whatsappLink;
+        
+        document.getElementById('productModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // منع التمرير عند فتح النافذة
+    }
+
+    function closeProductModal() {
+        document.getElementById('productModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // إغلاق عند الضغط خارج المحتوى
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('productModal');
+        if (event.target == modal) {
+            closeProductModal();
+        }
+    });
+</script>
+
+<style>
+    /* تحسينات إضافية للبطاقات */
+    .product-card {
+        cursor: pointer;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        border-radius: 25px;
+        overflow: hidden;
+    }
+    .product-card:hover {
+        transform: translateY(-15px);
+        border-color: var(--gold-primary);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    .product-card:hover .product-img {
+        transform: scale(1.1);
+    }
+</style>
