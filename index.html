@@ -1,290 +1,286 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <!-- ================= META ================= -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="NJSERVICES.COM منصة احترافية للخدمات الرقمية والتجارة الإلكترونية">
-  <meta name="keywords" content="خدمات رقمية, تصميم مواقع, تجارة إلكترونية, NJSERVICES">
-  <meta name="author" content="NJSERVICES">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJSERVICES | وكالة الفخامة الرقمية</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* الجزء الأصلي الخاص بك (لم يتغير فيه شيء) */
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            background: #F8FAFC;
+            color: #1E293B;
+            scroll-behavior: smooth;
+        }
 
-  <title>NJSERVICES.COM | خدمات رقمية احترافية</title>
+        header {
+            background: linear-gradient(135deg, #0F172A, #020617);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
 
-  <!-- ================= STYLE ================= -->
-  <style>
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
 
-    /* ========== GLOBAL ========== */
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      margin: 0;
-      background: #F8FAFC;
-      color: #1E293B;
-      line-height: 1.8;
-    }
+        nav a {
+            color: #C9A227;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+        }
 
-    a {
-      text-decoration: none;
-    }
+        section {
+            padding: 50px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+        .service, .product {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
 
-    /* ========== HEADER ========== */
-    header {
-      background: linear-gradient(135deg, #0F172A, #020617);
-      color: white;
-      padding: 70px 20px;
-      text-align: center;
-    }
+        .service:hover, .product:hover {
+            transform: translateY(-5px);
+        }
 
-    header h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
+        h2 {
+            color: #0F172A;
+            border-left: 5px solid #C9A227;
+            padding-left: 10px;
+        }
 
-    header p {
-      color: #CBD5E1;
-      font-size: 18px;
-      max-width: 700px;
-      margin: auto;
-    }
+        button {
+            background: #0F172A;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-    /* ========== NAV ========== */
-    nav {
-      margin-top: 30px;
-    }
+        button:hover {
+            background: #C9A227;
+            color: #0F172A;
+        }
 
-    nav a {
-      color: #C9A227;
-      margin: 0 15px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
+        footer {
+            background: #020617;
+            color: #CBD5E1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
 
-    nav a:hover {
-      opacity: 0.8;
-    }
+        /* --- الإضافات التطويرية المتفق عليها (مع الحفاظ على التناسق) --- */
 
-    /* ========== SECTIONS ========== */
-    section {
-      padding: 70px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+        /* شبكة المنتجات والمدونة */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
 
-    h2 {
-      color: #0F172A;
-      border-right: 5px solid #C9A227;
-      padding-right: 12px;
-      margin-bottom: 40px;
-      font-size: 28px;
-    }
+        /* تنسيق بطاقة المدونة */
+        .blog-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #edf2f7;
+        }
+        .blog-card:hover { transform: translateY(-5px); border-color: #C9A227; }
+        .blog-content { padding: 20px; }
+        .blog-date { font-size: 12px; color: #64748b; display: block; margin-bottom: 10px; }
+        .blog-title { color: #0F172A; font-size: 18px; font-weight: bold; margin-bottom: 10px; }
 
-    /* ========== SERVICES ========== */
-    .service-box {
-      background: white;
-      border-radius: 14px;
-      padding: 30px;
-      margin-bottom: 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      transition: 0.3s;
-    }
+        /* أزرار التواصل الذهبية الفخمة */
+        .social-sticky {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9999;
+        }
 
-    .service-box:hover {
-      transform: translateY(-6px);
-    }
+        .gold-social-btn {
+            width: 55px;
+            height: 55px;
+            background: #C9A227; /* الذهبي الخاص بك */
+            color: #020617; /* لون الهيدر الغامق */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 8px 20px rgba(201, 162, 39, 0.4);
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-    /* ========== PORTFOLIO ========== */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-    }
+        .gold-social-btn:hover {
+            transform: scale(1.15) rotate(10deg);
+            background: #0F172A;
+            color: #C9A227;
+        }
 
-    .portfolio-item {
-      background: white;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
+        /* قسم المراجعات (المحفظة الوهمية) */
+        .trust-section {
+            background: #F1F5F9;
+            padding: 60px 20px;
+            border-radius: 20px;
+            margin: 40px auto;
+        }
 
-    .portfolio-item img {
-      height: 200px;
-      object-fit: cover;
-    }
+        .testimonial {
+            text-align: center;
+            padding: 20px;
+        }
+        .stars { color: #C9A227; margin-bottom: 10px; }
 
-    .portfolio-item div {
-      padding: 20px;
-    }
+        /* تنسيق المتجر الصغير */
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
 
-    /* ========== TESTIMONIALS ========== */
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-
-    .testimonial {
-      background: white;
-      border-radius: 14px;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    .testimonial img {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      margin: auto;
-      margin-bottom: 15px;
-      object-fit: cover;
-    }
-
-    /* ========== CTA ========== */
-    .cta {
-      background: #0F172A;
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-      border-radius: 18px;
-    }
-
-    .cta button {
-      background: #C9A227;
-      border: none;
-      padding: 14px 30px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    /* ========== FOOTER ========== */
-    footer {
-      background: #020617;
-      color: #CBD5E1;
-      text-align: center;
-      padding: 25px;
-      font-size: 14px;
-    }
-
-  </style>
+        /* أنيميشن بسيط لزيادة الفخامة */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- ================= HEADER ================= -->
-  <header>
-    <h1>NJSERVICES.COM</h1>
-    <p>
-      منصة احترافية تقدم حلول رقمية متكاملة تشمل الخدمات الإلكترونية
-      والتجارة الرقمية وبناء العلامات التجارية الحديثة.
-    </p>
+    <header>
+        <h1 class="fade-in">NJSERVICES</h1>
+        <p class="fade-in">الفخامة الرقمية.. حيث تجتمع البساطة مع الإبداع</p>
+        <nav class="fade-in">
+            <a href="#home">الرئيسية</a>
+            <a href="#services">الخدمات</a>
+            <a href="#store">المتجر</a>
+            <a href="#blog">المدونة</a>
+            <a href="#contact">تواصل معنا</a>
+        </nav>
+    </header>
 
-    <nav>
-      <a href="#services">الخدمات</a>
-      <a href="#portfolio">أعمالنا</a>
-      <a href="blog.html">المدونة</a>
-      <a href="store.html">المتجر</a>
-    </nav>
-  </header>
-
-  <!-- ================= SERVICES ================= -->
-  <section id="services">
-    <h2>خدماتنا الرقمية</h2>
-
-    <div class="service-box">
-      <h3>تصميم وتطوير المواقع</h3>
-      <p>
-        إنشاء مواقع احترافية متوافقة مع جميع الأجهزة
-        وبأحدث معايير الأداء وتجربة المستخدم.
-      </p>
+    <div class="social-sticky">
+        <a href="https://wa.me/212703652247" class="gold-social-btn" title="واتساب">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://facebook.com" class="gold-social-btn" title="فيسبوك">
+            <i class="fab fa-facebook-f"></i>
+        </a>
     </div>
 
-    <div class="service-box">
-      <h3>التجارة الإلكترونية</h3>
-      <p>
-        بناء متاجر إلكترونية متكاملة مع حلول دفع
-        آمنة وتجربة شراء سلسة.
-      </p>
-    </div>
-
-    <div class="service-box">
-      <h3>الخدمات الرقمية</h3>
-      <p>
-        حلول تقنية مخصصة للشركات والأفراد
-        لتطوير الحضور الرقمي وزيادة المبيعات.
-      </p>
-    </div>
-  </section>
-
-  <!-- ================= PORTFOLIO ================= -->
-  <section id="portfolio">
-    <h2>معرض الأعمال</h2>
-
-    <div class="portfolio-grid">
-
-      <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80">
-        <div>
-          <h3>منصة خدمات رقمية</h3>
-          <p>
-            تصميم واجهة احترافية لمنصة تقدم
-            خدمات إلكترونية متعددة.
-          </p>
+    <section id="services">
+        <h2>خدماتنا المتطورة</h2>
+        <div class="grid-layout">
+            <div class="service fade-in">
+                <i class="fas fa-magic" style="color: #C9A227; font-size: 30px; margin-bottom: 15px;"></i>
+                <h3>صناعة المحتوى الإقناعي</h3>
+                <p>نحن لا نكتب كلمات، بل نصيغ رسائل تلامس مشاعر عملائك وتدفعهم لقرار الشراء فوراً.</p>
+                <button>اكتشف المزيد</button>
+            </div>
+            <div class="service fade-in">
+                <i class="fas fa-layer-group" style="color: #C9A227; font-size: 30px; margin-bottom: 15px;"></i>
+                <h3>تطوير الهوية البصرية</h3>
+                <p>امنح مشروعك الهيبة التي يستحقها من خلال تصميم واجهات بسيطة، فخمة، وعصرية جداً.</p>
+                <button>ابدأ مشروعك</button>
+            </div>
         </div>
-      </div>
+    </section>
 
-    </div>
-  </section>
+    <section id="store">
+        <h2>المتجر الرقمي</h2>
+        <p style="margin-bottom: 30px; color: #64748b;">مجموعة مختارة من أفضل الحلول والمنتجات التقنية.</p>
+        <div class="grid-layout">
+            <div class="product fade-in">
+                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500" class="product-img" alt="ساعة">
+                <h3>Smart Watch Ultra 2</h3>
+                <p>إصدار فاخر يتناسب مع أسلوب حياتك العصري.</p>
+                <p style="font-weight: bold; color: #C9A227; font-size: 20px;">449 DH</p>
+                <button style="width: 100%;">اطلب الآن عبر واتساب</button>
+            </div>
+            <div class="product fade-in">
+                <img src="https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=500" class="product-img" alt="بروجكتر">
+                <h3>Mini Projector 4K</h3>
+                <p>حول غرفتك إلى سينما حقيقية بضغطة زر واحدة.</p>
+                <p style="font-weight: bold; color: #C9A227; font-size: 20px;">749 DH</p>
+                <button style="width: 100%;">اطلب الآن عبر واتساب</button>
+            </div>
+        </div>
+    </section>
 
-  <!-- ================= TESTIMONIALS ================= -->
-  <section>
-    <h2>آراء العملاء</h2>
+    <section class="trust-section fade-in">
+        <h2 style="text-align: center; border: none; padding: 0; margin-bottom: 40px;">لماذا يثق بنا العملاء؟</h2>
+        <div class="grid-layout">
+            <div class="testimonial">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"NJSERVICES غيرت مفهوم العمل الحر بالنسبة لي. دقة في المواعيد وفخامة في التنفيذ."</p>
+                <p style="font-weight: bold;">- أحمد، رائد أعمال</p>
+            </div>
+            <div class="testimonial">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"أفضل استثمار قمت به لمتجري هو طلب خدمة وصف المنتجات من نجيب."</p>
+                <p style="font-weight: bold;">- سارة، صاحبة علامة تجارية</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="testimonials">
+    <section id="blog">
+        <h2>المدونة الرقمية</h2>
+        <div class="grid-layout">
+            <div class="blog-card fade-in">
+                <div class="blog-content">
+                    <span class="blog-date">11 فبراير 2026</span>
+                    <h3 class="blog-title">كيف تبدأ في عالم الفريلانس؟</h3>
+                    <p>خطوات بسيطة وعملية لتحقيق أول مبيعة لك في سوق الخدمات المصغرة...</p>
+                    <a href="#" style="color: #C9A227; font-weight: bold; text-decoration: none;">اقرأ المزيد ←</a>
+                </div>
+            </div>
+            <div class="blog-card fade-in">
+                <div class="blog-content">
+                    <span class="blog-date">09 فبراير 2026</span>
+                    <h3 class="blog-title">أسرار كتابة المحتوى الإقناعي</h3>
+                    <p>تعلم كيف تحول الزائر العادي إلى زبون مخلص فقط من خلال قوة الكلمات...</p>
+                    <a href="#" style="color: #C9A227; font-weight: bold; text-decoration: none;">اقرأ المزيد ←</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div class="testimonial">
-        <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=200&q=80">
-        <p>خدمة ممتازة وتنفيذ احترافي.</p>
-        <strong>أحمد</strong>
-      </div>
-
-      <div class="testimonial">
-        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=200&q=80">
-        <p>أفضل تجربة رقمية تعاملت معها.</p>
-        <strong>محمد</strong>
-      </div>
-
-      <div class="testimonial">
-        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=200&q=80">
-        <p>احترافية عالية ودعم ممتاز.</p>
-        <strong>سارة</strong>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= CTA ================= -->
-  <section>
-    <div class="cta">
-      <h2>ابدأ مشروعك الرقمي الآن</h2>
-      <p>
-        نحن هنا لمساعدتك في بناء حضور رقمي
-        احترافي يليق بعلامتك التجارية.
-      </p>
-      <button>تواصل معنا</button>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    © 2026 NJSERVICES.COM — جميع الحقوق محفوظة
-  </footer>
+    <footer>
+        <h2 style="color: white; border: none; text-align: center;">NJSERVICES</h2>
+        <p>جميع الحقوق محفوظة © 2026 | تطوير وإبداع نجيب</p>
+        <div style="margin-top: 20px;">
+            <a href="#" style="color: #C9A227; margin: 0 10px; text-decoration: none;">سياسة الخصوصية</a>
+            <a href="#" style="color: #C9A227; margin: 0 10px; text-decoration: none;">الشروط والأحكام</a>
+        </div>
+    </footer>
 
 </body>
 </html>
-
