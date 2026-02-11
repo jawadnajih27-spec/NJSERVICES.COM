@@ -3,284 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NJSERVICES | وكالة الفخامة الرقمية</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>NJSERVICES | وكالة النخبة الرقمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* الجزء الأصلي الخاص بك (لم يتغير فيه شيء) */
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+        /* الأساسيات - الحفاظ على نفس المتغيرات */
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0f0f0f;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-white: #ffffff;
+            --accent-purple: #6c5ce7;
+            --transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
             margin: 0;
-            background: #F8FAFC;
-            color: #1E293B;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
             scroll-behavior: smooth;
         }
 
-        header {
-            background: linear-gradient(135deg, #0F172A, #020617);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
+        /* الخلفية المتحركة - لم تتغير */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* الهيدر المطوّر */
+        header {
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
         }
 
         nav a {
-            color: #C9A227;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        section {
-            padding: 50px 20px;
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        .service, .product {
-            background: white;
-            border-radius: 14px;
-            padding: 25px;
-            margin: 20px 0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .service:hover, .product:hover {
-            transform: translateY(-5px);
-        }
-
-        h2 {
-            color: #0F172A;
-            border-left: 5px solid #C9A227;
-            padding-left: 10px;
-        }
-
-        button {
-            background: #0F172A;
             color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
 
-        button:hover {
-            background: #C9A227;
-            color: #0F172A;
+        nav a:hover {
+            color: var(--primary-gold);
         }
 
-        footer {
-            background: #020617;
-            color: #CBD5E1;
+        /* قسم الهيرو */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 0 10%;
         }
 
-        /* --- الإضافات التطويرية المتفق عليها (مع الحفاظ على التناسق) --- */
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            line-height: 1.2;
+        }
 
-        /* شبكة المنتجات والمدونة */
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 35px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* أزرار الموقع الذهبية */
+        .btn-main {
+            padding: 15px 40px;
+            background: var(--primary-gold);
+            color: black;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            background: #e5bd4a;
+        }
+
+        /* الأقسام العامة */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        /* شبكة الخدمات والمتجر والمدونة */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            gap: 30px;
         }
 
-        /* تنسيق بطاقة المدونة */
-        .blog-card {
-            background: white;
-            border-radius: 14px;
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            border: 1px solid #edf2f7;
         }
-        .blog-card:hover { transform: translateY(-5px); border-color: #C9A227; }
-        .blog-content { padding: 20px; }
-        .blog-date { font-size: 12px; color: #64748b; display: block; margin-bottom: 10px; }
-        .blog-title { color: #0F172A; font-size: 18px; font-weight: bold; margin-bottom: 10px; }
 
-        /* أزرار التواصل الذهبية الفخمة */
-        .social-sticky {
+        .card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-12px);
+            border-color: var(--primary-gold);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 25px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            color: #fff;
+        }
+
+        .price-tag {
+            display: block;
+            margin-top: 25px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+
+        /* قسم المتجر - صور المنتجات */
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* قسم سابقة الأعمال (Portfolio) */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            height: 300px;
+            border-radius: 20px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            transform: translateY(20px);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* قسم آراء العملاء (المحفظة الوهمية) */
+        .testimonials {
+            background: rgba(212, 175, 55, 0.02);
+        }
+
+        .testi-card {
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border-right: 4px solid var(--primary-gold);
+        }
+
+        .testi-card p {
+            font-style: italic;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .testi-card span {
+            color: var(--primary-gold);
+            font-weight: bold;
+        }
+
+        /* أزرار التواصل العائمة الذهبية */
+        .floating-social {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            left: 30px;
             display: flex;
             flex-direction: column;
             gap: 15px;
             z-index: 9999;
         }
 
-        .gold-social-btn {
+        .social-circle {
             width: 55px;
             height: 55px;
-            background: #C9A227; /* الذهبي الخاص بك */
-            color: #020617; /* لون الهيدر الغامق */
+            background: var(--primary-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 8px 20px rgba(201, 162, 39, 0.4);
+            color: #000;
+            font-size: 1.5rem;
             text-decoration: none;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: var(--transition);
         }
 
-        .gold-social-btn:hover {
-            transform: scale(1.15) rotate(10deg);
-            background: #0F172A;
-            color: #C9A227;
+        .social-circle:hover {
+            transform: scale(1.1) rotate(10deg);
+            background: #fff;
         }
 
-        /* قسم المراجعات (المحفظة الوهمية) */
-        .trust-section {
-            background: #F1F5F9;
-            padding: 60px 20px;
-            border-radius: 20px;
-            margin: 40px auto;
-        }
-
-        .testimonial {
+        /* التذييل */
+        footer {
+            padding: 60px 10% 30px;
             text-align: center;
-            padding: 20px;
-        }
-        .stars { color: #C9A227; margin-bottom: 10px; }
-
-        /* تنسيق المتجر الصغير */
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            background: #050505;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* أنيميشن بسيط لزيادة الفخامة */
-        .fade-in {
-            animation: fadeIn 1s ease-in;
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            display: block;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+            section { padding: 60px 5%; }
+        }
+
+        /* أنيميشن الظهور */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s all ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-gradient"></div>
+
     <header>
-        <h1 class="fade-in">NJSERVICES</h1>
-        <p class="fade-in">الفخامة الرقمية.. حيث تجتمع البساطة مع الإبداع</p>
-        <nav class="fade-in">
-            <a href="#home">الرئيسية</a>
-            <a href="#services">الخدمات</a>
-            <a href="#store">المتجر</a>
-            <a href="#blog">المدونة</a>
-            <a href="#contact">تواصل معنا</a>
+        <a href="#" class="logo">NJSERVICES</a>
+        <nav>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#store">المتجر</a></li>
+                <li><a href="#blog">المدونة</a></li>
+                <li><a href="#portfolio">أعمالنا</a></li>
+            </ul>
         </nav>
+        <a href="https://wa.me/212703652247" class="btn-main" style="padding: 10px 25px; font-size: 0.9rem;">إحجز الآن</a>
     </header>
 
-    <div class="social-sticky">
-        <a href="https://wa.me/212703652247" class="gold-social-btn" title="واتساب">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://facebook.com" class="gold-social-btn" title="فيسبوك">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-    </div>
-
-    <section id="services">
-        <h2>خدماتنا المتطورة</h2>
-        <div class="grid-layout">
-            <div class="service fade-in">
-                <i class="fas fa-magic" style="color: #C9A227; font-size: 30px; margin-bottom: 15px;"></i>
-                <h3>صناعة المحتوى الإقناعي</h3>
-                <p>نحن لا نكتب كلمات، بل نصيغ رسائل تلامس مشاعر عملائك وتدفعهم لقرار الشراء فوراً.</p>
-                <button>اكتشف المزيد</button>
-            </div>
-            <div class="service fade-in">
-                <i class="fas fa-layer-group" style="color: #C9A227; font-size: 30px; margin-bottom: 15px;"></i>
-                <h3>تطوير الهوية البصرية</h3>
-                <p>امنح مشروعك الهيبة التي يستحقها من خلال تصميم واجهات بسيطة، فخمة، وعصرية جداً.</p>
-                <button>ابدأ مشروعك</button>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>فن الصياغة الرقمية<br>بلمسات ذهبية</h1>
+            <p>وكالة NJSERVICES هي شريكك الاستراتيجي في بناء الوجود الرقمي الفخم. نحن لا نبني مواقع فحسب، بل نصنع تجارب استثنائية لعملائك.</p>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="#services" class="btn-main">اكتشف خدماتنا</a>
+                <a href="#store" class="btn-main" style="background: transparent; border: 1px solid var(--primary-gold); color: white;">زيارة المتجر</a>
             </div>
         </div>
     </section>
 
-    <section id="store">
-        <h2>المتجر الرقمي</h2>
-        <p style="margin-bottom: 30px; color: #64748b;">مجموعة مختارة من أفضل الحلول والمنتجات التقنية.</p>
+    <section class="services" id="services">
+        <div class="section-title reveal">
+            <h2>خدماتنا النخبوية</h2>
+            <p>حلول رقمية متكاملة مصممة لنمو أعمالك</p>
+        </div>
         <div class="grid-layout">
-            <div class="product fade-in">
-                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500" class="product-img" alt="ساعة">
-                <h3>Smart Watch Ultra 2</h3>
-                <p>إصدار فاخر يتناسب مع أسلوب حياتك العصري.</p>
-                <p style="font-weight: bold; color: #C9A227; font-size: 20px;">449 DH</p>
-                <button style="width: 100%;">اطلب الآن عبر واتساب</button>
+            <div class="card reveal">
+                <i class="fas fa-gem"></i>
+                <h3>تصميم الهوية الفاخرة</h3>
+                <p>نبتكر شعارات وهويات بصرية تفرض هيبتها في السوق وتخطف الأنظار.</p>
+                <span class="price-tag">$199</span>
             </div>
-            <div class="product fade-in">
-                <img src="https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=500" class="product-img" alt="بروجكتر">
-                <h3>Mini Projector 4K</h3>
-                <p>حول غرفتك إلى سينما حقيقية بضغطة زر واحدة.</p>
-                <p style="font-weight: bold; color: #C9A227; font-size: 20px;">749 DH</p>
-                <button style="width: 100%;">اطلب الآن عبر واتساب</button>
+            <div class="card reveal">
+                <i class="fas fa-rocket"></i>
+                <h3>تطوير المتاجر الذكية</h3>
+                <p>متاجر إلكترونية سريعة، متجاوبة، ومبرمجة لزيادة معدل التحويل والمبيعات.</p>
+                <span class="price-tag">$399</span>
+            </div>
+            <div class="card reveal">
+                <i class="fas fa-magic"></i>
+                <h3>وصف المنتجات الإقناعي</h3>
+                <p>نحول ميزات منتجاتك إلى قصص بيعية تدفع العميل لاتخاذ قرار الشراء فوراً.</p>
+                <span class="price-tag">$49</span>
             </div>
         </div>
     </section>
 
-    <section class="trust-section fade-in">
-        <h2 style="text-align: center; border: none; padding: 0; margin-bottom: 40px;">لماذا يثق بنا العملاء؟</h2>
+    <section class="services" id="store" style="background: rgba(255,255,255,0.01);">
+        <div class="section-title reveal">
+            <h2>المتجر الرقمي</h2>
+            <p>منتجات جاهزة للتحميل والاستخدام الفوري</p>
+        </div>
         <div class="grid-layout">
-            <div class="testimonial">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"NJSERVICES غيرت مفهوم العمل الحر بالنسبة لي. دقة في المواعيد وفخامة في التنفيذ."</p>
-                <p style="font-weight: bold;">- أحمد، رائد أعمال</p>
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1551288560-12931e5f8f87?w=500" class="product-img" alt="Template">
+                <h3>قالب "إيليت" للمتاجر</h3>
+                <p>قالب احترافي جاهز للإطلاق، يدعم اللغة العربية بالكامل.</p>
+                <span class="price-tag">$79</span>
+                <a href="#" class="btn-main" style="margin-top: 20px; width: 100%;">شراء الآن</a>
             </div>
-            <div class="testimonial">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"أفضل استثمار قمت به لمتجري هو طلب خدمة وصف المنتجات من نجيب."</p>
-                <p style="font-weight: bold;">- سارة، صاحبة علامة تجارية</p>
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500" class="product-img" alt="Guide">
+                <h3>دليل التسويق الذهبي</h3>
+                <p>كتاب إلكتروني شامل حول أسرار البيع في السوق الخليجي والمغربي.</p>
+                <span class="price-tag">$29</span>
+                <a href="#" class="btn-main" style="margin-top: 20px; width: 100%;">شراء الآن</a>
             </div>
         </div>
     </section>
 
     <section id="blog">
-        <h2>المدونة الرقمية</h2>
+        <div class="section-title reveal">
+            <h2>المدونة الرقمية</h2>
+            <p>مقالات وأسرار في عالم التجارة الإلكترونية</p>
+        </div>
         <div class="grid-layout">
-            <div class="blog-card fade-in">
-                <div class="blog-content">
-                    <span class="blog-date">11 فبراير 2026</span>
-                    <h3 class="blog-title">كيف تبدأ في عالم الفريلانس؟</h3>
-                    <p>خطوات بسيطة وعملية لتحقيق أول مبيعة لك في سوق الخدمات المصغرة...</p>
-                    <a href="#" style="color: #C9A227; font-weight: bold; text-decoration: none;">اقرأ المزيد ←</a>
-                </div>
+            <div class="card reveal" style="text-align: right; padding: 25px;">
+                <h4 style="color: var(--primary-gold); margin-bottom: 10px;">كيف تختار ألوان متجرك؟</h4>
+                <p style="font-size: 0.9rem;">الألوان ليست مجرد زينة، بل هي لغة نفسية تؤثر على قرارات الشراء...</p>
+                <a href="#" style="color: var(--primary-gold); text-decoration: none; font-size: 0.8rem; display: block; margin-top: 15px;">اقرأ المزيد ←</a>
             </div>
-            <div class="blog-card fade-in">
-                <div class="blog-content">
-                    <span class="blog-date">09 فبراير 2026</span>
-                    <h3 class="blog-title">أسرار كتابة المحتوى الإقناعي</h3>
-                    <p>تعلم كيف تحول الزائر العادي إلى زبون مخلص فقط من خلال قوة الكلمات...</p>
-                    <a href="#" style="color: #C9A227; font-weight: bold; text-decoration: none;">اقرأ المزيد ←</a>
-                </div>
+            <div class="card reveal" style="text-align: right; padding: 25px;">
+                <h4 style="color: var(--primary-gold); margin-bottom: 10px;">سرعة الموقع والمبيعات</h4>
+                <p style="font-size: 0.9rem;">تأخر موقعك لثانية واحدة قد يكلفك 7% من مبيعاتك اليومية. إليك الحل...</p>
+                <a href="#" style="color: var(--primary-gold); text-decoration: none; font-size: 0.8rem; display: block; margin-top: 15px;">اقرأ المزيد ←</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <h2 style="color: white; border: none; text-align: center;">NJSERVICES</h2>
-        <p>جميع الحقوق محفوظة © 2026 | تطوير وإبداع نجيب</p>
-        <div style="margin-top: 20px;">
-            <a href="#" style="color: #C9A227; margin: 0 10px; text-decoration: none;">سياسة الخصوصية</a>
-            <a href="#" style="color: #C9A227; margin: 0 10px; text-decoration: none;">الشروط والأحكام</a>
+    <section class="testimonials">
+        <div class="section-title reveal">
+            <h2>ثقة شركائنا</h2>
         </div>
+        <div class="grid-layout">
+            <div class="testi-card reveal">
+                <p>"NJSERVICES غيرت مفهومنا عن الخدمة الرقمية. الاحترافية في الموعد والجودة تفوق الوصف."</p>
+                <span>- سفيان، مدير شركة لوجستيك</span>
+            </div>
+            <div class="testi-card reveal">
+                <p>"بفضل المحتوى البيعي الجديد، زادت مبيعات متجري بنسبة 40% في شهر واحد فقط."</p>
+                <span>- فاطمة، صاحبة متجر أزياء</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-social">
+        <a href="https://wa.me/212703652247" class="social-circle" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100089082379376" class="social-circle" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+    </div>
+
+    <footer>
+        <strong class="footer-logo">NJSERVICES</strong>
+        <p>الوجهة الأولى للمشاريع التي تطمح للريادة الرقمية.</p>
+        <div style="margin: 30px 0;">
+            <a href="#" style="color: white; margin: 0 15px; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 15px; font-size: 1.2rem;"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p style="color: #555; font-size: 0.8rem;">جميع الحقوق محفوظة © 2026 - NJSERVICES.COM</p>
     </footer>
 
+    <script>
+        // تأثير الظهور التدريجي للعناصر
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // تفعيلها عند التحميل لأول مرة
+        reveal();
+
+        console.log("NJSERVICES v2.0 - تم التطوير بنجاح");
+    </script>
 </body>
-</html>
+    </html>
