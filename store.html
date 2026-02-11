@@ -3,107 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المتجر الرقمي | NJSERVICES - الفخامة التكنولوجية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>The Digital Collection | NJSERVICES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Cairo:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --gold: #d4af37;
-            --dark: #050505;
-            --card: #111111;
-            --text: #ffffff;
-            --muted: #888888;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --gold-primary: #d4af37;
+            --gold-light: #f1d592;
+            --black-deep: #050505;
+            --black-card: #0a0a0a;
+            --text-gray: #a0a0a0;
+            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--dark); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; overflow-x: hidden; }
+        body { 
+            background: var(--black-deep); 
+            color: #fff; 
+            font-family: 'Cairo', sans-serif; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* الهيدر الفاخر */
+        /* خلفية ضوئية خافتة */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, #1a1a1a 0%, transparent 80%);
+            z-index: -1;
+        }
+
+        /* الهيدر الملكي */
         header {
-            padding: 20px 8%;
+            padding: 30px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
             position: sticky;
-            top: 0;
-            z-index: 1000;
+            top: 0; z-index: 1000;
         }
-        .logo { font-family: 'Amiri', serif; font-size: 2rem; color: var(--gold); text-decoration: none; text-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
-        .back-btn { color: var(--text); text-decoration: none; font-size: 0.9rem; padding: 8px 20px; border: 1px solid var(--gold); border-radius: 50px; transition: var(--transition); }
-        .back-btn:hover { background: var(--gold); color: #000; }
+        .logo { 
+            font-family: 'Amiri', serif; 
+            font-size: 2.2rem; 
+            color: var(--gold-primary); 
+            text-decoration: none; 
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        .back-link {
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 200;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .back-link:hover { border-color: var(--gold-primary); opacity: 0.8; }
 
-        /* عنوان القسم */
-        .store-header { text-align: center; padding: 80px 8% 60px; }
-        .store-header h1 { font-family: 'Amiri', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--gold); margin-bottom: 15px; }
-        .store-header p { color: var(--muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+        /* العنوان الرئيسي */
+        .hero-store {
+            text-align: center;
+            padding: 100px 8% 60px;
+        }
+        .hero-store h1 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            background: linear-gradient(to bottom, #fff 30%, var(--gold-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .hero-store p {
+            color: var(--text-gray);
+            font-weight: 200;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
 
         /* شبكة المنتجات */
-        .products-container {
+        .luxury-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            padding: 0 8% 100px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 50px;
+            padding: 0 8% 120px;
         }
 
-        .product-card {
-            background: var(--card);
-            border-radius: 25px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition);
+        .luxe-card {
+            background: var(--black-card);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 0px; /* زوايا حادة تزيد من الفخامة */
+            position: relative;
             cursor: pointer;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .luxe-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--gold-primary);
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .luxe-card:hover {
+            transform: translateY(-10px);
+            background: #0f0f0f;
+        }
+        .luxe-card:hover::after { opacity: 0.3; }
+
+        .img-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1.2;
+            overflow: hidden;
+        }
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: transform 1.2s ease;
+        }
+        .luxe-card:hover img { transform: scale(1.08) grayscale(0%); }
+
+        .card-info {
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .card-info h2 {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 400;
+        }
+        .card-info .price-tag {
+            color: var(--gold-primary);
+            font-size: 1.3rem;
+            font-weight: 200;
+            letter-spacing: 2px;
+        }
+
+        /* نافذة العرض (Modal) */
+        .luxe-modal {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.98); z-index: 2000;
+            padding: 40px; justify-content: center; align-items: center;
+            backdrop-filter: blur(15px);
+        }
+        .modal-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            max-width: 1100px;
+            width: 100%;
+            background: #000;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
         }
-        .product-card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-
-        .img-wrapper { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; }
-        .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .product-card:hover .product-img { transform: scale(1.1); }
+        .modal-img-side { background: #0a0a0a; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .modal-img-side img { max-width: 100%; height: auto; border: 1px solid rgba(212, 175, 55, 0.1); }
         
-        .product-content { padding: 30px; text-align: center; }
-        .product-tag { 
-            background: var(--gold); color: #000; padding: 5px 15px; 
-            border-radius: 50px; font-size: 0.75rem; font-weight: 700;
-            position: absolute; top: 20px; left: 20px; z-index: 10;
-        }
-
-        .product-title { font-size: 1.5rem; margin-bottom: 10px; color: #fff; }
-        .price { font-size: 1.4rem; font-weight: 700; color: var(--gold); display: block; margin-bottom: 5px; }
-        .view-more { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* نظام الـ Modal */
-        .modal {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98);
-            z-index: 5000; align-items: center; justify-content: center; padding: 20px;
-            backdrop-filter: blur(10px);
-        }
-        .modal-content {
-            background: var(--card); max-width: 650px; width: 100%;
-            border-radius: 30px; padding: 50px; border: 1px solid var(--gold);
-            text-align: center; position: relative;
-            animation: modalFade 0.5s ease;
-        }
-        @keyframes modalFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        .modal-img { width: 180px; height: 180px; object-fit: cover; border-radius: 20px; border: 2px solid var(--gold); margin-bottom: 25px; }
-        .modal-desc { color: #ccc; font-size: 1.1rem; margin-bottom: 30px; line-height: 1.8; text-align: justify; }
+        .modal-text-side { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .modal-text-side h2 { font-family: 'Amiri', serif; font-size: 3rem; color: var(--gold-primary); margin-bottom: 20px; }
+        .modal-text-side p { color: #eee; line-height: 2; font-size: 1.1rem; margin-bottom: 40px; font-weight: 300; text-align: justify; }
         
-        .buy-now-btn {
-            background: var(--gold); color: #000; padding: 15px 40px;
-            border-radius: 50px; font-weight: 700; text-decoration: none;
-            display: inline-block; transition: var(--transition);
+        .order-btn {
+            background: var(--gold-primary);
+            color: #000;
+            padding: 20px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            transition: var(--transition);
+            letter-spacing: 2px;
         }
-        .buy-now-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .order-btn:hover { background: #fff; }
 
-        footer { text-align: center; padding: 60px; border-top: 1px solid #111; color: var(--muted); }
+        .close-modal {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--gold-primary); font-size: 2.5rem; cursor: pointer;
+        }
 
-        @media (max-width: 768px) {
-            .products-container { padding: 0 5% 50px; }
-            .modal-content { padding: 30px; }
+        footer { text-align: center; padding: 100px 8%; color: var(--text-gray); font-size: 0.8rem; border-top: 1px solid #111; letter-spacing: 2px; }
+
+        @media (max-width: 900px) {
+            .modal-inner { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
+            .modal-text-side { padding: 30px; }
         }
     </style>
 </head>
@@ -111,123 +205,117 @@
 
     <header>
         <a href="index.html" class="logo">NJSERVICES</a>
-        <a href="index.html" class="back-btn">العودة للرئيسية</a>
+        <a href="index.html" class="back-link">CLOSE COLLECTION</a>
     </header>
 
-    <div class="store-header">
-        <h1>المقتنيات الرقمية</h1>
-        <p>قطع تقنية استثنائية تجتمع فيها فخامة التصميم مع ذكاء الأداء</p>
+    <div class="hero-store">
+        <h1>الـفـخـامـة الـرقمـيـة</h1>
+        <p>Selection 2026</p>
     </div>
 
-    <div class="products-container">
+    <div class="luxury-grid">
         
-        <div class="product-card" onclick="openModal('ساعة Ultra II - الإصدار الملكي', 'هذه الساعة ليست مجرد أداة لحساب الوقت، بل هي بيان عن شخصيتك القيادية. بهيكل من التيتانيوم وشاشة هي الأكثر سطوعاً، تمنحك مزيجاً من القوة التكنولوجية والأناقة الرياضية الفاخرة التي تليق بمقامك.', 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800', '449 DH')">
-            <span class="product-tag">الأكثر طلباً</span>
-            <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800" class="product-img"></div>
-            <div class="product-content">
-                <h2 class="product-title">Smart Watch Ultra 2</h2>
-                <span class="price">449 DH</span>
-                <span class="view-more">استكشف التفاصيل <i class="fas fa-plus"></i></span>
+        <div class="luxe-card" onclick="openLuxeModal('Smart Watch Ultra II', 'إصدار النخبة الذي يجمع بين صلابة التيتانيوم وذكاء المستقبل. هذه الساعة ليست مجرد أداة لقياس الوقت، بل هي تعبير عن القوة والسيطرة في عالم لا يتوقف عن الحركة. مصممة لمن يجرؤ على التميز.', 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800', '449 DH')">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800" alt="Watch"></div>
+            <div class="card-info">
+                <h2>Ultra II Edition</h2>
+                <div class="price-tag">449.00 DH</div>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('بروجكتر Cinema Pro', 'أعد تعريف مفهوم الترفيه المنزلي. حول جدران منزلك إلى صالة عرض سينمائية بدقة 4K. هذا الجهاز الصغير يحمل في طياته قوة العرض السينمائي بوضوح مذهل وألوان تنبض بالحياة.', 'https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=800', '899 DH')">
-            <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=800" class="product-img"></div>
-            <div class="product-content">
-                <h2 class="product-title">Mini Projector HD</h2>
-                <span class="price">899 DH</span>
-                <span class="view-more">استكشف التفاصيل <i class="fas fa-plus"></i></span>
+        <div class="luxe-card" onclick="openLuxeModal('Mini Cinema Projector', 'حوّل مساحتك الخاصة إلى تجربة سينمائية غامرة. دقة بصرية متناهية وتصميم ينسجم مع أرقى الديكورات المنزلية. إنه الجهاز الذي ينقل سحر الشاشة الكبيرة إلى عالمك الخاص بلمسة من الرقي.', 'https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=800', '899 DH')">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=800" alt="Projector"></div>
+            <div class="card-info">
+                <h2>Mini Projector Pro</h2>
+                <div class="price-tag">899.00 DH</div>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('سماعات AirPods Max Luxe', 'انغمس في عالم من النقاء الصوتي المطلق. صُممت لعشاق الموسيقى الذين لا يقبلون بأقل من الكمال. عزل ضوضاء نشط وتصميم يغلف أذنيك بالفخامة والراحة لساعات طويلة من الإبداع.', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800', '599 DH')">
-            <span class="product-tag">وصل حديثاً</span>
-            <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800" class="product-img"></div>
-            <div class="product-content">
-                <h2 class="product-title">AirPods Max Edition</h2>
-                <span class="price">599 DH</span>
-                <span class="view-more">استكشف التفاصيل <i class="fas fa-plus"></i></span>
+        <div class="luxe-card" onclick="openLuxeModal('AirPods Max Luxe', 'أقصى درجات النقاء الصوتي في قالب من الفخامة. عزل تام للضوضاء وتصميم يمنحك الراحة الكاملة مع الحفاظ على هيبة الحضور. استمع إلى عالمك الخاص بكل تفاصيله الدقيقة.', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800', '599 DH')">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800" alt="Audio"></div>
+            <div class="card-info">
+                <h2>Studio Pro Audio</h2>
+                <div class="price-tag">599.00 DH</div>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('هاتف iPhone 15 Pro Max', 'قمة الهندسة الرقمية في راحة يدك. التيتانيوم يلتقي مع أسرع معالج في العالم ليمنحك تجربة استخدام لا تُضاهى. الجهاز الذي لا يقبل الحلول الوسط، صُمم خصيصاً للمحترفين والنخبة.', 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800', '9,999 DH')">
-            <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800" class="product-img"></div>
-            <div class="product-content">
-                <h2 class="product-title">iPhone 15 Pro Max</h2>
-                <span class="price">9,999 DH</span>
-                <span class="view-more">استكشف التفاصيل <i class="fas fa-plus"></i></span>
+        <div class="luxe-card" onclick="openLuxeModal('iPhone 15 Pro Max', 'سيد الهواتف الذكية. تيتانيوم صلب، معالج جبار، وكاميرا تحول لحظاتك العادية إلى مشاهد سينمائية. الجهاز الذي لا يقدم تنازلات، تماماً مثلك.', 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800', '9,999 DH')">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800" alt="Phone"></div>
+            <div class="card-info">
+                <h2>iPhone 15 Pro</h2>
+                <div class="price-tag">9,999.00 DH</div>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('كاميرا Sony Alpha V', 'وثق لحظاتك بدقة تليق بعظمتها. لمحبي صناعة المحتوى الفاخر، توفر هذه الكاميرا تفاصيل بصرية مذهلة تجعل من صورك وفيديوهاتك قطعاً فنية نابضة بالحياة والاحترافية.', 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800', '21,500 DH')">
-            <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800" class="product-img"></div>
-            <div class="product-content">
-                <h2 class="product-title">Sony Alpha V</h2>
-                <span class="price">21,500 DH</span>
-                <span class="view-more">استكشف التفاصيل <i class="fas fa-plus"></i></span>
+        <div class="luxe-card" onclick="openLuxeModal('3-in-1 Power Hub', 'أناقة الشحن اللاسلكي. تخلص من فوضى الأسلاك مع هذه المنصة الرخامية السوداء التي تشحن أجهزتك الثلاثة في آن واحد بذكاء وسرعة. قطعة لا غنى عنها في مكتب كل رائد أعمال.', 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800', '349 DH')">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800" alt="Power"></div>
+            <div class="card-info">
+                <h2>Wireless Hub</h2>
+                <div class="price-tag">349.00 DH</div>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('محطة الطاقة اللاسلكية', 'وداعاً لفوضى الأسلاك. منصة شحن ثلاثية بتصميم انسيابي يشحن هاتفك وساعتك وسماعاتك بلمسة واحدة. قطعة ديكور تقنية تضفي لمسة من الرقي على مكتبك أو غرفتك الخاصة.', 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800', '349 DH')">
-            <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800" class="product-img"></div>
-            <div class="product-content">
-                <h2 class="product-title">Smart Station 3-in-1</h2>
-                <span class="price">349 DH</span>
-                <span class="view-more">استكشف التفاصيل <i class="fas fa-plus"></i></span>
+        <div class="luxe-card" onclick="openLuxeModal('Smart Biometric Lock', 'أمان مملكتك يبدأ من هنا. قفل ذكي بتقنية البصمة والتعرف الوجهي، يجمع بين الصلابة المعدنية والتكنولوجيا الحديثة. الأمان لم يعد مجرد ضرورة، بل أصبح جزءاً من فخامة منزلك.', 'https://images.unsplash.com/photo-1558002038-1055907df827?w=800', '1,499 DH')">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=800" alt="Lock"></div>
+            <div class="card-info">
+                <h2>Smart Entry</h2>
+                <div class="price-tag">1,499.00 DH</div>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('قفل الباب البيومتري', 'الأمان يبدأ من الفخامة. احمِ مملكتك بأحدث تقنيات التعرف على البصمة والوجه. تصميم معدني صلب يتناغم مع أبوابك الفاخرة ويمنحك الطمأنينة الكاملة بلمسة عصرية.', 'https://images.unsplash.com/photo-1558002038-1055907df827?w=800', '1,299 DH')">
-            <span class="product-tag">أمان ذكي</span>
-            <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=800" class="product-img"></div>
-            <div class="product-content">
-                <h2 class="product-title">Smart Door Lock</h2>
-                <span class="price">1,299 DH</span>
-                <span class="view-more">استكشف التفاصيل <i class="fas fa-plus"></i></span>
+        <div class="luxe-card" onclick="openLuxeModal('Sony Alpha V Pro', 'عينك الاحترافية على العالم. هذه الكاميرا صُممت لالتقاط ما لا تراه العين المجردة. دقة مذهلة وسرعة استجابة تجعل من كل صورة حكاية تروى بأفخم التفاصيل.', 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800', '21,500 DH')">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800" alt="Camera"></div>
+            <div class="card-info">
+                <h2>Sony Alpha V</h2>
+                <div class="price-tag">21,500.00 DH</div>
             </div>
         </div>
 
     </div>
 
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span style="position: absolute; top: 20px; left: 20px; cursor: pointer; color: var(--gold); font-size: 2.5rem;" onclick="closeModal()">&times;</span>
-            <img id="m-img" src="" class="modal-img">
-            <h2 id="m-title" style="color: var(--gold); margin-bottom: 20px; font-family: 'Amiri', serif; font-size: 2.2rem;"></h2>
-            <p id="m-desc" class="modal-desc"></p>
-            <h3 id="m-price" style="color: #fff; font-size: 1.8rem; margin-bottom: 30px;"></h3>
-            <a id="m-link" href="#" class="buy-now-btn">اطلب عبر واتساب الآن <i class="fab fa-whatsapp"></i></a>
+    <div id="luxeModal" class="luxe-modal">
+        <div class="modal-inner">
+            <span class="close-modal" onclick="closeLuxeModal()">&times;</span>
+            <div class="modal-img-side">
+                <img id="m-img" src="">
+            </div>
+            <div class="modal-text-side">
+                <h2 id="m-title"></h2>
+                <p id="m-desc"></p>
+                <div id="m-price" style="font-size: 2rem; color: #fff; margin-bottom: 30px; font-weight: 200;"></div>
+                <a id="m-link" href="#" class="order-btn">إتمام الطلب الملكي</a>
+            </div>
         </div>
     </div>
 
     <footer>
-        جميع الحقوق محفوظة © 2026 - NJSERVICES | الدفع عند الاستلام متاح في كافة أنحاء المملكة
+        NJSERVICES © 2026 | THE ART OF DIGITAL LUXURY
     </footer>
 
     <script>
-        function openModal(title, desc, img, price) {
+        function openLuxeModal(title, desc, img, price) {
             document.getElementById('m-title').innerText = title;
             document.getElementById('m-desc').innerText = desc;
             document.getElementById('m-img').src = img;
             document.getElementById('m-price').innerText = price;
             
-            const message = encodeURIComponent("مرحباً NJSERVICES، أريد طلب منتج: " + title);
+            const message = encodeURIComponent("سيد نجيب، أريد حجز القطعة الرقمية التالية من مجموعتكم: " + title);
             document.getElementById('m-link').href = "https://wa.me/212703652247?text=" + message;
             
-            document.getElementById('productModal').style.display = 'flex';
+            document.getElementById('luxeModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('productModal').style.display = 'none';
+        function closeLuxeModal() {
+            document.getElementById('luxeModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
         window.onclick = function(event) {
-            if (event.target == document.getElementById('productModal')) {
-                closeModal();
+            if (event.target == document.getElementById('luxeModal')) {
+                closeLuxeModal();
             }
         }
     </script>
 </body>
-                    </html>
+</html>
