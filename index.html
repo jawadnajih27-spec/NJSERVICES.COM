@@ -95,6 +95,7 @@
             border-radius: 50px; font-weight: 700; font-size: 1.1rem;
             transition: var(--transition); display: inline-block;
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            border: none; cursor: pointer;
         }
 
         .btn-gold:hover {
@@ -102,7 +103,28 @@
             box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
         }
 
-        /* === قسم المميزات (لماذا نحن؟) === */
+        /* === قسم المتجر (الجديد) === */
+        .store { padding: 100px 8%; background: #050505; }
+        .store-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; margin-top: 60px;
+        }
+        .product-card {
+            background: var(--dark-card); border-radius: 25px; overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1); transition: var(--transition);
+            position: relative;
+        }
+        .product-card:hover { border-color: var(--gold-primary); transform: translateY(-10px); }
+        .product-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .product-info { padding: 25px; text-align: center; }
+        .product-info h3 { color: #fff; margin-bottom: 10px; font-size: 1.4rem; }
+        .product-price { color: var(--gold-primary); font-weight: 700; font-size: 1.2rem; display: block; margin-bottom: 20px; }
+        .badge {
+            position: absolute; top: 15px; right: 15px; background: var(--gold-primary);
+            color: #000; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;
+        }
+
+        /* === قسم المميزات === */
         .features { padding: 100px 8%; background: #080808; }
         .grid-features {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -164,7 +186,7 @@
         .footer-col h4 { color: var(--gold-primary); margin-bottom: 25px; font-size: 1.3rem; }
         .footer-col p, .footer-col li { color: var(--text-muted); margin-bottom: 15px; }
 
-        /* === أزرار التواصل العائمة (المطلوبة) === */
+        /* === أزرار التواصل العائمة === */
         .social-float {
             position: fixed; bottom: 40px; right: 40px;
             display: flex; flex-direction: column; gap: 15px; z-index: 3000;
@@ -212,14 +234,13 @@
     <header id="mainHeader">
         <a href="#" class="logo">NJSERVICES</a>
         <nav>
-            <nav>
-    <ul>
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#portfolio">أعمالنا</a></li>
-        <li><a href="blog.html">المدونة</a></li> </ul>
-            </nav>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#store">المتجر</a></li> <li><a href="#portfolio">أعمالنا</a></li>
+                <li><a href="blog.html">المدونة</a></li>
+            </ul>
         </nav>
-        <a href="https://wa.me/2126XXXXXXXX" class="btn-gold" style="padding: 10px 25px; font-size: 0.9rem;">إحجز موعداً</a>
+        <a href="https://wa.me/212703652247" class="btn-gold" style="padding: 10px 25px; font-size: 0.9rem;">إحجز موعداً</a>
     </header>
 
     <section class="hero" id="home">
@@ -227,7 +248,44 @@
             <h1 class="hero-title">نصيغ المستقبل<br>بلمسة ذهبية</h1>
             <p class="hero-subtitle">وكالة NJSERVICES تجمع بين ذكاء التكنولوجيا وفخامة التصميم لتمنح مشروعك الهيبة الرقمية التي يستحقها.</p>
             <div class="hero-btns">
-                <a href="#portfolio" class="btn-gold">اكتشف الإبداع</a>
+                <a href="#store" class="btn-gold">تصفح المتجر الرقمي</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="store" id="store">
+        <div class="section-title reveal" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-family: 'Amiri', serif; font-size: 3.5rem; color: var(--gold-primary);">المتجر التكنولوجي</h2>
+            <p style="color: var(--text-muted);">نخبة الأجهزة الذكية المختارة بعناية</p>
+        </div>
+        <div class="store-grid">
+            <div class="product-card reveal">
+                <span class="badge">الأكثر طلباً</span>
+                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500" alt="Smart Watch" class="product-img">
+                <div class="product-info">
+                    <h3>Smart Watch Ultra 2</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">الفخامة والذكاء في معصمك</p>
+                    <span class="product-price">449 DH</span>
+                    <a href="https://wa.me/212703652247?text=أريد_طلب_الساعة_الذكية_ألترا" class="btn-gold" style="padding: 12px 30px; font-size: 0.9rem;">اطلب عبر واتساب</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?w=500" alt="Projector" class="product-img">
+                <div class="product-info">
+                    <h3>Mini Projector HD</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">سينما منزلية في جيبك</p>
+                    <span class="product-price">899 DH</span>
+                    <a href="https://wa.me/212703652247?text=أريد_طلب_جهاز_البروجكتر_الذكي" class="btn-gold" style="padding: 12px 30px; font-size: 0.9rem;">اطلب عبر واتساب</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=500" alt="3 in 1 Charger" class="product-img">
+                <div class="product-info">
+                    <h3>Smart Charger 3-in-1</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">شحن لاسلكي فائق السرعة</p>
+                    <span class="product-price">299 DH</span>
+                    <a href="https://wa.me/212703652247?text=أريد_طلب_الشاحن_الذكي_3_في_1" class="btn-gold" style="padding: 12px 30px; font-size: 0.9rem;">اطلب عبر واتساب</a>
+                </div>
             </div>
         </div>
     </section>
@@ -325,7 +383,7 @@
             <span style="position: absolute; top: 20px; left: 20px; cursor: pointer; color: var(--gold-primary); font-size: 2rem;" onclick="closeModal()">&times;</span>
             <h2 id="modalTitle" style="color: var(--gold-primary); margin-bottom: 20px; font-family: 'Amiri', serif; font-size: 2.5rem;"></h2>
             <p id="modalDesc" style="color: #ccc; font-size: 1.1rem; margin-bottom: 30px; line-height: 2;"></p>
-            <a href="https://wa.me/2126XXXXXXXX" class="btn-gold">ناقش مشروعاً مماثلاً</a>
+            <a href="https://wa.me/212703652247" class="btn-gold">ناقش مشروعاً مماثلاً</a>
         </div>
     </div>
 
@@ -364,7 +422,6 @@
             document.getElementById('projectModal').style.display = 'none';
         }
 
-        // إغلاق المودال عند الضغط خارجه
         window.onclick = function(event) {
             if (event.target == document.getElementById('projectModal')) {
                 closeModal();
