@@ -1,120 +1,71 @@
-<section class="store" id="store" style="padding: 120px 8%; background: #050505;">
-    <div class="section-title reveal" style="text-align: center; margin-bottom: 80px;">
-        <h2 style="font-family: 'Amiri', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--gold-primary); margin-bottom: 20px;">المقتنيات الرقمية المختارة</h2>
-        <p style="color: var(--text-muted); font-size: 1.1rem; letter-spacing: 2px;">تكنولوجيا تليق بمقامك الرفيع</p>
-        <div style="width: 80px; height: 2px; background: var(--gold-primary); margin: 20px auto;"></div>
+<section class="store" id="store" style="padding: 100px 5%; background: #050505; position: relative;">
+    <div class="section-title reveal" style="text-align: center; margin-bottom: 70px;">
+        <h2 style="font-family: 'Amiri', serif; font-size: 3.5rem; color: var(--gold-primary); text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);">المقتنيات الرقمية المختارة</h2>
+        <p style="color: #fff; font-weight: 300; opacity: 0.8; letter-spacing: 1px;">تكنولوجيا تم اختيارها بعناية لتعكس أسلوب حياتك</p>
     </div>
 
-    <div class="store-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
+    <div class="store-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
         
-        <div class="product-card reveal" onclick="openProductModal('ساعة النخبة - Ultra II', 'هذه ليست مجرد ساعة، بل هي مساعدك الشخصي الذي يجسد التوازن المثالي بين القوة والفخامة. صُممت خصيصاً لمن يقدرون قيمة الوقت ويبحثون عن التفرد في كل تفصيلة تقنية. مع هيكل تيتانيوم صلب وشاشة Retina الأكثر سطوعاً، تمنحك هيبة الحضور وذكاء المستقبل في معصمك.', 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800', '449 DH')">
-            <span class="badge">الأكثر طلباً</span>
-            <div class="img-container" style="overflow: hidden; aspect-ratio: 1/1;">
-                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800" alt="Smart Watch" class="product-img" style="width:100%; height:100%; object-fit:cover; transition: 0.5s;">
+        <div class="product-card reveal" onclick="openProductModal('ساعة النخبة Ultra II', 'تتخطى حدود الزمن بتصميمها الجريء وهيكلها المتين. إنها الشريك المثالي في رحلاتك ومغامراتك، تمنحك أداءً جباراً وذكاءً لا يضاهى على معصمك، مع شاشة هي الأسطع في تاريخ الساعات الذكية.', 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800', '449 DH')">
+            <span class="badge" style="position: absolute; top: 20px; right: 20px; background: var(--gold-primary); color: #000; padding: 5px 15px; border-radius: 50px; font-weight: bold; z-index: 10;">الأكثر طلباً</span>
+            <div class="product-img-wrapper" style="width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #111;">
+                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800" style="width: 100%; height: 100%; object-fit: cover; transition: 0.8s;">
             </div>
-            <div class="product-info" style="padding: 30px; text-align: center; background: var(--dark-card);">
-                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Smart Watch Ultra 2</h3>
-                <span class="product-price" style="color: var(--gold-primary); font-weight: 700; font-size: 1.3rem;">449 DH</span>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">إضغط لاستكشاف الفخامة</p>
-            </div>
-        </div>
-
-        <div class="product-card reveal" onclick="openProductModal('السينما الشخصية - HD Projector', 'حول مساحتك الخاصة إلى صالة عرض ملكية. هذا الجهاز الصغير في حجمه، العملاق في أدائه، ينقل لك تفاصيل الصورة بدقة مذهلة تجعل من مشاهدة الأفلام أو عروض العمل تجربة بصرية غامرة. سينما منزلية متكاملة بلمسة عصرية تناسب أسلوب حياتك الراقي.', 'https://images.unsplash.com/photo-1605152276897-4f618f831968?w=800', '899 DH')">
-            <div class="img-container" style="overflow: hidden; aspect-ratio: 1/1;">
-                <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?w=800" alt="Projector" class="product-img" style="width:100%; height:100%; object-fit:cover;">
-            </div>
-            <div class="product-info" style="padding: 30px; text-align: center; background: var(--dark-card);">
-                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Mini Projector HD</h3>
-                <span class="product-price" style="color: var(--gold-primary); font-weight: 700; font-size: 1.3rem;">899 DH</span>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">إضغط لاستكشاف الفخامة</p>
+            <div class="product-content" style="padding: 25px; background: #111; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1);">
+                <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 10px;">Smart Watch Ultra 2</h3>
+                <span style="color: var(--gold-primary); font-size: 1.2rem; font-weight: 700;">449 DH</span>
             </div>
         </div>
 
-        <div class="product-card reveal" onclick="openProductModal('قاعدة الطاقة الثلاثية', 'في عالم NJSERVICES، حتى الشحن يجب أن يكون أنيقاً. تخلص من فوضى الأسلاك مع منصة الشحن اللاسلكي التي تمنح أجهزتك (هاتفك، ساعتك، وسماعاتك) طاقة كاملة في وقت قياسي وبمظهر انسيابي يزين مكتبك بلمسة من الرقي التكنولوجي.', 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800', '299 DH')">
-            <div class="img-container" style="overflow: hidden; aspect-ratio: 1/1;">
-                <img src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800" alt="3 in 1 Charger" class="product-img" style="width:100%; height:100%; object-fit:cover;">
+        <div class="product-card reveal" onclick="openProductModal('السينما الذكية المحمولة', 'أعد تعريف مفهوم الترفيه المنزلي. بروجكتر فائق الدقة يأخذك إلى عالم السينما في أي مكان وبأي وقت. بساطة في التصميم وقوة في العرض، لتستمتع بمشاهدة أفلامك المفضلة على شاشة عملاقة بوضوح مذهل.', 'https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=800', '899 DH')">
+            <div class="product-img-wrapper" style="width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #111;">
+                <img src="https://images.unsplash.com/photo-1535016120720-40c646bebbbb?w=800" style="width: 100%; height: 100%; object-fit: cover; transition: 0.8s;">
             </div>
-            <div class="product-info" style="padding: 30px; text-align: center; background: var(--dark-card);">
-                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Smart Charger 3-in-1</h3>
-                <span class="product-price" style="color: var(--gold-primary); font-weight: 700; font-size: 1.3rem;">299 DH</span>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">إضغط لاستكشاف الفخامة</p>
+            <div class="product-content" style="padding: 25px; background: #111; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1);">
+                <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 10px;">Mini Projector HD</h3>
+                <span style="color: var(--gold-primary); font-size: 1.2rem; font-weight: 700;">899 DH</span>
             </div>
         </div>
 
-        <div class="product-card reveal" onclick="openProductModal('سماعات الصوت النقي - Studio Pro', 'استمع إلى الموسيقى كما لم تسمعها من قبل. عزل ضوضاء فائق وتصميم مريح يغلف أذنيك بجودة صوت استوديو احترافية. إنها القطعة التي تكمل أناقتك الرقمية وتمنحك الهدوء الذي تحتاجه للتركيز والإبداع في عالمك الخاص.', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800', '599 DH')">
-            <span class="badge" style="background: #6c5ce7; color: #fff;">وصل حديثاً</span>
-            <div class="img-container" style="overflow: hidden; aspect-ratio: 1/1;">
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800" alt="Headphones" class="product-img" style="width:100%; height:100%; object-fit:cover;">
+        <div class="product-card reveal" onclick="openProductModal('تحفة التكنولوجيا - iPhone Pro', 'ليس مجرد هاتف، بل هو أداة إبداعية متكاملة. كاميرا سينمائية، معالج هو الأسرع في العالم، وتصميم من التيتانيوم يجمع بين الخفة والصلابة. الجهاز الذي صُمم ليواكب طموحاتك اللامحدودة.', 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800', '9,999 DH')">
+            <div class="product-img-wrapper" style="width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #111;">
+                <img src="https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800" style="width: 100%; height: 100%; object-fit: cover; transition: 0.8s;">
             </div>
-            <div class="product-info" style="padding: 30px; text-align: center; background: var(--dark-card);">
-                <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Studio Headphones Pro</h3>
-                <span class="product-price" style="color: var(--gold-primary); font-weight: 700; font-size: 1.3rem;">599 DH</span>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">إضغط لاستكشاف الفخامة</p>
+            <div class="product-content" style="padding: 25px; background: #111; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1);">
+                <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 10px;">iPhone 15 Pro Max</h3>
+                <span style="color: var(--gold-primary); font-size: 1.2rem; font-weight: 700;">9,999 DH</span>
+            </div>
+        </div>
+
+        <div class="product-card reveal" onclick="openProductModal('سماعات Studio Pro', 'انغمس في نقاء الصوت المطلق. صُممت هذه السماعات لعشاق التفاصيل، حيث توفر عزلاً تاماً للضوضاء وتجربة استماع محيطية تأخذك إلى قلب الحدث. رفاهية الصوت التي تستحقها أذناك.', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800', '599 DH')">
+            <span class="badge" style="position: absolute; top: 20px; right: 20px; background: #6c5ce7; color: #fff; padding: 5px 15px; border-radius: 50px; font-weight: bold; z-index: 10;">جديد</span>
+            <div class="product-img-wrapper" style="width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #111;">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800" style="width: 100%; height: 100%; object-fit: cover; transition: 0.8s;">
+            </div>
+            <div class="product-content" style="padding: 25px; background: #111; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1);">
+                <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 10px;">Studio Headphones Pro</h3>
+                <span style="color: var(--gold-primary); font-size: 1.2rem; font-weight: 700;">599 DH</span>
             </div>
         </div>
 
     </div>
 </section>
 
-<div id="productModal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 6000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px);">
-    <div class="modal-content" style="background: var(--dark-card); max-width: 600px; width: 100%; border-radius: 30px; padding: 40px; border: 1px solid var(--gold-primary); text-align: center; position: relative; animation: fadeInDown 0.5s;">
-        <span style="position: absolute; top: 20px; left: 20px; cursor: pointer; color: var(--gold-primary); font-size: 2rem;" onclick="closeProductModal()">&times;</span>
-        
-        <img id="p-modal-img" src="" style="width: 150px; height: 150px; object-fit: cover; border-radius: 20px; margin-bottom: 20px; border: 2px solid var(--gold-primary);">
-        <h2 id="p-modal-title" style="color: var(--gold-primary); margin-bottom: 15px; font-family: 'Amiri', serif; font-size: 2rem;"></h2>
-        <div style="width: 50px; height: 1px; background: var(--gold-primary); margin: 0 auto 20px;"></div>
-        <p id="p-modal-desc" style="color: #eee; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.8; text-align: justify;"></p>
-        <h3 id="p-modal-price" style="color: var(--gold-primary); margin-bottom: 30px;"></h3>
-        
-        <a id="p-modal-link" href="#" class="btn-gold" style="display: block; text-align: center;">اطلب الآن عبر واتساب</a>
-    </div>
-</div>
-
-<script>
-    // وظائف النافذة المنبثقة للمنتجات
-    function openProductModal(title, desc, img, price) {
-        document.getElementById('p-modal-title').innerText = title;
-        document.getElementById('p-modal-desc').innerText = desc;
-        document.getElementById('p-modal-img').src = img;
-        document.getElementById('p-modal-price').innerText = price;
-        
-        // تجهيز رابط الواتساب تلقائياً
-        const whatsappLink = "https://wa.me/212703652247?text=" + encodeURIComponent("مرحباً NJSERVICES، أريد الاستفسار عن طلب: " + title);
-        document.getElementById('p-modal-link').href = whatsappLink;
-        
-        document.getElementById('productModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // منع التمرير عند فتح النافذة
-    }
-
-    function closeProductModal() {
-        document.getElementById('productModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    // إغلاق عند الضغط خارج المحتوى
-    window.addEventListener('click', function(event) {
-        const modal = document.getElementById('productModal');
-        if (event.target == modal) {
-            closeProductModal();
-        }
-    });
-</script>
-
 <style>
-    /* تحسينات إضافية للبطاقات */
     .product-card {
-        cursor: pointer;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 1px solid rgba(212, 175, 55, 0.1);
-        border-radius: 25px;
+        position: relative;
+        border-radius: 20px;
         overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.05);
+        transition: 0.4s ease;
+        cursor: pointer;
     }
     .product-card:hover {
-        transform: translateY(-15px);
+        transform: translateY(-10px);
         border-color: var(--gold-primary);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
     }
-    .product-card:hover .product-img {
+    .product-card:hover img {
         transform: scale(1.1);
     }
 </style>
