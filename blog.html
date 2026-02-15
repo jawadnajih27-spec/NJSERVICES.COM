@@ -4,332 +4,1023 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مستندات النخبة | NJSERVICES</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="مقالات وفلسفة النخبة في عالم البراندنج والتطوير الرقمي.">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>text{font-family: &quot;Cairo&quot;, sans-serif; font-weight: 900; fill: %23d4af37;}</style><text x='15' y='60' font-size='60'>N</text><text x='45' y='85' font-size='60' transform='rotate(10 50 75)'>J</text></svg>">
 
     <style>
-        /* نظام الألوان والمتغيرات - Golden NJ Style */
+        /* ==========================================================================
+           1. المتغيرات ونظام الألوان (Variables & Color System)
+           ========================================================================== */
         :root {
-            --primary-gold: #d4af37;
-            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f2d06b 50%, #b8860b 100%);
-            --dark-bg: #0a0a0a;
-            --card-bg: #111111;
-            --border-glow: rgba(212, 175, 55, 0.2);
-            --text-silver: #e0e0e0;
-            --text-dim: #888888;
-            --transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --gold-primary: #D4AF37;
+            --gold-secondary: #F3E5AB;
+            --gold-dark: #AA8C2C;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --gold-gradient-subtle: linear-gradient(180deg, rgba(212, 175, 55, 0.1) 0%, rgba(0,0,0,0) 100%);
+            
+            --bg-dark: #050505;
+            --bg-card: #0A0A0A;
+            --bg-card-hover: #111111;
+            
+            --text-light: #F5F5F5;
+            --text-muted: #A0A0A0;
+            --text-dark: #1A1A1A;
+            
+            --border-glow: 0 0 20px rgba(212, 175, 55, 0.15);
+            --border-glow-intense: 0 0 40px rgba(212, 175, 55, 0.3);
+            
+            --transition-smooth: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition-slow: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* الأساسيات */
+        /* ==========================================================================
+           2. الإعدادات الأساسية (Base Styles)
+           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: white;
-            line-height: 1.8;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 2;
             overflow-x: hidden;
+            font-size: 16px;
         }
 
-        /* الخلفية المتحركة (البخار الذهبي) */
-        .gold-mist {
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dark);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-primary);
+        }
+
+        /* ==========================================================================
+           3. الخلفيات والمؤثرات البصرية (Backgrounds & Visual Effects)
+           ========================================================================== */
+        .ambient-light {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
         }
 
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ==========================================================================
+           4. الهيدر والتنقل (Header & Navigation)
+           ========================================================================== */
         header {
-            padding: 25px 10%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(5, 5, 5, 0.85);
             backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
             z-index: 1000;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            transition: var(--transition-smooth);
         }
 
-        .logo {
+        header.scrolled {
+            padding: 15px 8%;
+            background: rgba(5, 5, 5, 0.95);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-text {
             font-size: 2rem;
             font-weight: 900;
-            color: var(--primary-gold);
-            text-decoration: none;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
+            position: relative;
         }
 
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 10px 25px;
-            border: 1px solid var(--primary-gold);
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 35px;
+            background: transparent;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
             border-radius: 50px;
-            transition: var(--transition);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        .nav-link:hover {
-            background: var(--primary-gold);
-            color: black;
-            box-shadow: 0 0 20px var(--border-glow);
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--gold-gradient);
+            transition: var(--transition-smooth);
+            z-index: -1;
         }
 
-        .hero-blog {
-            height: 70vh;
+        .btn-gold:hover::before {
+            width: 100%;
+        }
+
+        .btn-gold:hover {
+            color: var(--bg-dark);
+            box-shadow: var(--border-glow);
+            border-color: transparent;
+        }
+
+        /* ==========================================================================
+           5. قسم الهيرو (Hero Section)
+           ========================================================================== */
+        .hero {
+            position: relative;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 10%;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.2), var(--dark-bg)),
-                        url('https://images.unsplash.com/photo-1516035054744-d474c5209db5?q=80&w=2000&auto=format&fit=crop');
+            padding: 150px 5% 100px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.3) 0%, var(--bg-dark) 100%),
+                        url('https://images.unsplash.com/photo-1614850715649-1d0106293bd1?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            z-index: -1;
+            opacity: 0.4;
         }
 
-        .hero-content h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .hero-content p {
-            font-size: 1.4rem;
-            color: var(--text-silver);
-            max-width: 800px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        .blog-feed {
-            max-width: 1100px;
-            margin: -150px auto 100px;
-            padding: 0 20px;
-        }
-
-        .article-card {
-            background: var(--card-bg);
-            border-radius: 40px;
-            margin-bottom: 120px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .article-card:hover {
-            transform: translateY(-15px) scale(1.01);
-            border-color: var(--primary-gold);
-            box-shadow: 0 40px 80px rgba(212, 175, 55, 0.1);
-        }
-
-        .article-visual {
-            width: 100%;
-            height: 550px;
-            overflow: hidden;
+        .hero-content {
+            max-width: 900px;
             position: relative;
+            z-index: 2;
         }
 
-        .article-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 1.5s ease;
-        }
-
-        .article-card:hover .article-visual img {
-            transform: scale(1.1);
-        }
-
-        .category-tag {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: var(--primary-gold);
-            color: black;
+        .hero-badge {
+            display: inline-block;
             padding: 8px 25px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 50px;
-            font-weight: 900;
-            font-size: 0.8rem;
+            color: var(--gold-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
             text-transform: uppercase;
         }
 
-        .article-body {
-            padding: 60px 80px;
+        .hero h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold-primary);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator .mouse {
+            width: 26px;
+            height: 40px;
+            border: 2px solid var(--gold-primary);
+            border-radius: 20px;
             position: relative;
         }
 
-        .article-body::before {
-            content: "";
+        .scroll-indicator .wheel {
+            width: 4px;
+            height: 8px;
+            background: var(--gold-primary);
+            border-radius: 2px;
             position: absolute;
-            top: 0; left: 80px; right: 80px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--primary-gold), transparent);
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 1.5s infinite;
         }
 
-        .article-title {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 30px;
-            line-height: 1.2;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-10px) translateX(-50%); }
+            60% { transform: translateY(-5px) translateX(-50%); }
         }
 
-        .article-text {
-            font-size: 1.25rem;
-            color: var(--text-silver);
-            text-align: justify;
-            margin-bottom: 30px;
+        @keyframes scroll {
+            0% { top: 6px; opacity: 1; }
+            100% { top: 20px; opacity: 0; }
         }
 
-        .gold-quote {
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--primary-gold);
-            margin: 40px 0;
-            padding-right: 25px;
-            border-right: 5px solid var(--primary-gold);
-            font-weight: 600;
+        /* ==========================================================================
+           6. حاوية المقالات (Blog Feed & Articles)
+           ========================================================================== */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px 150px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-wrapper {
+            background: var(--bg-card);
+            border-radius: 40px;
+            margin-bottom: 150px;
+            border: 1px solid rgba(212, 175, 55, 0.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .article-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--gold-gradient);
+            opacity: 0.3;
+            transition: var(--transition-smooth);
+        }
+
+        .article-wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            border-color: rgba(212, 175, 55, 0.15);
+        }
+
+        .article-wrapper:hover::before {
+            opacity: 1;
+        }
+
+        /* 6.1 صور المقالات */
+        .article-header-image {
+            width: 100%;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            filter: brightness(0.7) contrast(1.1);
+        }
+
+        .article-wrapper:hover .article-header-image img {
+            transform: scale(1.05);
+        }
+
+        .article-category {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+
+        /* 6.2 محتوى المقال */
+        .article-body {
+            padding: 80px 100px;
+            background: linear-gradient(to bottom, transparent, var(--bg-card));
         }
 
         .article-meta {
             display: flex;
             align-items: center;
-            gap: 20px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 30px;
+            gap: 25px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            font-weight: 500;
         }
 
-        footer {
-            padding: 100px 10% 50px;
-            text-align: center;
-            background: #050505;
-            border-top: 1px solid var(--primary-gold);
+        .article-meta i {
+            color: var(--gold-primary);
         }
 
-        .footer-brand {
-            font-size: 2.5rem;
+        .article-title {
+            font-size: 3.5rem;
             font-weight: 900;
-            color: var(--primary-gold);
-            margin-bottom: 20px;
+            color: var(--text-light);
+            line-height: 1.2;
+            margin-bottom: 40px;
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: 1s all ease;
+        .article-title span {
+            color: var(--gold-primary);
         }
-        .reveal.active {
+
+        .article-content {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .article-content p {
+            margin-bottom: 35px;
+        }
+
+        /* 6.3 الاقتباسات الفاخرة */
+        .gold-blockquote {
+            position: relative;
+            margin: 60px 0;
+            padding: 40px 50px 40px 30px;
+            background: rgba(212, 175, 55, 0.03);
+            border-right: 4px solid var(--gold-primary);
+            border-radius: 20px 0 0 20px;
+        }
+
+        .gold-blockquote::before {
+            content: '\201D';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 8rem;
+            color: rgba(212, 175, 55, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .gold-blockquote p {
+            font-size: 1.8rem !important;
+            color: var(--gold-secondary) !important;
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1.6;
+            margin: 0 !important;
+        }
+
+        /* 6.4 العناوين الفرعية */
+        .article-content h3 {
+            font-size: 2.2rem;
+            color: var(--text-light);
+            margin: 60px 0 30px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .article-content h3::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--gold-primary);
+        }
+
+        /* 6.5 القوائم */
+        .article-content ul {
+            list-style: none;
+            margin: 40px 0;
+            padding-right: 20px;
+        }
+
+        .article-content ul li {
+            position: relative;
+            padding-right: 35px;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+        }
+
+        .article-content ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: 5px;
+            color: var(--gold-primary);
+            font-size: 1rem;
+        }
+
+        /* 6.6 تذييل المقال (مشاركة وكاتب) */
+        .article-footer {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--bg-dark);
+            font-weight: 900;
+        }
+
+        .author-details h4 {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .author-details p {
+            color: var(--gold-primary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 1.2rem;
+        }
+
+        .share-btn:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-5px);
+        }
+
+        /* ==========================================================================
+           7. الأنيميشن والظهور التدريجي (Scroll Animations)
+           ========================================================================== */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal-up.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        @media (max-width: 992px) {
-            .article-body { padding: 40px; }
-            .hero-content h1 { font-size: 3rem; }
-            .article-title { font-size: 2rem; }
-            .article-visual { height: 350px; }
+        /* ==========================================================================
+           8. الفوتر (Footer)
+           ========================================================================== */
+        footer {
+            background: #030303;
+            padding: 100px 5% 50px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gold-primary);
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .footer-quote {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 50px;
+            font-style: italic;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-social a:hover {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        /* ==========================================================================
+           9. استجابة الشاشات (Responsive Design)
+           ========================================================================== */
+        @media (max-width: 1200px) {
+            .hero h1 { font-size: 4.5rem; }
+            .article-body { padding: 60px 50px; }
+            .article-header-image { height: 500px; }
+            .article-title { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            .nav-links { display: none; } /* يمكن إضافة قائمة همبرغر لاحقاً */
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.1rem; }
+            .article-wrapper { margin-bottom: 80px; }
+            .article-header-image { height: 350px; }
+            .article-body { padding: 40px 25px; }
+            .article-title { font-size: 2.2rem; }
+            .gold-blockquote { padding: 30px 20px; margin: 40px 0; }
+            .gold-blockquote p { font-size: 1.4rem !important; }
+            .article-footer { flex-direction: column; gap: 30px; align-items: flex-start; }
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="gold-mist"></div>
+    <div class="ambient-light"></div>
+    <div class="noise-overlay"></div>
 
-    <header>
-        <a href="index.html" class="logo">NJSERVICES</a>
-        <nav>
-            <a href="index.html" class="nav-link">العودة للرئيسية <i class="fas fa-arrow-left"></i></a>
+    <header id="main-header">
+        <a href="index.html" class="logo-container">
+            <span class="logo-text">NJSERVICES</span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="btn-gold">
+                <span>العودة للمنصة الأم</span>
+                <i class="fas fa-arrow-left"></i>
+            </a>
         </nav>
     </header>
 
-    <section class="hero-blog">
-        <div class="hero-content">
-            <h1>فلسفة النخبة</h1>
-            <p>مقالات لا تخاطب الجميع، بل تستهدف من يدرك أن التفاصيل هي جوهر الثروة.</p>
+    <section class="hero">
+        <div class="hero-content reveal-up active">
+            <span class="hero-badge">مستندات النخبة 2026</span>
+            <h1>فلسفة الهيمنة <span>الرقمية</span></h1>
+            <p>نحن لا نكتب مقالات لملء الفراغ، نحن نصيغ دساتير رقمية لمن يرفضون التواجد في الظل. اكتشف كيف نصنع الفخامة من خلال الأكواد والتصميم.</p>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"><div class="wheel"></div></div>
+            <span>اكتشف الفلسفة</span>
         </div>
     </section>
 
-    <main class="blog-feed" id="blog-container">
-        <article class="article-card reveal active">
-            <div class="article-visual">
-                <span class="category-tag">براندنج</span>
-                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" alt="Luxury Business">
+    <main class="blog-container">
+
+        <article class="article-wrapper reveal-up">
+            <div class="article-header-image">
+                <span class="article-category">استراتيجية البراندنج</span>
+                <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=2000&auto=format&fit=crop" alt="Luxury Branding Architecture">
             </div>
             <div class="article-body">
-                <h2 class="article-title">فخامة البكسل: لماذا تفشل المواقع "الرخيصة" في بناء براند عالمي؟</h2>
-                <div class="article-text">
-                    دعنا نتحدث بصراحة يا صديقي. أن تطلب من مبرمج مبتدئ تصميم موقع لعلامتك التجارية "بأقل سعر ممكن"، يشبه تماماً الذهاب لحفل زفاف ملكي وأنت ترتدي "شبشب" بلاستيكياً.
-                </div>
-                <div class="gold-quote">
-                    "التوفير في البدايات هو الضريبة التي تدفعها من سمعتك في النهايات."
-                </div>
                 <div class="article-meta">
-                    <span><i class="far fa-calendar-alt"></i> فبراير 2026</span>
+                    <span><i class="far fa-calendar-alt"></i> 15 فبراير 2026</span>
+                    <span><i class="far fa-clock"></i> 6 دقائق قراءة</span>
+                    <span><i class="fas fa-fire"></i> حصري للنخبة</span>
+                </div>
+                
+                <h2 class="article-title">فخامة البكسل: لماذا تفشل المواقع "الرخيصة" في بناء <span>إمبراطورية رقمية؟</span></h2>
+                
+                <div class="article-content">
+                    <p>في عالم يتسابق فيه الجميع نحو الأسفل من خلال خفض الأسعار وتقديم خدمات سريعة تفتقر إلى الروح، تبرز علامة استفهام ضخمة أمام رواد الأعمال الحقيقيين: كيف أبني هوية رقمية تفرض احترامها بمجرد أن تقع عليها عين العميل المحتمل؟ الإجابة لا تكمن في قوالب جاهزة يتم شراؤها ببضع دولارات، بل تكمن في "هندسة الفخامة" أو ما نطلق عليه في NJSERVICES: فخامة البكسل.</p>
+                    
+                    <p>دعنا نتحدث بصراحة مؤلمة. أن تطلب من مبرمج أو مصمم مبتدئ بناء موقع لعلامتك التجارية الفاخرة بأقل سعر ممكن، يشبه تماماً أن تدفع ملايين الدولارات لشراء قصر ملكي، ثم تقوم بطلاء جدرانه باستخدام أرخص أنواع الطلاء التجاري. نعم، لقد بنيت الجدران، والجميع يرى الهيكل، لكن بمجرد الاقتراب، تسقط هيبة المكان. في العالم الرقمي، موقعك هو "البدلة الرسمية" التي يراك بها العالم. إنه نقطة الاتصال الأولى والأخيرة، وهو المحامي الصامت الذي يدافع عن أسعارك المرتفعة.</p>
+
+                    <div class="gold-blockquote">
+                        <p>التوفير المبالغ فيه في بناء هويتك الرقمية في البدايات، هو الضريبة الباهظة التي ستدفعها من سمعتك ومبيعاتك في النهايات. الفخامة لا تُصنع بالصدفة.</p>
+                    </div>
+
+                    <h3>التشريح النفسي للموقع الفاخر</h3>
+                    <p>العميل الذي يمتلك القوة الشرائية العالية (The 1% Client) لا يشتري منتجاً أو خدمة، بل يشتري "الثقة"، "المكانة"، و"الراحة النفسية". عندما يدخل هذا العميل إلى موقع مبني بطريقة عشوائية، فإن عقله الباطن يرسل إشارات تحذيرية فورية: "إذا كانوا لا يهتمون بتفاصيل موقعهم الخاص، فكيف سيهتمون بجودة الخدمة التي سيقدمونها لي؟"</p>
+                    
+                    <p>في NJSERVICES، نحن ندرك أن بناء براند عالمي يتطلب الانتباه إلى التفاصيل التي لا يراها المستخدم العادي، بل "يشعر" بها. نحن نتحدث عن:</p>
+
+                    <ul>
+                        <li><strong>التنفس البصري (White Space):</strong> المساحات الفارغة ليست أراضي غير مستغلة، بل هي الرفاهية التي تمنح المحتوى القدرة على التنفس والظهور بقوة.</li>
+                        <li><strong>الطبوغرافيا الصارمة:</strong> اختيار الخطوط وأحجامها والمسافات بين الأحرف هو ما يفرق بين وثيقة رسمية فخمة وبين إعلان تجاري رخيص على جانب الطريق.</li>
+                        <li><strong>التفاعل الدقيق (Micro-interactions):</strong> الطريقة التي يستجيب بها الزر عند تمرير الماوس، أو النعومة التي تظهر بها العناصر عند التمرير للأسفل.. هذه هي لغة الجسد الخاصة بموقعك.</li>
+                    </ul>
+
+                    <p>الخلاصة هي أن المواقع الرخيصة ليست مجرد توفير للمال، بل هي إعلان صريح للسوق يقول: "نحن لا نهتم بالتميز". إذا كنت تستهدف النخبة، فلا بد أن تتحدث لغتهم. لغة لا تقبل المساومة على الجودة، لغة مبنية على كود برمجي نظيف، وتصميم بصري لا يُنسى. نحن هنا لنأخذك من منطقة "المنافسة على السعر" إلى منطقة "الاحتكار بالقيمة".</p>
+                </div>
+
+                <div class="article-footer">
+                    <div class="author-info">
+                        <div class="author-avatar">NJ</div>
+                        <div class="author-details">
+                            <h4>فريق استراتيجيات NJSERVICES</h4>
+                            <p>خبراء هندسة القيمة الرقمية</p>
+                        </div>
+                    </div>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+                    </div>
                 </div>
             </div>
         </article>
+
+        <article class="article-wrapper reveal-up">
+            <div class="article-header-image">
+                <span class="article-category">سيكولوجية التصميم</span>
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" alt="Black and Gold Abstract Logic">
+            </div>
+            <div class="article-body">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar-alt"></i> 10 فبراير 2026</span>
+                    <span><i class="far fa-clock"></i> 5 دقائق قراءة</span>
+                    <span><i class="fas fa-eye"></i> الأكثر تأثيراً</span>
+                </div>
+                
+                <h2 class="article-title">سيكولوجية اللون الذهبي والأسود: لغة <span>السيطرة الصامتة</span> في عقل العميل</h2>
+                
+                <div class="article-content">
+                    <p>في عالم الأعمال الاحترافي، العفوية هي مرادف مؤكد للفشل. اختيار الألوان لهوية علامتك التجارية ليس أبداً، ولا يجب أن يكون، مسألة ذوق شخصي أو تفضيل جمالي عابر. اللون ليس مجرد طلاء يزين واجهة موقعك؛ إنه "لغة صامتة" وبرمجة عصبية تخاطب العقل الباطن للعميل قبل أن يقرأ كلمة واحدة من محتواك.</p>
+                    
+                    <p>عندما قررنا في NJSERVICES تبني ثنائية (الأسود العميق والذهب العتيق)، لم نكن نبحث عن تصميم "جميل"، بل كنا نصنع بيئة نفسية محسوبة بدقة. بيئة تفرض على الزائر إحساساً فورياً بالهيبة، الغموض، والقيمة الاستثنائية. دعونا نحلل هذه الشيفرة اللونية ولماذا تجبر عملائك على الدفع أكثر دون تردد.</p>
+
+                    <div class="gold-blockquote">
+                        <p>اللون الذهبي لا يصرخ لطلب الانتباه كبقية الألوان، بل يجلس في مكانه بهدوء، ويجبر العيون على التأمل فيه باحترام.</p>
+                    </div>
+
+                    <h3>الأسود: سيد الألوان وحارس الغموض</h3>
+                    <p>الأسود في سيكولوجية الألوان ليس مجرد غياب للضوء، بل هو تجسيد كامل للقوة، الأناقة، والسلطة غير المحدودة. عندما تستخدم خلفيات سوداء أو داكنة جداً (Dark Mode) بطريقة احترافية، فإنك تخبر عميلك رسالة واضحة: "نحن لا نحتاج للمؤثرات الصاخبة لنثبت وجودنا". الأسود يخلق عمقاً بصرياً يجعل أي عنصر يوضع فوقه يبدو وكأنه يطفو في فضاء من الرفاهية. إنه يمتص التشتت، ويجبر عين العميل على التركيز فقط على ما تريد له أن يراه.</p>
+                    
+                    <h3>الذهبي: محفز القيمة المدركة الأعلى</h3>
+                    <p>منذ فجر التاريخ البشري، ارتبط الذهب بالثروة، النجاح، النصر، والندرة. دمج اللون الذهبي مع الأسود يخلق حالة من التباين (Contrast) التي ترفع من "القيمة المدركة" (Perceived Value) لأي منتج أو خدمة. الدراسات السلوكية في التسويق الفاخر تؤكد أن المستخدم عندما يتعرض لهذه الثنائية اللونية، يرتفع سقف توقعاته السعرية لا إرادياً.</p>
+
+                    <ul>
+                        <li><strong>في التسويق العادي:</strong> الألوان الفاقعة تحفز الشراء الاندفاعي الرخيص (مثل مطاعم الوجبات السريعة).</li>
+                        <li><strong>في تسويق النخبة:</strong> الأسود والذهبي يخلقان "بيئة آمنة" للشراء العقلاني المرتبط بالمكانة الاجتماعية. العميل يشعر أنه يستثمر في نفسه، لا أنه ينفق ماله.</li>
+                    </ul>
+
+                    <p>نحن في NJSERVICES لا نطبق هذه الألوان بشكل عشوائي. نحن نستخدم التدرجات الذهبية (Gradients) لإبراز الأزرار الاستراتيجية (Call to Action)، بينما نترك الأسود ليهيمن على المساحات الكبيرة، مما يخلق توازناً بصرياً يوجه العميل نحو اتخاذ القرار بهدوء وثقة تامة. إذا كانت هويتك الحالية لا تترجم طموحاتك المالية، فقد حان الوقت لإعادة برمجتها لونياً.</p>
+                </div>
+
+                <div class="article-footer">
+                    <div class="author-info">
+                        <div class="author-avatar">NJ</div>
+                        <div class="author-details">
+                            <h4>قسم التحليل النفسي للواجهات</h4>
+                            <p>فريق NJSERVICES</p>
+                        </div>
+                    </div>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="article-wrapper reveal-up">
+            <div class="article-header-image">
+                <span class="article-category">الأداء التقني</span>
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop" alt="High Performance Code Abstract">
+            </div>
+            <div class="article-body">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar-alt"></i> 5 فبراير 2026</span>
+                    <span><i class="far fa-clock"></i> 7 دقائق قراءة</span>
+                    <span><i class="fas fa-cogs"></i> هندسة البرمجيات</span>
+                </div>
+                
+                <h2 class="article-title">قاعدة الثواني الثلاث: هل الكود الخفي لموقعك <span>يطرد الزوار</span> أم يستقبلهم؟</h2>
+                
+                <div class="article-content">
+                    <p>من أكبر المغالطات في عالم الأعمال الرقمية هو الاعتقاد بأن التصميم الجميل وحده كافٍ لتحقيق مبيعات فلكية. الحقيقة القاسية التي تخفيها وكالات الإعلان التقليدية هي: التصميم المذهل لا قيمة له إذا لم يره العميل أصلاً. في عصر السرعة اللحظية، البطء ليس مجرد عيب تقني، البطء هو جريمة اقتصادية بحق أرباحك وعلامتك التجارية.</p>
+                    
+                    <p>السخرية المرة تكمن في أن العديد من الشركات تنفق آلاف الدولارات على الحملات الإعلانية (Ads) لجلب الزوار، وبمجرد أن يضغط العميل على الرابط، يجد نفسه أمام شاشة بيضاء تنتظر التحميل. هنا، تتدخل "قاعدة الثواني الثلاث" الحاسمة.</p>
+
+                    <div class="gold-blockquote">
+                        <p>العميل المستعد لدفع مبالغ طائلة، هو العميل الذي يقدّر وقته أكثر من أمواله. تأخير 3 ثوانٍ هو رسالة طرد غير مباشرة تقدمها له على طبق من ذهب ليذهب لمنافسك.</p>
+                    </div>
+
+                    <h3>الهيكل العظمي للمواقع: بين الكود النظيف والحشو الميت</h3>
+                    <p>ما الذي يجعل موقعاً يفتح في لمح البصر وآخر يتعثر؟ السر يكمن تحت السطح، في الأسطر البرمجية التي لا يراها العميل. معظم المواقع "الرخيصة" أو المبنية على قوالب جاهزة (مثل ووردبريس غير المحسن) تعاني مما نسميه "السمنة البرمجية" (Code Bloat). إنها محملة بمئات الملفات والإضافات التي لا حاجة لها، والتي يجب على متصفح العميل تحميلها كلها قبل أن يرى صورتك أو يقرأ نصك.</p>
+                    
+                    <p>في المقابل، الفلسفة التقنية في NJSERVICES تعتمد على البناء العضوي (Native Development). نحن نكتب الكود (HTML, CSS, JS) من الصفر ليطابق احتياجك بدقة الجراح. هذا يعني:</p>
+
+                    <ul>
+                        <li><strong>صفر حشو إضافي:</strong> لا توجد مكتبات برمجية ثقيلة غير مستخدمة. الكود مكتوب ليؤدي المهمة فقط وبأعلى كفاءة.</li>
+                        <li><strong>استدعاء غير متزامن للبيانات:</strong> عندما نربط موقعك بقواعد البيانات (مثل Supabase)، نستخدم تقنيات تجعل المحتوى النصي يظهر فوراً بينما يتم تحميل الصور في الخلفية بسلاسة (Lazy Loading).</li>
+                        <li><strong>استقرار السيرفرات:</strong> الكود النظيف يقلل من الضغط على الخوادم، مما يعني أن موقعك لن ينهار عندما يدخله آلاف الزوار فجأة من حملة إعلانية ناجحة.</li>
+                    </ul>
+
+                    <p>السرعة هي أعلى أشكال الاحترام الذي يمكن أن تقدمه لوقت عميلك. عندما يكون موقعك سريعاً كاستجابة سيارة رياضية فاخرة، فإنك ترسل إشارة نفسية قوية بأن شركتك تعمل بكفاءة عالية، وأن إتمام الصفقات معكم سيكون بنفس السلاسة والسرعة. لا تدع الكود السيئ يحرق ميزانيتك الإعلانية.</p>
+                </div>
+
+                <div class="article-footer">
+                    <div class="author-info">
+                        <div class="author-avatar">NJ</div>
+                        <div class="author-details">
+                            <h4>قسم الأداء والبنية التحتية</h4>
+                            <p>مهندسو NJSERVICES</p>
+                        </div>
+                    </div>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="article-wrapper reveal-up">
+            <div class="article-header-image">
+                <span class="article-category">كتابة المحتوى البيعي</span>
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead27d8?q=80&w=2000&auto=format&fit=crop" alt="Luxury Pen Writing Copy">
+            </div>
+            <div class="article-body">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar-alt"></i> 1 فبراير 2026</span>
+                    <span><i class="far fa-clock"></i> 8 دقائق قراءة</span>
+                    <span><i class="fas fa-pen-nib"></i> أسرار الإقناع</span>
+                </div>
+                
+                <h2 class="article-title">سحر الكلمة البيعية: كيف تحول الزوار إلى <span>عملاء أوفياء</span> دون عناء؟</h2>
+                
+                <div class="article-content">
+                    <p>التصميم الفاخر والأداء السريع هما المسرح والإضاءة، ولكن "الكلمة" هي بطل المسرحية. إذا كان الزائر قد دخل إلى موقعك وأعجب بهيبته وسرعته، فإن ما سيجعله يخرج بطاقته الائتمانية ليدفع لك هو ما ستقوله له، وكيف ستقوله. كتابة المحتوى البيعي (Copywriting) للنخبة تختلف جذرياً عن الكتابة التسويقية المبتذلة التي تعج بها الإنترنت.</p>
+                    
+                    <p>الخطأ القاتل الذي تقع فيه 90% من الشركات هو التركيز على "مواصفات" الخدمة أو المنتج (Features) بدلاً من التركيز على "التحول" أو "النتيجة" (Transformation). العميل ذو الميزانية العالية لا يشتري "تصميم موقع مكون من 5 صفحات"، بل يشتري "الواجهة الرقمية التي ستضاعف مبيعاته وترفع من مكانته أمام منافسيه".</p>
+
+                    <div class="gold-blockquote">
+                        <p>نحن لا نبيع ساعات لتعرف الوقت، بل نبيع القيمة التي يحملها الوقت في معصم الناجحين. الكلمة الإقناعية هي الجسر المخملي الذي يعبره العميل نحو زر الشراء.</p>
+                    </div>
+
+                    <h3>التشريح الاستراتيجي للنص القاتل (Killer Copy)</h3>
+                    <p>في NJSERVICES، نعتمد على استراتيجية الكلمات التي تلمس الكبرياء، الطموح، والرغبة في السيطرة. المحتوى الفاخر يجب أن يتميز بالتالي:</p>
+
+                    <ul>
+                        <li><strong>الندرة والاستبعاد:</strong> البراندات الفاخرة لا تتوسل للجميع ليحبوها. الكلمات يجب أن تُشعر العميل أن هذه الخدمة مصممة خصيصاً "لفئة معينة" هو يطمح أن يكون منها. (مثال: "نحن لا نعمل مع الجميع، بل نختار شركاءنا بعناية").</li>
+                        <li><strong>الوضوح الحاسم (Crystal Clarity):</strong> النخبة تكره الغموض والتلاعب اللفظي. يجب أن يكون الوعد البيعي واضحاً كالشمس، قاطعاً كالسيف، وخالياً من الحشو الأكاديمي الممل.</li>
+                        <li><strong>الاعتراضات المسبقة:</strong> النص العبقري هو الذي يجيب على مخاوف العميل وعوائقه النفسية قبل حتى أن يفكر فيها، محطماً بذلك أي جدار يفصل بينه وبين اتخاذ القرار.</li>
+                    </ul>
+
+                    <p>الكتابة ليست مجرد تعبئة مساحات فارغة في التصميم. إنها فن صياغة "عروض لا تُقاوم" (Irresistible Offers). عندما نعيد صياغة محتواك، نحن نحوله إلى مندوب مبيعات صامت، أنيق، ولا ينام أبداً. يعمل على مدار الساعة لفرز العملاء، إقناع الجادين منهم، ودفعهم نحو اتخاذ الإجراء النهائي بثقة مطلقة وحماس شديد.</p>
+                </div>
+
+                <div class="article-footer">
+                    <div class="author-info">
+                        <div class="author-avatar">NJ</div>
+                        <div class="author-details">
+                            <h4>قسم صياغة العقول</h4>
+                            <p>كُتّاب NJSERVICES</p>
+                        </div>
+                    </div>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="article-wrapper reveal-up">
+            <div class="article-header-image">
+                <span class="article-category">الاستراتيجية المستقبلية</span>
+                <img src="https://images.unsplash.com/photo-1551288560-12931e5f8f87?q=80&w=2070&auto=format&fit=crop" alt="Digital Strategy 2026 Dashboard">
+            </div>
+            <div class="article-body">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar-alt"></i> 25 يناير 2026</span>
+                    <span><i class="far fa-clock"></i> 10 دقائق قراءة</span>
+                    <span><i class="fas fa-chess-king"></i> رؤية 2026</span>
+                </div>
+                
+                <h2 class="article-title">دليل إطلاق الإمبراطوريات الرقمية: خارطة طريق الاستحواذ لعام <span>2026</span></h2>
+                
+                <div class="article-content">
+                    <p>العام 2026 لم يعد يقبل بأنصاف الحلول. لقد تجاوزنا مرحلة "يجب أن يكون لديك موقع على الإنترنت". اليوم، السؤال لم يعد هل أنت متواجد رقمياً، بل السؤال هو: "ما مدى قوة هيمنتك في المساحة الرقمية الخاصة بك؟". الأسواق تشبعت بالمنافسين التقليديين الذين ينسخون بعضهم البعض، والبقاء الآن، والسيولة النقدية العالية، تتجه حصراً نحو العلامات التجارية التي تتصرف كـ "قادة" وليس كـ "أتباع".</p>
+                    
+                    <p>النجاح الرقمي المستدام ليس ضربة حظ ولا تغريدة فيروسية (Viral) عابرة. إنه نتيجة هندسة دقيقة واستراتيجية تضع العميل في مركز الكون وتطوقه بقيمة لا يستطيع رفضها. في NJSERVICES، صممنا خارطة طريق تعتمد على ثلاثة محاور رئيسية لا تقبل الكسر.</p>
+
+                    <div class="gold-blockquote">
+                        <p>ابدأ من حيث يخشى الآخرون التقدم، ولا تكرر أخطاء الهواة في عالم صُنع ليحكمه المحترفون. الاستراتيجية هي أن تعرف مالذي يجب ألا تفعله.</p>
+                    </div>
+
+                    <h3>محاور الهيمنة الرقمية الثلاثة</h3>
+                    <p>لبناء كيان لا يتأثر بتغير الخوارزميات أو ظهور منافسين جدد، يجب أن تقوم البنية التحتية لعملك على:</p>
+
+                    <ul>
+                        <li><strong>1. المركزية المملوكة (Owned Media):</strong> الاعتماد الكلي على منصات التواصل الاجتماعي هو بناء قصر على رمال متحركة. خوارزمية واحدة كفيلة بتدمير وصولك. موقعك الإلكتروني الخاص (ببرمجة مخصصة وتصميم كالموجود هنا) هو قلعتك الحصينة التي تمتلك قواعدها، بيانات عملائها، وطريقة عرضك فيها بنسبة 100%.</li>
+                        <li><strong>2. الأنظمة المترابطة (Ecosystems):</strong> تحويل الموقع من مجرد "كتيب عرض" إلى "نظام بيئي" متكامل. ربط واجهة العرض بقواعد بيانات قوية (مثل Supabase)، أتمتة عمليات الرد، وجمع بيانات الزوار لإعادة استهدافهم. هذا هو ما يحول الموقع لآلة توليد أرباح.</li>
+                        <li><strong>3. السلطة المعرفية (Authority Building):</strong> العميل يشتري من الخبير الذي يثق به. من خلال أدوات كـ "مدونة النخبة" التي تقرأها الآن، أنت لا تبيع خدمتك بشكل مباشر، بل تستعرض عضلاتك الفكرية والتقنية. عندما يرى العميل عمق فهمك لمشاكله، يصبح السعر آخر شيء يناقشه معك.</li>
+                    </ul>
+
+                    <p>نحن في NJSERVICES لا نقدم لك خدمة تصميم وبرمجة وانتهى الأمر. نحن نضع بين يديك خلاصة سنوات من الصراع وفهم السلوكيات الرقمية. نحن نرافقك من ولادة الفكرة، مروراً بتجسيدها البصري والبرمجي، وحتى إطلاقها ككيان يفرض قوانينه الخاصة في السوق. إذا كنت مستعداً للتوقف عن اللعب في دوريات الهواة، وتطمح لافتتاح إمبراطوريتك الخاصة في 2026، فإن بصمتك الذهبية تبدأ من هنا.</p>
+                </div>
+
+                <div class="article-footer">
+                    <div class="author-info">
+                        <div class="author-avatar">NJ</div>
+                        <div class="author-details">
+                            <h4>المجلس التنفيذي الاستراتيجي</h4>
+                            <p>NJSERVICES GLOBAL</p>
+                        </div>
+                    </div>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
     </main>
 
     <footer>
-        <div class="footer-brand">NJSERVICES</div>
-        <p style="color: var(--primary-gold); font-size: 0.8rem; letter-spacing: 2px;">
-            جميع الحقوق محفوظة © 2026 - GOLDEN NJ PHILOSOPHY
-        </p>
+        <div class="footer-content reveal-up">
+            <div class="footer-logo">NJSERVICES</div>
+            <p class="footer-quote">"نحن لا نصنع مجرد مواقع أو أكواد، نحن نضع بصمتك الذهبية في ذاكرة السوق الرقمي، لتكون الاستثناء في عالم مليء بالنسخ المكررة."</p>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    جميع الحقوق محفوظة © 2026 - فلسفة النخبة | Golden NJ
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // تأثير الظهور التدريجي
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    reveals[i].classList.add("active");
+        document.addEventListener('DOMContentLoaded', () => {
+            // تأثير الهيدر عند التمرير
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
-            }
-        }
-        window.addEventListener("scroll", reveal);
+            });
 
-        // تم نقل الوظيفة إلى داخل الـ script وتصحيحها لتعمل مع تصميمك
-        function renderBlog(posts) {
-            const blogContainer = document.getElementById('blog-container');
-            // نستخدم += لإضافة المقالات الجديدة تحت المقالات القديمة
-            blogContainer.innerHTML += posts.map(post => `
-                <article class="article-card reveal active">
-                    <div class="article-body">
-                        <h2 class="article-title" style="color: #d4af37;">${post.title}</h2>
-                        <div class="article-text">${post.content.substring(0, 100)}...</div>
-                        <div class="article-meta">
-                            <span><i class="far fa-calendar-alt"></i> ${post.created_at}</span>
-                        </div>
-                    </div>
-                </article>
-            `).join('');
-        }
+            // مراقب العناصر لظهورها التدريجي (Scroll Reveal)
+            const revealElements = document.querySelectorAll('.reveal-up');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // اختياري: إيقاف المراقبة بعد الظهور الأول لتحسين الأداء
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // يظهر العنصر عندما يدخل 15% منه في الشاشة
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        });
     </script>
 </body>
 </html>
