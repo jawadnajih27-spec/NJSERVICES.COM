@@ -47,7 +47,6 @@
             z-index: -1;
         }
 
-        /* هيدر المدونة */
         header {
             padding: 25px 10%;
             display: flex;
@@ -87,7 +86,6 @@
             box-shadow: 0 0 20px var(--border-glow);
         }
 
-        /* قسم الهيرو */
         .hero-blog {
             height: 70vh;
             display: flex;
@@ -120,7 +118,6 @@
             font-weight: 300;
         }
 
-        /* حاوية المقالات */
         .blog-feed {
             max-width: 1100px;
             margin: -150px auto 100px;
@@ -145,7 +142,6 @@
             box-shadow: 0 40px 80px rgba(212, 175, 55, 0.1);
         }
 
-        /* الصور - ظاهرة 100% وبجودة خيالية */
         .article-visual {
             width: 100%;
             height: 550px;
@@ -177,7 +173,6 @@
             text-transform: uppercase;
         }
 
-        /* نصوص المقالات */
         .article-body {
             padding: 60px 80px;
             position: relative;
@@ -227,7 +222,6 @@
             padding-top: 30px;
         }
 
-        /* فوتر المدونة */
         footer {
             padding: 100px 10% 50px;
             text-align: center;
@@ -242,7 +236,6 @@
             margin-bottom: 20px;
         }
 
-        /* أنيميشن الظهور */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -253,7 +246,6 @@
             transform: translateY(0);
         }
 
-        /* استجابة الشاشات */
         @media (max-width: 992px) {
             .article-body { padding: 40px; }
             .hero-content h1 { font-size: 3rem; }
@@ -280,9 +272,8 @@
         </div>
     </section>
 
-    <main class="blog-feed">
-
-        <article class="article-card reveal">
+    <main class="blog-feed" id="blog-container">
+        <article class="article-card reveal active">
             <div class="article-visual">
                 <span class="category-tag">براندنج</span>
                 <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" alt="Luxury Business">
@@ -290,150 +281,55 @@
             <div class="article-body">
                 <h2 class="article-title">فخامة البكسل: لماذا تفشل المواقع "الرخيصة" في بناء براند عالمي؟</h2>
                 <div class="article-text">
-                    دعنا نتحدث بصراحة يا صديقي. أن تطلب من مبرمج مبتدئ تصميم موقع لعلامتك التجارية "بأقل سعر ممكن"، يشبه تماماً الذهاب لحفل زفاف ملكي وأنت ترتدي "شبشب" بلاستيكياً. نعم، لقد وصلت للحفل، والجميع يراك، لكن هل سيجرؤ أحد على دعوتك لطاولة النخبة؟ بالطبع لا. في عالم الرقمية، موقعك هو "البدلة الرسمية" التي يراك بها العالم قبل أن يسمعوا كلمة واحدة منك.
+                    دعنا نتحدث بصراحة يا صديقي. أن تطلب من مبرمج مبتدئ تصميم موقع لعلامتك التجارية "بأقل سعر ممكن"، يشبه تماماً الذهاب لحفل زفاف ملكي وأنت ترتدي "شبشب" بلاستيكياً.
                 </div>
                 <div class="gold-quote">
                     "التوفير في البدايات هو الضريبة التي تدفعها من سمعتك في النهايات."
                 </div>
-                <div class="article-text">
-                    المواقع "الرخيصة" ليست مجرد توفير للمال، بل هي إعلان صريح يقول: "نحن لا نهتم بالتفاصيل، لذا لا تتوقعوا منا جودة". في NJSERVICES، نحن لا نضع الألوان لأنها جميلة فقط، بل لأنها لغة صامتة تفرض الاحترام.
-                </div>
                 <div class="article-meta">
                     <span><i class="far fa-calendar-alt"></i> فبراير 2026</span>
-                    <span><i class="far fa-clock"></i> 5 دقائق قراءة</span>
                 </div>
             </div>
         </article>
-
-        <article class="article-card reveal">
-            <div class="article-visual">
-                <span class="category-tag">علم النفس التسويقي</span>
-                <img src="https://images.unsplash.com/photo-1533038590840-1cde6b66b721?q=80&w=2000&auto=format&fit=crop" alt="Psychology of Gold">
-            </div>
-            <div class="article-body">
-                <h2 class="article-title">سيكولوجية اللون الذهبي: لغة السيطرة الصامتة</h2>
-                <div class="article-text">
-                    في عالم الأعمال، العفوية هي مرادف للفشل. اختيار اللون الذهبي والأسود في هوية NJSERVICES لم يكن يوماً مسألة ذوق شخصي، بل هو قرار استراتيجي بحت. اللون ليس مجرد طلاء للموقع، بل هو "لغة صامتة" تخاطب العقل الباطن للعميل.
-                </div>
-                <div class="gold-quote">
-                    "الذهب لا يصرخ لطلب الانتباه، بل يجبر العيون على التأمل بصمت."
-                </div>
-                <div class="article-text">
-                    تؤكد الدراسات السيكولوجية أن اللون الذهبي هو المحفز الأول للإحساس بـ "القيمة المدركة". التباين بين الأسود العميق والذهب المتزن يخلق "بيئة نفسية" آمنة للشراء، حيث يشعر العميل لا إرادياً أنه بصدد الحصول على شيء استثنائي ونادر.
-                </div>
-                <div class="article-meta">
-                    <span><i class="far fa-calendar-alt"></i> فبراير 2026</span>
-                    <span><i class="far fa-clock"></i> 6 دقائق قراءة</span>
-                </div>
-            </div>
-        </article>
-
-        <article class="article-card reveal">
-            <div class="article-visual">
-                <span class="category-tag">الأداء التقني</span>
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Speed Performance">
-            </div>
-            <div class="article-body">
-                <h2 class="article-title">قاعدة الثواني الثلاث: هل موقعك يطرد الزوار أم يرحب بهم؟</h2>
-                <div class="article-text">
-                    في العصر الرقمي، البطء هو جريمة بحق الأرباح. كل ثانية تأخير في تحميل موقعك هي رسالة طرد غير مباشرة لعميلك المحتمل. السخرية تكمن في أن الشركات تنفق الآلاف على الإعلانات، ثم يضيع كل ذلك لأن الموقع "ثقيل".
-                </div>
-                <div class="gold-quote">
-                    "العميل الذي ينتظر أكثر من 3 ثوانٍ هو عميل قرر بالفعل الذهاب لمنافسك."
-                </div>
-                <div class="article-text">
-                    السرعة هي الاحترام الحقيقي لوقت العميل. المواقع التي نصممها في NJSERVICES لا تعتمد على "الحشو" البرمجي، بل على الكود النظيف الذي يطير بالمحتوى، مما يضمن تجربة سلسة تليق بتوقعات النخبة.
-                </div>
-                <div class="article-meta">
-                    <span><i class="far fa-calendar-alt"></i> فبراير 2026</span>
-                    <span><i class="far fa-clock"></i> 4 دقائق قراءة</span>
-                </div>
-            </div>
-        </article>
-
-        <article class="article-card reveal">
-            <div class="article-visual">
-                <span class="category-tag">كتابة المحتوى البيعي</span>
-                <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=2000&auto=format&fit=crop" alt="Copywriting">
-            </div>
-            <div class="article-body">
-                <h2 class="article-title">من مجرد زائر إلى عميل وفيّ: أسرار الكلمة الإقناعية</h2>
-                <div class="article-text">
-                    وصف المنتجات ليس مجرد تعبئة فراغات بكلمات منمقة. الكتابة الإقناعية هي فن تحويل "المزايا" الجامدة إلى "نتائج" يلمسها العميل في كبريائه واحتياجاته. الكلمة هي الجسر الذي يعبره العميل بسلام نحو زر الشراء.
-                </div>
-                <div class="gold-quote">
-                    "نحن لا نصف الساعات، نحن نصف قيمة الوقت في معصم الناجحين."
-                </div>
-                <div class="article-text">
-                    الفارق بين "بائع" و"خبير" هو أن الخبير يعرف كيف يخاطب الرغبات العميقة. نحن نعيد صياغة محتواك ليصبح بمثابة مغناطيس بيعي، حيث لا يشعر العميل أنه "يُباع له"، بل يشعر أنه هو من "اكتشف الكنز".
-                </div>
-                <div class="article-meta">
-                    <span><i class="far fa-calendar-alt"></i> فبراير 2026</span>
-                    <span><i class="far fa-clock"></i> 7 دقائق قراءة</span>
-                </div>
-            </div>
-        </article>
-
-        <article class="article-card reveal">
-            <div class="article-visual">
-                <span class="category-tag">الاستراتيجية الرقمية</span>
-                <img src="https://images.unsplash.com/photo-1551288560-12931e5f8f87?q=80&w=2070&auto=format&fit=crop" alt="Strategy 2026">
-            </div>
-            <div class="article-body">
-                <h2 class="article-title">دليل إطلاق متجر النخبة: خارطة الطريق لعام 2026</h2>
-                <div class="article-text">
-                    النجاح الرقمي في 2026 ليس ضربة حظ، بل هو نتيجة هندسة دقيقة. معظم المتاجر تكتفي بوضع صور وأسعار، ثم تتساءل عن غياب المبيعات. الحقيقة أن العميل المعاصر أصبح أكثر ذكاءً وأكثر تطلباً للفخامة والوضوح.
-                </div>
-                <div class="gold-quote">
-                    "ابدأ من حيث انتهى الآخرون، ولا تكرر أخطاء الهواة في عالم المحترفين."
-                </div>
-                <div class="article-text">
-                    هذا الدليل يضع بين يديك خلاصة سنوات من الصراع الرقمي. نحن في NJSERVICES نرافقك من الفكرة الأولى وحتى وصول المنتج ليد العميل، مع ضمان أن تكون كل خطوة مشبعة بـ "DNA" التميز الذي يجعلك خارج المنافسة تماماً.
-                </div>
-                <div class="article-meta">
-                    <span><i class="far fa-calendar-alt"></i> فبراير 2026</span>
-                    <span><i class="far fa-clock"></i> 10 دقائق قراءة</span>
-                </div>
-            </div>
-        </article>
-
     </main>
 
     <footer>
         <div class="footer-brand">NJSERVICES</div>
-        <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto 30px;">
-            نحن لا نصنع مجرد مواقع، نحن نضع بصمتك الذهبية في ذاكرة السوق الرقمي.
-        </p>
         <p style="color: var(--primary-gold); font-size: 0.8rem; letter-spacing: 2px;">
             جميع الحقوق محفوظة © 2026 - GOLDEN NJ PHILOSOPHY
         </p>
     </footer>
 
     <script>
-        // تأثير الظهور التدريجي الفخم
+        // تأثير الظهور التدريجي
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // تفعيل مبدئي
+
+        // تم نقل الوظيفة إلى داخل الـ script وتصحيحها لتعمل مع تصميمك
+        function renderBlog(posts) {
+            const blogContainer = document.getElementById('blog-container');
+            // نستخدم += لإضافة المقالات الجديدة تحت المقالات القديمة
+            blogContainer.innerHTML += posts.map(post => `
+                <article class="article-card reveal active">
+                    <div class="article-body">
+                        <h2 class="article-title" style="color: #d4af37;">${post.title}</h2>
+                        <div class="article-text">${post.content.substring(0, 100)}...</div>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar-alt"></i> ${post.created_at}</span>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
     </script>
-    function renderBlog(posts) {
-  const blogContainer = document.getElementById('blog-container');
-  blogContainer.innerHTML = posts.map(post => `
-    <article class="border-b border-gray-800 py-6">
-      <h2 class="text-2xl gold-text">${post.title}</h2>
-      <p class="text-gray-400">${post.content.substring(0, 100)}...</p>
-      <span class="text-xs text-gray-600">${post.created_at}</span>
-    </article>
-  `).join('');
-}
 </body>
 </html>
