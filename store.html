@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر NJSERVICES | المنتجات الرقمية الفاخرة</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* الأساسيات - مستوحاة من GOLDEN-NJ */
+        /* الأساسيات المتطورة - GOLDEN-NJ */
         :root {
             --primary-gold: #d4af37;
-            --dark-bg: #0f0f0f;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text-white: #ffffff;
+            --primary-gold-hover: #f1c40f;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: rgba(212, 175, 55, 0.15);
+            --text-white: #f8f9fa;
+            --text-muted: #a0a0a0;
             --transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -36,214 +39,339 @@
         .bg-gradient {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
+            background: radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
             z-index: -1;
         }
 
+        /* الهيدر المتطور مع السلة */
         header {
-            padding: 20px 10%;
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(15, 15, 15, 0.85);
-            backdrop-filter: blur(15px);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             position: sticky;
             top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
             color: var(--primary-gold);
             text-decoration: none;
             letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
-        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
         nav a {
-            color: white;
+            color: var(--text-white);
             text-decoration: none;
-            font-weight: 400;
-            transition: 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
         }
-        nav a:hover { color: var(--primary-gold); }
+        nav a:hover, nav a.active { color: var(--primary-gold); }
 
-        /* عنوان الصفحة */
+        /* سلة المشتريات الأيقونية */
+        .cart-widget {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--primary-gold);
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cart-widget:hover {
+            background: var(--primary-gold);
+            color: black;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .cart-widget:hover .cart-icon, 
+        .cart-widget:hover .cart-total {
+            color: black;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+            transition: var(--transition);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px; right: -15px;
+            background: #e74c3c;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 50%;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-gold);
+            transition: var(--transition);
+        }
+
+        /* عنوان المتجر */
         .store-hero {
             padding: 80px 10% 40px;
             text-align: center;
         }
 
         .store-hero h1 {
-            font-size: 3rem;
-            color: var(--primary-gold);
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #fff, var(--primary-gold), #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
             font-weight: 900;
+            animation: shine 5s linear infinite;
         }
+
+        @keyframes shine { to { background-position: 200% center; } }
 
         /* شريط التصنيف (Filter) */
         .filter-bar {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             flex-wrap: wrap;
+            padding: 0 5%;
         }
 
         .filter-btn {
-            padding: 10px 25px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background: transparent;
-            color: white;
+            padding: 12px 30px;
+            border: 1px solid var(--glass-border);
+            background: var(--card-bg);
+            color: var(--text-white);
             border-radius: 30px;
             cursor: pointer;
-            transition: 0.3s;
-            font-size: 0.9rem;
+            transition: var(--transition);
+            font-size: 1rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
         }
 
         .filter-btn.active, .filter-btn:hover {
             background: var(--primary-gold);
             color: black;
             border-color: var(--primary-gold);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            transform: translateY(-3px);
         }
 
         /* شبكة المنتجات */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            padding: 0 10% 100px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 0 8% 100px;
         }
 
         .product-card {
             background: var(--card-bg);
             border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
             overflow: hidden;
             transition: var(--transition);
             position: relative;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card.hide {
+            display: none;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
             border-color: var(--primary-gold);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         .badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--primary-gold);
+            top: 20px; right: 20px;
+            background: linear-gradient(45deg, var(--primary-gold), #b8962e);
             color: black;
-            padding: 5px 15px;
+            padding: 6px 18px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            font-size: 0.85rem;
+            font-weight: 900;
             z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .product-img-container {
             width: 100%;
-            height: 220px;
+            height: 240px;
             overflow: hidden;
+            position: relative;
+        }
+
+        .product-img-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(10,10,10,0.8));
         }
 
         .product-img-container img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
-            transition: 0.5s;
+            transition: 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .product-card:hover .product-img-container img {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(2deg);
         }
 
         .product-info {
-            padding: 25px;
+            padding: 30px;
             text-align: right;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category {
+            color: var(--primary-gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
         }
 
         .product-info h3 {
             font-size: 1.4rem;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: #fff;
+            font-weight: 800;
         }
 
         .product-info p {
-            color: #aaa;
-            font-size: 0.9rem;
-            height: 50px;
-            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
         }
 
         .price-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid var(--glass-border);
             padding-top: 20px;
+            margin-top: auto;
         }
 
         .product-price {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 900;
             color: var(--primary-gold);
         }
 
-        .btn-buy {
-            padding: 10px 20px;
-            background: var(--primary-gold);
-            color: black;
+        .btn-add-cart {
+            padding: 12px 25px;
+            background: transparent;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
             text-decoration: none;
             border-radius: 12px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: 0.3s;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn-buy:hover {
-            background: white;
-            transform: scale(1.05);
+        .btn-add-cart:hover {
+            background: var(--primary-gold);
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* رسالة الإشعار عند الإضافة للسلة */
+        .toast-notification {
+            position: fixed;
+            bottom: -100px;
+            right: 30px;
+            background: var(--primary-gold);
+            color: black;
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10000;
+        }
+
+        .toast-notification.show {
+            bottom: 40px;
         }
 
         /* أزرار التواصل العائمة */
         .floating-social {
             position: fixed;
-            bottom: 30px; left: 30px;
+            bottom: 40px; left: 30px;
             display: flex; flex-direction: column; gap: 15px;
-            z-index: 9999;
+            z-index: 9000;
         }
 
         .social-circle {
-            width: 55px; height: 55px;
-            background: var(--primary-gold);
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--primary-gold), #b8962e);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: #000; font-size: 1.5rem; text-decoration: none;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            color: #000; font-size: 1.8rem; text-decoration: none;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
             transition: var(--transition);
         }
 
+        .social-circle:hover {
+            transform: translateY(-10px) scale(1.1);
+            background: #fff;
+        }
+
         footer {
-            padding: 60px 10% 30px;
+            padding: 60px 10% 40px;
             text-align: center;
-            background: #050505;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            background: #030303;
+            border-top: 1px solid var(--glass-border);
         }
 
-        @media (max-width: 768px) {
-            .store-hero h1 { font-size: 2.2rem; }
-            .products-grid { padding: 0 5% 50px; }
-            header { padding: 20px 5%; }
-            nav ul { display: none; }
+        @media (max-width: 992px) {
+            header { flex-direction: column; gap: 20px; padding: 20px 5%; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            .cart-widget { width: 100%; justify-content: center; }
         }
 
-        /* أنيميشن الظهور */
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -257,83 +385,322 @@
             <ul>
                 <li><a href="index.html">الرئيسية</a></li>
                 <li><a href="index.html#services">الخدمات</a></li>
-                <li><a href="store.html" style="color: var(--primary-gold);">المتجر</a></li>
+                <li><a href="store.html" class="active">المتجر</a></li>
                 <li><a href="blog.html">المدونة</a></li>
-                <li><a href="https://wa.me/212703652247">الدعم الفني</a></li>
+                <li><a href="index.html#spotlight">رؤيتنا</a></li>
             </ul>
         </nav>
-        <a href="index.html" class="btn-buy" style="background: transparent; border: 1px solid var(--primary-gold); color: white;">العودة للرئيسية</a>
+        
+        <div class="cart-widget" onclick="processCheckout()">
+            <div class="cart-icon">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+            <span class="cart-total" id="cartTotal">0.00$</span>
+            <span style="font-size: 0.9rem; margin-right: 5px;">إتمام الطلب</span>
+        </div>
     </header>
 
     <section class="store-hero">
-        <h1 class="reveal active">المتجر الرقمي</h1>
-        <p class="reveal active" style="color: #888;">اقتنِ أدوات النجاح الجاهزة والمصممة بعناية فائقة</p>
+        <h1 class="reveal active">المتجر الرقمي النخبوي</h1>
+        <p class="reveal active" style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: auto;">استثمر في أدوات وخدمات صُممت خصيصاً لتضع علامتك التجارية في صدارة المنافسة الفاخرة.</p>
     </section>
 
     <div class="filter-bar reveal active">
-        <button class="filter-btn active">الكل</button>
-        <button class="filter-btn">قوالب</button>
-        <button class="filter-btn">كتب رقمية</button>
-        <button class="filter-btn">برامج</button>
+        <button class="filter-btn active" data-filter="all">الكل</button>
+        <button class="filter-btn" data-filter="services">الخدمات الحصرية</button>
+        <button class="filter-btn" data-filter="templates">قوالب فاخرة</button>
+        <button class="filter-btn" data-filter="books">أدلة وكتب رقمية</button>
+        <button class="filter-btn" data-filter="tools">أدوات وبرمجيات</button>
     </div>
 
-    <div class="products-grid">
-        <div class="product-card reveal">
-            <span class="badge">الأكثر مبيعاً</span>
-            <div class="product-img-container">
-                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=500" alt="قالب إيليت">
-            </div>
+    <div class="products-grid" id="productsGrid">
+
+        <div class="product-card reveal" data-category="services">
+            <span class="badge">الأكثر طلباً</span>
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600" alt="هوية بصرية"></div>
             <div class="product-info">
-                <h3>قالب "إيليت" الاحترافي</h3>
-                <p>قالب متجر إلكتروني متكامل، سريع جداً ومتوافق مع جميع محركات البحث.</p>
+                <span class="product-category">خدمات حصرية</span>
+                <h3>تصميم هوية بصرية ملكية</h3>
+                <p>بناء علامة تجارية متكاملة تشمل الشعار، الألوان، الخطوط والتطبيقات البصرية بلمسة من الفخامة المطلقة.</p>
                 <div class="price-container">
-                    <span class="product-price">79.00$</span>
-                    <a href="https://wa.me/212703652247?text=أريد شراء قالب إيليت" class="btn-buy">شراء الآن</a>
+                    <span class="product-price">499.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('تصميم هوية بصرية ملكية', 499.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
                 </div>
             </div>
         </div>
 
-        <div class="product-card reveal">
-            <div class="product-img-container">
-                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500" alt="كتاب التسويق">
-            </div>
+        <div class="product-card reveal" data-category="services">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="متجر إلكتروني"></div>
             <div class="product-info">
-                <h3>دليل سيكولوجية البيع</h3>
-                <p>تعلم الأسرار النفسية التي تجعل العميل يشتري منك دون تردد.</p>
+                <span class="product-category">خدمات حصرية</span>
+                <h3>تطوير متجر VIP متكامل</h3>
+                <p>برمجة وتصميم متجر إلكتروني متجاوب، سريع جداً، مع دمج بوابات الدفع وتجربة مستخدم لا تُنسى.</p>
                 <div class="price-container">
-                    <span class="product-price">29.00$</span>
-                    <a href="https://wa.me/212703652247?text=أريد شراء دليل سيكولوجية البيع" class="btn-buy">شراء الآن</a>
+                    <span class="product-price">899.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('تطوير متجر VIP متكامل', 899.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
                 </div>
             </div>
         </div>
 
-        <div class="product-card reveal">
-            <span class="badge">جديد</span>
-            <div class="product-img-container">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500" alt="تحليل بيانات">
-            </div>
+        <div class="product-card reveal" data-category="services">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600" alt="إعلانات"></div>
             <div class="product-info">
-                <h3>أداة تحليل المنافسين</h3>
-                <p>نظام ذكي لمراقبة تحركات منافسيك في السوق والحصول على تفوق استراتيجي.</p>
+                <span class="product-category">خدمات حصرية</span>
+                <h3>إدارة حملات إعلانية فاخرة</h3>
+                <p>استهداف دقيق للعملاء ذوي القوة الشرائية العالية وإدارة ميزانيتك الإعلانية لتحقيق أعلى عائد (ROI).</p>
+                <div class="price-container">
+                    <span class="product-price">299.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('إدارة حملات إعلانية فاخرة', 299.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="services">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600" alt="محتوى بيعي"></div>
+            <div class="product-info">
+                <span class="product-category">خدمات حصرية</span>
+                <h3>كتابة محتوى بيعي (Copywriting)</h3>
+                <p>صياغة نصوص وصفحات هبوط تلعب على الوتر النفسي للعميل وتحوله من زائر إلى مشترٍ ولاء.</p>
                 <div class="price-container">
                     <span class="product-price">149.00$</span>
-                    <a href="https://wa.me/212703652247?text=أريد شراء أداة التحليل" class="btn-buy">شراء الآن</a>
+                    <button class="btn-add-cart" onclick="addToCart('كتابة محتوى بيعي إقناعي', 149.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
                 </div>
             </div>
         </div>
 
-        <div class="product-card reveal">
-            <div class="product-img-container">
-                <img src="https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=500" alt="هوية بصرية">
-            </div>
+        <div class="product-card reveal" data-category="services">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600" alt="SEO"></div>
             <div class="product-info">
-                <h3>حزمة الهوية البصرية الجاهزة</h3>
-                <p>مجموعة من الشعارات والقوالب القابلة للتعديل لبدء براندك فوراً.</p>
+                <span class="product-category">خدمات حصرية</span>
+                <h3>تحسين محركات البحث SEO</h3>
+                <p>تصدر نتائج جوجل الكلمية لضمان تدفق مستمر من الزيارات العضوية المجانية لموقعك.</p>
                 <div class="price-container">
-                    <span class="product-price">55.00$</span>
-                    <a href="https://wa.me/212703652247?text=أريد شراء حزمة الهوية" class="btn-buy">شراء الآن</a>
+                    <span class="product-price">399.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('تحسين محركات البحث SEO', 399.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
                 </div>
             </div>
+        </div>
+
+        <div class="product-card reveal" data-category="services">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600" alt="استشارة"></div>
+            <div class="product-info">
+                <span class="product-category">خدمات حصرية</span>
+                <h3>استشارة أعمال استراتيجية</h3>
+                <p>جلسة مكثفة لمدة ساعتين لتحليل مشروعك ووضع خطة طريق واضحة للسيطرة على سوقك.</p>
+                <div class="price-container">
+                    <span class="product-price">199.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('استشارة أعمال استراتيجية', 199.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="templates">
+            <span class="badge">الأكثر مبيعاً</span>
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600" alt="قالب إيليت"></div>
+            <div class="product-info">
+                <span class="product-category">قوالب فاخرة</span>
+                <h3>قالب "إيليت" للمتاجر</h3>
+                <p>قالب متجر إلكتروني متكامل، سريع جداً، يدعم العربية، ومهيأ لزيادة معدلات التحويل.</p>
+                <div class="price-container">
+                    <span class="product-price">79.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('قالب إيليت للمتاجر', 79.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="templates">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" alt="قالب بريستيج"></div>
+            <div class="product-info">
+                <span class="product-category">قوالب فاخرة</span>
+                <h3>قالب "بريستيج" للوكالات</h3>
+                <p>قالب مصمم خصيصاً لوكالات التسويق والخدمات لعرض الأعمال بأسلوب نخبوي وراقي.</p>
+                <div class="price-container">
+                    <span class="product-price">89.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('قالب بريستيج للوكالات', 89.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="templates">
+            <span class="badge">جديد</span>
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600" alt="صفحات هبوط"></div>
+            <div class="product-info">
+                <span class="product-category">قوالب فاخرة</span>
+                <h3>حزمة صفحات الهبوط الذهبية</h3>
+                <p>10 قوالب لصفحات هبوط (Landing Pages) مصممة استراتيجياً لالتقاط العملاء المحتملين.</p>
+                <div class="price-container">
+                    <span class="product-price">49.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('حزمة صفحات الهبوط الذهبية', 49.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="templates">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=600" alt="سوشيال ميديا"></div>
+            <div class="product-info">
+                <span class="product-category">قوالب فاخرة</span>
+                <h3>حزمة السوشيال ميديا الملكية</h3>
+                <p>أكثر من 100 قالب قابل للتعديل لإنستغرام وفيسبوك تعكس فخامة علامتك التجارية.</p>
+                <div class="price-container">
+                    <span class="product-price">39.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('حزمة السوشيال ميديا الملكية', 39.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-card reveal" data-category="templates">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600" alt="عروض تقديمية"></div>
+            <div class="product-info">
+                <span class="product-category">قوالب فاخرة</span>
+                <h3>قوالب Pitch Deck للمستثمرين</h3>
+                <p>قوالب عروض تقديمية احترافية مصممة لإقناع المستثمرين وجلب التمويل لمشروعك.</p>
+                <div class="price-container">
+                    <span class="product-price">59.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('قوالب Pitch Deck للمستثمرين', 59.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="books">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600" alt="كتاب التسويق"></div>
+            <div class="product-info">
+                <span class="product-category">كتب وأدلة رقمية</span>
+                <h3>دليل سيكولوجية البيع</h3>
+                <p>تعلم الأسرار النفسية التي تجعل العميل في السوق العربي يشتري منك دون تردد.</p>
+                <div class="price-container">
+                    <span class="product-price">29.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('دليل سيكولوجية البيع', 29.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="books">
+            <span class="badge">الأعلى تقييماً</span>
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600" alt="إعلانات"></div>
+            <div class="product-info">
+                <span class="product-category">كتب وأدلة رقمية</span>
+                <h3>أسرار الإعلانات المربحة</h3>
+                <p>دليل شامل من الصفر للاحتراف لإطلاق حملات إعلانية تحقق مبيعات فورية.</p>
+                <div class="price-container">
+                    <span class="product-price">35.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('كتاب أسرار الإعلانات المربحة', 35.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="books">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=600" alt="بناء العلامة"></div>
+            <div class="product-info">
+                <span class="product-category">كتب وأدلة رقمية</span>
+                <h3>دستور العلامات التجارية الفاخرة</h3>
+                <p>كيف تبني "براند" يبيع منتجاته بأسعار مضاعفة بناءً على القيمة المدركة والفخامة.</p>
+                <div class="price-container">
+                    <span class="product-price">45.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('دستور العلامات التجارية الفاخرة', 45.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="books">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600" alt="الدروبشيبينغ"></div>
+            <div class="product-info">
+                <span class="product-category">كتب وأدلة رقمية</span>
+                <h3>دليل الدروبشيبينغ المتقدم</h3>
+                <p>استراتيجيات حديثة للدروبشيبينغ في الأسواق الخليجية والمحلية بدون المخاطرة برأس المال.</p>
+                <div class="price-container">
+                    <span class="product-price">39.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('دليل الدروبشيبينغ المتقدم', 39.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="books">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600" alt="التسعير"></div>
+            <div class="product-info">
+                <span class="product-category">كتب وأدلة رقمية</span>
+                <h3>استراتيجيات التسعير النفسي</h3>
+                <p>كيف تضع أسعاراً تزيد من رغبة العميل بالشراء وتكسر حاجز الخوف لديه.</p>
+                <div class="price-container">
+                    <span class="product-price">25.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('استراتيجيات التسعير النفسي', 25.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="tools">
+            <span class="badge">أداة حصرية</span>
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600" alt="تحليل بيانات"></div>
+            <div class="product-info">
+                <span class="product-category">أدوات وبرمجيات</span>
+                <h3>أداة تحليل المنافسين VIP</h3>
+                <p>نظام ذكي لمراقبة إعلانات ومبيعات منافسيك في السوق والحصول على تفوق استراتيجي مباشر.</p>
+                <div class="price-container">
+                    <span class="product-price">149.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('أداة تحليل المنافسين VIP', 149.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="tools">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600" alt="نظام عملاء"></div>
+            <div class="product-info">
+                <span class="product-category">أدوات وبرمجيات</span>
+                <h3>نظام إدارة العملاء (CRM)</h3>
+                <p>إعداد وربط نظام CRM احترافي لمتابعة العملاء المحتملين وزيادة نسب الإغلاق بشكل آلي.</p>
+                <div class="price-container">
+                    <span class="product-price">199.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('نظام إدارة العملاء CRM', 199.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="tools">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600" alt="واتساب"></div>
+            <div class="product-info">
+                <span class="product-category">أدوات وبرمجيات</span>
+                <h3>سكريبت أتمتة الواتساب</h3>
+                <p>بوت ذكي للرد الآلي، إرسال العروض، وتأكيد الطلبات للعملاء عبر الواتساب على مدار الساعة.</p>
+                <div class="price-container">
+                    <span class="product-price">89.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('سكريبت أتمتة الواتساب', 89.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reveal" data-category="tools">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600" alt="سرعة"></div>
+            <div class="product-info">
+                <span class="product-category">أدوات وبرمجيات</span>
+                <h3>حزمة تسريع المتاجر القصوى</h3>
+                <p>إضافات وبرمجيات تضمن تحميل متجرك في أقل من ثانية واحدة لمنع تسرب العملاء.</p>
+                <div class="price-container">
+                    <span class="product-price">69.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('حزمة تسريع المتاجر القصوى', 69.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-card reveal" data-category="tools">
+            <div class="product-img-container"><img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600" alt="لوحة تحكم"></div>
+            <div class="product-info">
+                <span class="product-category">أدوات وبرمجيات</span>
+                <h3>لوحة تحكم المبيعات الشاملة</h3>
+                <p>داشبورد متكامل يربط جميع منصاتك التحليلية ليعطيك تقارير دقيقة لحظة بلحظة عن أرباحك.</p>
+                <div class="price-container">
+                    <span class="product-price">129.00$</span>
+                    <button class="btn-add-cart" onclick="addToCart('لوحة تحكم المبيعات الشاملة', 129.00)"><i class="fas fa-plus"></i> أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="toast" class="toast-notification">
+        <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
+        <div>
+            <span style="display: block; font-size: 0.9rem;">تمت الإضافة بنجاح!</span>
+            <strong id="toast-product-name">اسم المنتج</strong>
         </div>
     </div>
 
@@ -343,12 +710,13 @@
     </div>
 
     <footer>
-        <strong style="color: var(--primary-gold); font-size: 1.5rem; display: block; margin-bottom: 20px;">NJSERVICES STORE</strong>
-        <p>جميع المنتجات رقمية ويتم تسليمها فورياً بعد تأكيد الدفع.</p>
-        <p style="color: #555; font-size: 0.8rem; margin-top: 20px;">حقوق النشر © 2026 - NJSERVICES</p>
+        <strong style="color: var(--primary-gold); font-size: 2rem; display: block; margin-bottom: 20px; font-weight: 900; letter-spacing: 2px;">NJSERVICES STORE</strong>
+        <p style="color: var(--text-muted); font-size: 1.1rem;">جميع الخدمات والمنتجات الرقمية مصممة بمعايير عالمية نضعها بين يديك.</p>
+        <p style="color: #444; font-size: 0.9rem; margin-top: 30px;">حقوق النشر © 2026 - NJSERVICES</p>
     </footer>
 
     <script>
+        // تأثير الظهور عند التمرير
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -361,6 +729,88 @@
         }
         window.addEventListener("scroll", reveal);
         reveal();
+
+        // نظام الفلترة (التصنيفات)
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة التفعيل من كل الأزرار
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // تفعيل الزر المضغوط
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.classList.remove('hide');
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.classList.add('hide');
+                        }, 400); // يتوافق مع سرعة الأنيميشن
+                    }
+                });
+            });
+        });
+
+        // نظام سلة المشتريات الذكي
+        let cart = [];
+        let totalAmount = 0;
+
+        function addToCart(productName, price) {
+            // إضافة المنتج للمصفوفة
+            cart.push({ name: productName, price: price });
+            totalAmount += price;
+
+            // تحديث الواجهة
+            document.getElementById('cartCount').innerText = cart.length;
+            document.getElementById('cartTotal').innerText = totalAmount.toFixed(2) + '$';
+
+            // إظهار إشعار النجاح
+            showToast(productName);
+        }
+
+        function showToast(productName) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-product-name').innerText = productName;
+            
+            toast.classList.add('show');
+            
+            // إخفاء الإشعار بعد 3 ثواني
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // إتمام الطلب وإرسال رسالة واتساب
+        function processCheckout() {
+            if (cart.length === 0) {
+                alert("السلة فارغة، الرجاء إضافة منتجات أولاً.");
+                return;
+            }
+
+            let message = "أهلاً NJSERVICES، أريد إتمام طلب المنتجات التالية:%0A%0A";
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - ${item.price}$%0A`;
+            });
+            
+            message += `%0A*الإجمالي: ${totalAmount.toFixed(2)}$*`;
+
+            // توجيه المستخدم للواتساب مع الرسالة المجهزة
+            const whatsappUrl = `https://wa.me/212703652247?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        console.log("NJSERVICES Store v2.0 - تم تفعيل نظام السلة الذكي والمنتجات بنجاح.");
     </script>
 </body>
 </html>
