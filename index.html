@@ -145,6 +145,36 @@
         }
         .overlay h3 { color: var(--gold); margin-bottom: 5px; }
 
+        /* --- نماذج صفحات الهبوط --- */
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.4rem; color: #fff; }
+        .section-title h2 span { color: var(--gold); }
+        .section-title p { color: #aaa; }
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .btn-main {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--gold);
+            color: #000;
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .btn-main:hover { transform: translateY(-2px); }
+        .btn-main.btn-outline {
+            background: transparent;
+            color: var(--gold);
+        }
+
         /* --- النافذة المنبثقة (Modal) --- */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -233,31 +263,33 @@
         </div>
     </section>
 
-    <section id="portfolio">
-        <div class="section-header">
-            <h2>مشاريع النخبة</h2>
-            <div class="line"></div>
+    <section id="portfolio" style="background: rgba(10,10,10,0.5);">
+        <div class="section-title reveal">
+            <h2>نماذج <span>صفحات الهبوط</span></h2>
+            <p>استعرض تصاميمنا الحصرية الجاهزة للاقتناء</p>
         </div>
-        <div class="grid">
-            <div class="portfolio-card" onclick="openWork('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200', 'منصة أثير للتداول')">
-                <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600');"></div>
-                <div class="overlay">
-                    <h3>منصة أثير</h3>
-                    <p>تجارة إلكترونية - 2026</p>
+        <div class="grid-layout">
+            <div class="card reveal" style="padding: 20px;">
+                <div style="overflow: hidden; border-radius: 15px; margin-bottom: 20px;">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="Landing Page 1" style="width: 100%; transition: 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </div>
+                <h3>صفحة هبوط "جمال"</h3>
+                <p>مثالية لمنتجات العناية بالبشرة، تتميز بألوان هادئة وتحويل عالٍ.</p>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <a href="#" class="btn-main" style="flex: 1; padding: 10px; font-size: 0.9rem;">معاينة حية</a>
+                    <a href="https://wa.me/212703652247" class="btn-main btn-outline" style="flex: 1; padding: 10px; font-size: 0.9rem;">شراء الكود</a>
                 </div>
             </div>
-            <div class="portfolio-card" onclick="openWork('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=1200', 'براند الساعات الملكية')">
-                <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=600');"></div>
-                <div class="overlay">
-                    <h3>أوروم بريميوم</h3>
-                    <p>هوية بصرية فاخرة</p>
+
+            <div class="card reveal" style="padding: 20px;">
+                <div style="overflow: hidden; border-radius: 15px; margin-bottom: 20px;">
+                    <img src="https://images.unsplash.com/photo-1551288560-12931e5f8f87?w=600" alt="Landing Page 2" style="width: 100%; transition: 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </div>
-            </div>
-            <div class="portfolio-card" onclick="openWork('https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200', 'تطبيق الدفع الذكي')">
-                <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600');"></div>
-                <div class="overlay">
-                    <h3>تطبيق فيوتشر</h3>
-                    <p>برمجة Fintech</p>
+                <h3>صفحة هبوط "تيك"</h3>
+                <p>تصميم عصري للمنتجات التقنية والخدمات الرقمية مع واجهة داكنة.</p>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <a href="#" class="btn-main" style="flex: 1; padding: 10px; font-size: 0.9rem;">معاينة حية</a>
+                    <a href="https://wa.me/212703652247" class="btn-main btn-outline" style="flex: 1; padding: 10px; font-size: 0.9rem;">شراء الكود</a>
                 </div>
             </div>
         </div>
