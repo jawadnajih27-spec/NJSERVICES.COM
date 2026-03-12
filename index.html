@@ -732,6 +732,58 @@
         });
 
         console.log("NJSERVICES v3.0 Luxury Edition - جاهز للعمل");
-    </script>
+        
+    // --- كود الاستقبال (الربط مع لوحة التحكم) ---
+function syncWithDashboard() {
+    // 1. استقبال وتطبيق اللون الرئيسي
+    const savedColor = localStorage.getItem('nj_color');
+    if (savedColor) {
+        document.documentElement.style.setProperty('--gold', savedColor);
+        // تحديث لون الدوائر المضيئة في الخلفية
+        document.querySelectorAll('.glow-circle')[0].style.background = savedColor;
+    }
+
+    // 2. استقبال وتطبيق الخط
+    const savedFont = localStorage.getItem('nj_font');
+    if (savedFont) {
+        document.body.style.fontFamily = `'${savedFont}', sans-serif`;
+    }
+}
+
+// تشغيل المزامنة فور فتح الموقع
+syncWithDashboard();
+
+// استماع للتغييرات الفورية (إذا كانت اللوحة والموقع مفتوحين في علامتي تبويب)
+window.addEventListener('storage', syncWithDashboard);
+
+// 3. إرسال بيانات نموذج التواصل إلى لوحة التحكم (بدل التنبيه البسيط)
+document.getElementById('mainContact').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // سحب البيانات من الحقول
+    const inputs = this.querySelectorAll('input');
+    const clientName = inputs[0].value;
+    const clientEmail = inputs[1].value;
+    const projectIdea = this.querySelector('textarea').value;
+    
+    // إنشاء كائن الطلب الجديد
+    const newOrder = {
+        id: '#' + Math.floor(Math.random() * 9000 + 1000),
+        client: clientName,
+        service: 'طلب مشروع جديد',
+        amount: 'قيد التسعير',
+        date: new Date().toLocaleDateString('en-CA').replace(/-/g, '/'),
+        status: 'pending'
+    };
+
+    // حفظ الطلب في الذاكرة لتسحبه اللوحة
+    let currentOrders = JSON.parse(localStorage.getItem('nj_new_orders') || '[]');
+    currentOrders.unshift(newOrder); // إضافته في البداية
+    localStorage.setItem('nj_new_orders', JSON.stringify(currentOrders));
+
+    alert('شكراً لثقتك بـ NJSERVICES. تمت إحالة طلبك إلى لوحة التحكم بنجاح.');
+    this.reset();
+});
+</script>
 </body>
 </html>
