@@ -1193,6 +1193,50 @@ function applyFont(f){
   document.body.style.fontFamily=`'${f}', sans-serif`;
   showToast('تم تطبيق الخط: '+f,'gold','fa-font');
 }
+  // --- كود الإرسال (الربط مع الموقع) ---
+
+// 1. تعديل دالة تغيير اللون لترسل البيانات للموقع
+function applyColor(val){
+  document.documentElement.style.setProperty('--gold',val);
+  localStorage.setItem('nj_color', val); // الإرسال
+}
+
+// 2. تعديل دالة تغيير الخط لترسل البيانات للموقع
+function applyFont(f){
+  document.body.style.fontFamily=`'${f}', sans-serif`;
+  localStorage.setItem('nj_font', f); // الإرسال
+  showToast('تم تطبيق الخط: '+f,'gold','fa-font');
+}
+
+// 3. سحب الطلبات الحقيقية القادمة من الموقع
+function fetchLiveOrders() {
+    const liveOrders = JSON.parse(localStorage.getItem('nj_new_orders') || '[]');
+    if (liveOrders.length > 0) {
+        // دمج الطلبات الحية مع الطلبات الوهمية الموجودة مسبقاً (للعرض)
+        const combinedOrders = [...liveOrders, ...ordersData];
+        
+        // تحديث الجدول
+        const dataToRender = currentFilter === 'all' ? combinedOrders : combinedOrders.filter(o => o.status === currentFilter);
+        
+        document.getElementById('ordersBody').innerHTML = dataToRender.map(o => `
+            <tr>
+              <td style="color:var(--gold)">${o.id}</td>
+              <td>${o.client}</td><td>${o.service}</td>
+              <td style="color:#fff;font-weight:700">${o.amount}</td>
+              <td>${o.date}</td><td>${statusMap[o.status]}</td>
+              <td><button class="btn btn-ghost btn-sm" onclick="showToast('فتح الطلب ${o.id}','gold','fa-folder-open')"><i class="fas fa-folder-open"></i></button></td>
+            </tr>
+        `).join('');
+        
+        // تحديث عداد الإحصائيات (الطلبات المستلمة)
+        document.querySelectorAll('.stat-value')[1].textContent = combinedOrders.length;
+    }
+}
+
+// تشغيل جلب الطلبات عند فتح اللوحة
+fetchLiveOrders();
+// تحديث اللوحة فوراً إذا قدم أحدهم طلباً أثناء فتحك للوحة
+window.addEventListener('storage', fetchLiveOrders);
 </script>
 </body>
 </html>
