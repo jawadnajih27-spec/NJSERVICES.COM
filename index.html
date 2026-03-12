@@ -7,8 +7,6 @@
 
 <title>NJSERVICES | وكالة النخبة الرقمية</title>
 
-<meta name="description" content="NJSERVICES وكالة رقمية متخصصة في تصميم المتاجر الإلكترونية والهوية البصرية الفاخرة والتسويق الرقمي.">
-
 <link rel="icon" type="image/png" href="favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,215 +18,161 @@
 
 <style>
 
-/* ========================= */
-/* ROOT VARIABLES */
-/* ========================= */
+/* ========================== */
+/* VARIABLES */
+/* ========================== */
 
 :root{
 
---primary-gold:#d4af37;
---primary-gold-hover:#f1c40f;
-
---dark-bg:#0a0a0a;
-
---card-bg:rgba(18,18,18,0.65);
-
---glass-border:rgba(212,175,55,0.18);
-
---text-white:#f8f9fa;
-
---text-muted:#a0a0a0;
-
---transition:0.6s cubic-bezier(.25,.8,.25,1);
+--gold:#d4af37;
+--dark:#0a0a0a;
+--card:rgba(20,20,20,.65);
+--text:#f8f9fa;
+--muted:#a0a0a0;
 
 }
 
-/* ========================= */
+/* ========================== */
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Cairo',sans-serif;
+font-family:Cairo,sans-serif;
 scroll-behavior:smooth;
 }
 
 body{
-
-background:var(--dark-bg);
-color:var(--text-white);
+background:var(--dark);
+color:var(--text);
 overflow-x:hidden;
-line-height:1.9;
+}
+
+/* ========================== */
+/* LOADER */
+/* ========================== */
+
+#loader{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:#000;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+z-index:9999;
 
 }
 
-/* ========================= */
+.loader-logo{
+
+font-size:2.5rem;
+font-weight:900;
+color:var(--gold);
+letter-spacing:3px;
+
+animation:loaderPulse 1.5s infinite;
+
+}
+
+@keyframes loaderPulse{
+
+0%{opacity:.4}
+50%{opacity:1}
+100%{opacity:.4}
+
+}
+
+/* ========================== */
 /* BACKGROUND */
-/* ========================= */
+/* ========================== */
 
 .bg-gradient{
 
 position:fixed;
-
-top:0;
-left:0;
-
 width:100%;
 height:100%;
 
 background:
 
-radial-gradient(circle at 15% 25%,rgba(212,175,55,.08),transparent 40%),
-
-radial-gradient(circle at 85% 75%,rgba(108,92,231,.07),transparent 40%);
+radial-gradient(circle at 20% 20%,rgba(212,175,55,.08),transparent 40%),
+radial-gradient(circle at 80% 80%,rgba(108,92,231,.08),transparent 40%);
 
 z-index:-1;
 
-animation:bgMove 25s infinite alternate linear;
-
 }
 
-@keyframes bgMove{
-
-from{transform:scale(1) translateY(0)}
-
-to{transform:scale(1.2) translateY(-40px)}
-
-}
-
-/* ========================= */
+/* ========================== */
 /* HEADER */
-/* ========================= */
+/* ========================== */
 
 header{
 
-padding:22px 8%;
+padding:20px 8%;
 
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
 
-background:rgba(10,10,10,.65);
+background:rgba(0,0,0,.6);
 
-backdrop-filter:blur(18px);
+backdrop-filter:blur(15px);
 
 position:sticky;
-
 top:0;
-
-z-index:1000;
-
-border-bottom:1px solid var(--glass-border);
 
 }
 
 .logo{
 
 font-size:2rem;
-
 font-weight:900;
-
-color:var(--primary-gold);
-
+color:var(--gold);
 text-decoration:none;
 
-letter-spacing:3px;
-
 }
-
-/* NAV */
 
 nav ul{
 
 display:flex;
-
-list-style:none;
-
 gap:35px;
+list-style:none;
 
 }
 
 nav a{
 
-color:var(--text-white);
-
+color:white;
 text-decoration:none;
-
-transition:var(--transition);
-
-position:relative;
-
-}
-
-nav a::after{
-
-content:'';
-
-position:absolute;
-
-width:0;
-
-height:2px;
-
-bottom:-6px;
-
-right:0;
-
-background:var(--primary-gold);
-
-transition:var(--transition);
-
-}
-
-nav a:hover::after{
-
-width:100%;
 
 }
 
 nav a:hover{
 
-color:var(--primary-gold);
+color:var(--gold);
 
 }
 
-/* ========================= */
+/* ========================== */
 /* HERO */
-/* ========================= */
+/* ========================== */
 
 .hero{
 
 height:100vh;
 
 display:flex;
-
 align-items:center;
-
 justify-content:center;
-
 text-align:center;
 
 padding:0 10%;
-
-position:relative;
-
-}
-
-.hero-content{
-
-max-width:900px;
-
-animation:heroFade 1.6s ease;
-
-}
-
-@keyframes heroFade{
-
-from{opacity:0;transform:translateY(30px)}
-
-to{opacity:1;transform:translateY(0)}
 
 }
 
@@ -236,83 +180,61 @@ to{opacity:1;transform:translateY(0)}
 
 font-size:4.5rem;
 
-margin-bottom:30px;
-
-background:linear-gradient(90deg,#fff,var(--primary-gold),#fff);
-
+background:linear-gradient(90deg,#fff,var(--gold),#fff);
 background-size:200%;
 
 -webkit-background-clip:text;
-
 -webkit-text-fill-color:transparent;
 
 animation:shine 6s linear infinite;
-
-font-weight:900;
 
 }
 
 @keyframes shine{
 
-to{background-position:200% center}
+to{background-position:200%}
 
 }
 
 .hero p{
 
-font-size:1.3rem;
-
-color:var(--text-muted);
-
-margin-bottom:45px;
+color:var(--muted);
+margin-top:20px;
+margin-bottom:40px;
 
 }
 
-/* ========================= */
-/* BUTTONS */
-/* ========================= */
+/* ========================== */
+/* BUTTON */
+/* ========================== */
 
-.btn-main{
+.btn{
 
-padding:16px 46px;
+padding:16px 45px;
 
-background:linear-gradient(45deg,var(--primary-gold),#b8962e);
+background:linear-gradient(45deg,var(--gold),#b8962e);
 
 color:#000;
-
 text-decoration:none;
 
 border-radius:50px;
 
 font-weight:700;
 
-transition:var(--transition);
-
-display:inline-block;
+transition:.4s;
 
 }
 
-.btn-main:hover{
+.btn:hover{
 
-transform:translateY(-6px) scale(1.02);
-
-box-shadow:0 10px 30px rgba(212,175,55,.3);
-
-}
-
-.btn-outline{
-
-background:transparent;
-
-border:1px solid var(--primary-gold);
-
-color:var(--text-white);
+transform:translateY(-5px);
+box-shadow:0 10px 25px rgba(212,175,55,.4);
 
 }
 
-/* ========================= */
+/* ========================== */
 /* SECTIONS */
-/* ========================= */
+/* ========================== */
 
 section{
 
@@ -323,7 +245,6 @@ padding:120px 8%;
 .section-title{
 
 text-align:center;
-
 margin-bottom:80px;
 
 }
@@ -332,29 +253,13 @@ margin-bottom:80px;
 
 font-size:3rem;
 
-font-weight:900;
-
 }
 
-.section-title span{
-
-color:var(--primary-gold);
-
-}
-
-.section-title p{
-
-color:var(--text-muted);
-
-margin-top:10px;
-
-}
-
-/* ========================= */
+/* ========================== */
 /* GRID */
-/* ========================= */
+/* ========================== */
 
-.grid-layout{
+.grid{
 
 display:grid;
 
@@ -364,198 +269,124 @@ gap:40px;
 
 }
 
-/* ========================= */
-/* CARDS */
-/* ========================= */
+/* ========================== */
+/* CARD */
+/* ========================== */
 
 .card{
 
-background:var(--card-bg);
+background:var(--card);
 
 padding:50px 40px;
 
 border-radius:30px;
 
-border:1px solid rgba(255,255,255,.03);
-
-transition:var(--transition);
-
 text-align:center;
 
-position:relative;
-
-backdrop-filter:blur(10px);
+transition:.5s;
 
 }
 
 .card:hover{
 
-transform:translateY(-15px) scale(1.02);
+transform:translateY(-15px);
 
-border-color:var(--glass-border);
-
-box-shadow:0 15px 50px rgba(0,0,0,.6);
+box-shadow:0 20px 60px rgba(0,0,0,.6);
 
 }
 
 .card i{
 
-font-size:3.5rem;
-
-color:var(--primary-gold);
-
-margin-bottom:30px;
-
-}
-
-.card h3{
-
+font-size:3rem;
+color:var(--gold);
 margin-bottom:20px;
 
-font-size:1.8rem;
-
 }
 
-.card p{
+.price{
 
-color:var(--text-muted);
-
-}
-
-.price-tag{
-
-display:block;
-
-margin-top:30px;
-
-font-size:1.8rem;
-
+margin-top:20px;
+color:var(--gold);
 font-weight:900;
 
-color:var(--primary-gold);
-
 }
 
-/* ========================= */
+/* ========================== */
 /* REVEAL */
-/* ========================= */
+/* ========================== */
 
 .reveal{
 
 opacity:0;
-
 transform:translateY(40px);
-
-transition:1.2s ease;
+transition:1s;
 
 }
 
 .reveal.active{
 
 opacity:1;
-
 transform:translateY(0);
 
 }
 
-/* ========================= */
+/* ========================== */
 /* FOOTER */
-/* ========================= */
+/* ========================== */
 
 footer{
 
-padding:90px 10% 40px;
-
+padding:80px;
 text-align:center;
-
 background:#030303;
-
-border-top:1px solid var(--glass-border);
 
 }
 
 .footer-logo{
 
-font-size:2.6rem;
-
-color:var(--primary-gold);
-
-margin-bottom:25px;
-
-display:block;
-
-font-weight:900;
-
-}
-
-/* ========================= */
-/* MOBILE */
-/* ========================= */
-
-@media(max-width:768px){
-
-.hero h1{
-
-font-size:2.7rem;
-
-}
-
-nav ul{
-
-display:none;
-
-}
-
-section{
-
-padding:80px 5%;
-
-}
+font-size:2rem;
+color:var(--gold);
 
 }
 
 </style>
+
 </head>
 
 <body>
+
+<div id="loader">
+<div class="loader-logo">NJSERVICES</div>
+</div>
 
 <div class="bg-gradient"></div>
 
 <header>
 
-<a href="index.html" class="logo">NJSERVICES</a>
+<a href="#" class="logo">NJSERVICES</a>
 
 <nav>
 <ul>
-
 <li><a href="#">الرئيسية</a></li>
 <li><a href="#services">الخدمات</a></li>
 <li><a href="store.html">المتجر</a></li>
 <li><a href="blog.html">المدونة</a></li>
-<li><a href="#spotlight">رؤيتنا</a></li>
-
 </ul>
 </nav>
 
-<a href="https://wa.me/212703652247" class="btn-main" target="_blank">إحجز الآن</a>
+<a href="https://wa.me/212703652247" class="btn">إحجز الآن</a>
 
 </header>
 
 <section class="hero">
 
-<div class="hero-content">
+<div>
 
 <h1>فن الصياغة الرقمية<br>بلمسات ذهبية</h1>
 
-<p>وكالة NJSERVICES هي شريكك الاستراتيجي في بناء الوجود الرقمي الفخم.</p>
+<p>وكالة NJSERVICES هي شريكك في بناء الوجود الرقمي الفخم</p>
 
-<div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
-
-<a href="#services" class="btn-main">اكتشف خدماتنا</a>
-
-<a href="store.html" class="btn-main btn-outline">زيارة المتجر</a>
-
-</div>
+<a href="#services" class="btn">اكتشف خدماتنا</a>
 
 </div>
 
@@ -565,40 +396,58 @@ padding:80px 5%;
 
 <div class="section-title reveal">
 
-<h2>خدماتنا <span>النخبوية</span></h2>
-
-<p>حلول رقمية متكاملة</p>
+<h2>خدماتنا النخبوية</h2>
 
 </div>
 
-<div class="grid-layout">
+<div class="grid">
 
 <div class="card reveal">
+
 <i class="fas fa-gem"></i>
+
 <h3>تصميم الهوية الفاخرة</h3>
+
 <p>نبتكر شعارات وهويات بصرية احترافية.</p>
-<span class="price-tag">$199</span>
+
+<div class="price">$199</div>
+
 </div>
 
 <div class="card reveal">
+
 <i class="fas fa-rocket"></i>
+
 <h3>تطوير المتاجر الذكية</h3>
-<p>متاجر إلكترونية سريعة ومتجاوبة.</p>
-<span class="price-tag">$399</span>
+
+<p>متاجر إلكترونية عالية الأداء.</p>
+
+<div class="price">$399</div>
+
 </div>
 
 <div class="card reveal">
+
 <i class="fas fa-magic"></i>
+
 <h3>وصف المنتجات</h3>
-<p>محتوى بيعي يقنع العملاء.</p>
-<span class="price-tag">$49</span>
+
+<p>محتوى تسويقي مقنع.</p>
+
+<div class="price">$49</div>
+
 </div>
 
 <div class="card reveal">
+
 <i class="fas fa-window-maximize"></i>
+
 <h3>صفحات الهبوط</h3>
-<p>Landing Pages عالية التحويل.</p>
-<span class="price-tag">$149</span>
+
+<p>Landing pages عالية التحويل.</p>
+
+<div class="price">$149</div>
+
 </div>
 
 </div>
@@ -607,19 +456,33 @@ padding:80px 5%;
 
 <footer>
 
-<strong class="footer-logo">NJSERVICES</strong>
+<div class="footer-logo">NJSERVICES</div>
 
-<p style="color:var(--text-muted)">الوجهة الأولى للمشاريع الرقمية الفاخرة</p>
-
-<p style="color:#444;font-size:.9rem;margin-top:20px">
-© 2026 NJSERVICES
-</p>
+<p style="color:#777">© 2026 NJSERVICES</p>
 
 </footer>
 
 <script>
 
-/* Reveal Animation */
+/* loader */
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.opacity="0"
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.display="none"
+
+},500)
+
+},800)
+
+})
+
+/* reveal */
 
 const observer=new IntersectionObserver(entries=>{
 
@@ -633,11 +496,11 @@ entry.target.classList.add("active")
 
 })
 
-},{threshold:.2})
+})
 
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el))
 
 </script>
 
 </body>
-  </html>
+</html>
