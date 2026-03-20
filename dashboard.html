@@ -1,2438 +1,503 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NJStudio — مصنع المواقع الرقمية</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-/* ═══════════════════════════════════════════════════════
-   NJStudio Design System
-   Direction: Refined Dark Luxury + Light counterpart
-   Inspired by high-end Arabic digital agencies
-═══════════════════════════════════════════════════════ */
-:root{
-  --gold:     #c9a84c;
-  --gold-lt:  #e8c97a;
-  --gold-dim: rgba(201,168,76,0.10);
-  --gold-glow:rgba(201,168,76,0.22);
-  --green:    #3d8b5e;
-  --green-lt: #5ab07e;
-  --red:      #8b3d3d;
-  --red-lt:   #b05a5a;
-  --blue:     #3d5e8b;
-  --blue-lt:  #5a7eb0;
-  --ff-ar:   'Noto Naskh Arabic','Georgia',serif;
-  --ff-en:   'Cormorant Garamond','Georgia',serif;
-  --ff-ttl:  'Cinzel',serif;
-  --ff-mono: 'JetBrains Mono','Courier New',monospace;
-  --r:  8px;
-  --r2: 12px;
-  --TH: 58px;
-  --SW: 248px;
-  --T:  0.25s cubic-bezier(0.4,0,0.2,1);
-  --T2: 0.42s cubic-bezier(0.4,0,0.2,1);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJ-Admin | لوحة التحكم</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-dark: #0a0906;
+            --bg-panel: #141310;
+            --gold: #c9a84c;
+            --gold-hover: #e0be5c;
+            --text-main: #fcfcfc;
+            --text-muted: #888;
+            --border: #2a2822;
+        }
 
-/* ── DARK THEME ──────────────────────────────────────── */
-[data-theme="dark"]{
-  --bg:      #080705;
-  --bg2:     #0d0b08;
-  --bg3:     #131008;
-  --surf:    #1a1710;
-  --surf2:   #221e14;
-  --bdr:     rgba(201,168,76,0.10);
-  --bdr2:    rgba(201,168,76,0.22);
-  --txt:     #e8ddd0;
-  --txt2:    #a08860;
-  --txt3:    #504030;
-  --sh:      rgba(0,0,0,0.55);
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-/* ── LIGHT THEME ─────────────────────────────────────── */
-[data-theme="light"]{
-  --bg:      #faf6f0;
-  --bg2:     #f4ede2;
-  --bg3:     #ede4d5;
-  --surf:    #ffffff;
-  --surf2:   #f8f2e8;
-  --bdr:     rgba(139,100,50,0.12);
-  --bdr2:    rgba(139,100,50,0.26);
-  --txt:     #1a0f05;
-  --txt2:    #6a4a28;
-  --txt3:    #b09070;
-  --sh:      rgba(44,24,8,0.10);
-}
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+        }
 
-/* ── RESET ───────────────────────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:14px;scroll-behavior:smooth}
-body{
-  font-family:var(--ff-ar);
-  background:var(--bg);color:var(--txt);
-  min-height:100vh;overflow-x:hidden;direction:rtl;
-  transition:background var(--T2),color var(--T2);
-}
-body.ltr{direction:ltr;font-family:var(--ff-en)}
-body.ltr *{direction:ltr}
+        /* Login Screen */
+        #login-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: var(--bg-dark);
+            z-index: 100;
+        }
 
-/* grain overlay */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
-  opacity:0.5;mix-blend-mode:overlay;
-}
+        .login-box {
+            background: var(--bg-panel);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-::-webkit-scrollbar{width:3px;height:3px}
-::-webkit-scrollbar-track{background:var(--bg2)}
-::-webkit-scrollbar-thumb{background:var(--txt3);border-radius:4px}
+        .login-box h1 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
 
-/* ── PROGRESS ────────────────────────────────────────── */
-#pbar{
-  position:fixed;top:0;inset-inline:0;height:2px;width:0%;
-  z-index:9999;
-  background:linear-gradient(90deg,var(--gold),var(--gold-lt),var(--green-lt));
-  transition:width 0.32s ease;
-  box-shadow:0 0 12px var(--gold-glow);
-}
+        .input-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
 
-/* ═══════════════════════════════════════════════════════
-   TOPBAR
-═══════════════════════════════════════════════════════ */
-#topbar{
-  position:fixed;top:0;inset-inline:0;
-  height:var(--TH);z-index:600;
-  background:var(--bg2);
-  border-bottom:1px solid var(--bdr);
-  display:flex;align-items:center;
-  padding:0 1.4rem;gap:1rem;
-  box-shadow:0 1px 24px var(--sh);
-  transition:background var(--T2),border-color var(--T2);
-}
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
 
-/* brand */
-.brand{display:flex;align-items:center;gap:0.65rem;flex-shrink:0;text-decoration:none}
-.brand-mark{
-  width:34px;height:34px;border-radius:10px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--gold) 0%,#7a5810 100%);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--ff-ttl);font-size:0.6rem;font-weight:600;
-  color:#09080600;position:relative;overflow:hidden;
-  box-shadow:0 0 18px var(--gold-glow),inset 0 1px 0 rgba(255,255,255,0.18);
-}
-.brand-mark span{position:relative;z-index:1;color:#0a0800;font-size:0.58rem;letter-spacing:0.05em}
-.brand-mark::before{
-  content:'';position:absolute;top:-60%;left:-60%;width:220%;height:220%;
-  background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,0.16) 50%,transparent 62%);
-  animation:shine 5s ease-in-out infinite;
-}
-.brand-txt{line-height:1.2}
-.brand-name{
-  font-family:var(--ff-ttl);font-size:0.85rem;letter-spacing:0.22em;
-  color:var(--gold-lt);display:block;
-}
-.brand-by{
-  font-size:0.5rem;color:var(--txt3);font-family:var(--ff-mono);
-  letter-spacing:0.1em;display:block;
-}
+        input {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 6px;
+            outline: none;
+            transition: all 0.3s;
+        }
 
-/* repo status pill */
-#repo-pill{
-  display:flex;align-items:center;gap:0.45rem;
-  padding:0.3rem 1rem;border-radius:20px;
-  border:1px solid var(--bdr2);background:var(--surf);
-  font-family:var(--ff-mono);font-size:0.68rem;color:var(--txt2);
-  cursor:pointer;transition:var(--T);max-width:230px;overflow:hidden;
-  flex-shrink:0;
-}
-#repo-pill:hover{border-color:var(--gold);color:var(--gold-lt)}
-#repo-pill.ok{border-color:rgba(61,139,94,0.5);color:var(--green-lt)}
-.rdot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--txt3);flex-shrink:0;transition:background var(--T);
-}
-.rdot.on  {background:var(--green);box-shadow:0 0 7px rgba(61,139,94,0.7)}
-.rdot.spin{background:var(--gold);animation:blink 1s infinite}
-.rdot.err {background:var(--red)}
-.repo-txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 8px rgba(201, 168, 76, 0.2);
+        }
 
-.tb-gap{flex:1}
-.tb-right{display:flex;align-items:center;gap:0.4rem}
+        button {
+            width: 100%;
+            padding: 12px;
+            background: var(--gold);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-.ib{
-  width:34px;height:34px;border-radius:var(--r);
-  border:1px solid var(--bdr);background:transparent;
-  color:var(--txt2);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.9rem;transition:var(--T);flex-shrink:0;
-}
-.ib:hover{background:var(--surf2);border-color:var(--bdr2);color:var(--gold)}
-.ib.on{background:var(--gold-dim);border-color:var(--bdr2);color:var(--gold)}
+        button:hover {
+            background: var(--gold-hover);
+        }
 
-.lang-ib{
-  font-family:var(--ff-ttl);font-size:0.5rem;
-  letter-spacing:0.18em;width:auto;padding:0 0.85rem;
-  border-radius:20px;
-}
+        /* Dashboard Layout */
+        #dashboard {
+            display: none;
+            width: 100%;
+        }
 
-/* ═══════════════════════════════════════════════════════
-   APP SHELL
-═══════════════════════════════════════════════════════ */
-.app{
-  display:flex;padding-top:var(--TH);
-  min-height:100vh;position:relative;z-index:1;
-}
+        .sidebar {
+            width: 260px;
+            background: var(--bg-panel);
+            border-left: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
 
-/* ═══════════════════════════════════════════════════════
-   SIDEBAR
-═══════════════════════════════════════════════════════ */
-#sidebar{
-  width:var(--SW);flex-shrink:0;
-  background:var(--bg2);
-  border-inline-end:1px solid var(--bdr);
-  display:flex;flex-direction:column;
-  height:calc(100vh - var(--TH));
-  position:sticky;top:var(--TH);
-  overflow-y:auto;
-  transition:background var(--T2),border-color var(--T2),transform var(--T2);
-}
-#sidebar::-webkit-scrollbar{width:2px}
+        .logo {
+            color: var(--gold);
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
 
-.sb-sec{padding:1.1rem 0.7rem 0.2rem}
-.sb-lbl{
-  font-family:var(--ff-ttl);font-size:0.43rem;letter-spacing:0.28em;text-transform:uppercase;
-  color:var(--txt3);padding:0 0.5rem;margin-bottom:0.45rem;
-  display:flex;align-items:center;gap:0.4rem;
-}
-.sb-lbl::after{content:'';flex:1;height:1px;background:var(--bdr)}
+        .nav-item {
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
 
-.ni{
-  display:flex;align-items:center;gap:0.55rem;
-  padding:0.55rem 0.72rem;border-radius:var(--r);
-  cursor:pointer;transition:var(--T);
-  border:1px solid transparent;margin-bottom:2px;
-  color:var(--txt2);user-select:none;
-}
-.ni:hover{background:var(--surf);border-color:var(--bdr);color:var(--txt)}
-.ni.on{
-  background:var(--gold-dim);border-color:var(--bdr2);color:var(--gold-lt);
-}
-.ni.on::before{
-  content:'';position:absolute;
-  inset-inline-start:0;top:22%;bottom:22%;
-  width:2px;border-radius:2px;background:var(--gold);
-}
-.ni{position:relative}
-.ni-ico{font-size:0.85rem;width:18px;text-align:center;flex-shrink:0}
-.ni-lbl{font-size:0.77rem}
-.ni-badge{
-  margin-inline-start:auto;
-  font-family:var(--ff-mono);font-size:0.58rem;
-  background:var(--surf2);color:var(--txt3);
-  padding:0.08rem 0.42rem;border-radius:20px;
-  border:1px solid var(--bdr);
-}
-.ni.on .ni-badge{background:var(--gold-dim);color:var(--gold);border-color:var(--bdr2)}
+        .nav-item:hover, .nav-item.active {
+            background: rgba(201, 168, 76, 0.1);
+            color: var(--gold);
+        }
 
-.sb-div{height:1px;background:var(--bdr);margin:0.5rem 0.7rem}
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+        }
 
-.sb-foot{
-  margin-top:auto;padding:0.8rem 0.7rem;
-  border-top:1px solid var(--bdr);flex-shrink:0;
-}
-.gh-card{
-  background:var(--surf);border:1px solid var(--bdr);
-  border-radius:var(--r);padding:0.8rem;cursor:pointer;transition:var(--T);
-}
-.gh-card:hover{border-color:var(--bdr2)}
-.gh-card-row{display:flex;align-items:center;gap:0.45rem;margin-bottom:0.25rem}
-.gh-card-name{
-  font-family:var(--ff-mono);font-size:0.66rem;color:var(--txt2);
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;
-}
-.gh-card-sub{font-size:0.6rem;color:var(--txt3);font-style:italic}
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
 
-/* ═══════════════════════════════════════════════════════
-   MAIN
-═══════════════════════════════════════════════════════ */
-#main{flex:1;overflow-y:auto;overflow-x:hidden;min-width:0}
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
 
-.panel{display:none;padding:2rem;animation:fadeIn 0.3s ease both}
-.panel.on{display:block}
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #2ecc71;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #2ecc71;
+        }
 
-/* page header */
-.ph{
-  display:flex;align-items:flex-start;justify-content:space-between;
-  margin-bottom:2rem;flex-wrap:wrap;gap:1rem;
-}
-.ph-t{
-  font-family:var(--ff-ttl);font-size:1.05rem;letter-spacing:0.07em;
-  color:var(--gold-lt);
-}
-.ph-s{font-size:0.77rem;color:var(--txt3);margin-top:0.22rem;font-style:italic}
-.ph-acts{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center}
+        .card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
 
-/* ── STATS ───────────────────────────────────────────── */
-.stats{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
-  gap:1rem;margin-bottom:2rem;
-}
-.stat{
-  background:var(--surf);border:1px solid var(--bdr);
-  border-radius:var(--r2);padding:1.2rem 1.3rem;
-  transition:var(--T);position:relative;overflow:hidden;
-}
-.stat::after{
-  content:'';position:absolute;inset-inline-end:-16px;top:-16px;
-  width:64px;height:64px;border-radius:50%;
-  background:var(--gold-dim);transition:transform var(--T2);
-}
-.stat:hover{border-color:var(--bdr2)}
-.stat:hover::after{transform:scale(1.7)}
-.stat-v{
-  font-family:var(--ff-mono);font-size:1.7rem;font-weight:500;
-  color:var(--gold-lt);line-height:1;margin-bottom:0.28rem;
-  position:relative;z-index:1;
-}
-.stat-l{font-size:0.7rem;color:var(--txt3);position:relative;z-index:1}
+        .card h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-/* ── CARDS (quick actions) ───────────────────────────── */
-.cards{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:1rem;
-}
-.card{
-  background:var(--surf);border:1px solid var(--bdr);
-  border-radius:var(--r2);padding:1.5rem 1.2rem;
-  text-align:center;cursor:pointer;transition:var(--T);
-  position:relative;overflow:hidden;
-}
-.card::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,var(--gold-dim) 0%,transparent 55%);
-  opacity:0;transition:opacity var(--T);
-}
-.card:hover{border-color:var(--bdr2);transform:translateY(-3px);box-shadow:0 12px 36px var(--sh)}
-.card:hover::before{opacity:1}
-.card-ico{font-size:2rem;margin-bottom:0.65rem;display:block}
-.card-ttl{
-  font-family:var(--ff-ttl);font-size:0.6rem;letter-spacing:0.16em;
-  text-transform:uppercase;color:var(--txt);margin-bottom:0.28rem;
-}
-.card-sub{font-size:0.68rem;color:var(--txt3);line-height:1.5}
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
-/* ═══════════════════════════════════════════════════════
-   WIZARD
-═══════════════════════════════════════════════════════ */
-.wiz{max-width:740px}
+        /* Toast Notification */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--gold);
+            color: var(--bg-dark);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+        }
 
-/* steps */
-.wiz-bar{
-  display:flex;align-items:center;
-  margin-bottom:2.5rem;
-}
-.ws{display:flex;align-items:center;gap:0.45rem;flex:1}
-.ws:last-child{flex:0}
-.ws-n{
-  width:28px;height:28px;border-radius:50%;flex-shrink:0;
-  border:1px solid var(--bdr);background:var(--surf);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--ff-mono);font-size:0.64rem;color:var(--txt3);
-  transition:var(--T);
-}
-.ws.done .ws-n{background:var(--green);border-color:var(--green);color:#fff}
-.ws.on   .ws-n{background:var(--gold);border-color:var(--gold);color:#0a0800;font-weight:600}
-.ws-l{font-size:0.68rem;color:var(--txt3);transition:color var(--T)}
-.ws.on   .ws-l{color:var(--txt)}
-.ws.done .ws-l{color:var(--green-lt)}
-.wl{flex:1;height:1px;background:var(--bdr);margin:0 0.35rem;transition:background var(--T)}
-.ws.done ~ .ws .wl,.ws.done + .wl{background:var(--green)}
-
-/* wiz panels */
-.wp{display:none;animation:fadeIn 0.35s ease both}
-.wp.on{display:block}
-
-/* type grid */
-.tgrid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
-  gap:0.9rem;margin-bottom:1.4rem;
-}
-.tc{
-  background:var(--surf);border:2px solid var(--bdr);
-  border-radius:var(--r2);padding:1.4rem 0.9rem;
-  text-align:center;cursor:pointer;transition:var(--T);
-  position:relative;overflow:hidden;
-}
-.tc::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,var(--gold-dim),transparent);
-  opacity:0;transition:opacity var(--T);
-}
-.tc:hover{border-color:var(--bdr2);transform:translateY(-2px)}
-.tc:hover::before{opacity:1}
-.tc.sel{border-color:var(--gold);background:var(--gold-dim)}
-.tc.sel::before{opacity:1}
-.tc-ico{font-size:1.8rem;margin-bottom:0.6rem;display:block}
-.tc-n{
-  font-family:var(--ff-ttl);font-size:0.58rem;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--txt);margin-bottom:0.25rem;
-}
-.tc-d{font-size:0.66rem;color:var(--txt3);line-height:1.45}
-
-/* form */
-.wf{display:flex;flex-direction:column;gap:0.9rem}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem}
-.fg{display:flex;flex-direction:column;gap:0.28rem}
-.fg label{
-  font-family:var(--ff-ttl);font-size:0.46rem;letter-spacing:0.2em;
-  text-transform:uppercase;color:var(--txt3);
-}
-.fg input,.fg select,.fg textarea{
-  font-family:var(--ff-ar);font-size:0.88rem;color:var(--txt);
-  background:var(--bg3);border:1px solid var(--bdr);border-radius:6px;
-  padding:0.6rem 0.88rem;outline:none;transition:var(--T);width:100%;
-}
-body.ltr .fg input,body.ltr .fg select,body.ltr .fg textarea{font-family:var(--ff-en)}
-.fg input:focus,.fg select:focus,.fg textarea:focus{
-  border-color:var(--bdr2);box-shadow:0 0 0 3px var(--gold-dim);background:var(--bg2);
-}
-.fg input::placeholder,.fg textarea::placeholder{color:var(--txt3)}
-.fg textarea{resize:vertical;min-height:80px;line-height:1.7}
-.fg select{cursor:pointer}
-.mono{font-family:var(--ff-mono)!important;font-size:0.8rem!important;direction:ltr!important;text-align:left!important}
-
-/* color grid */
-.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem}
-.cf{display:flex;flex-direction:column;gap:0.28rem;align-items:center}
-.cf label{font-family:var(--ff-ttl);font-size:0.42rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--txt3)}
-.cf input[type=color]{
-  width:100%;height:36px;border:1px solid var(--bdr);
-  border-radius:6px;padding:2px 3px;cursor:pointer;background:var(--bg3);
-}
-
-/* review */
-.rv{
-  background:var(--surf);border:1px solid var(--bdr2);
-  border-radius:var(--r);padding:1.3rem;margin-bottom:1rem;
-}
-.rv-ttl{
-  font-family:var(--ff-ttl);font-size:0.56rem;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:0.85rem;
-}
-.rv-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:0.42rem 0;border-bottom:1px solid var(--bdr);font-size:0.77rem;
-}
-.rv-row:last-child{border-bottom:none}
-.rv-k{color:var(--txt3)}
-.rv-v{color:var(--txt);font-family:var(--ff-mono);font-size:0.7rem}
-.files-prev{
-  background:var(--bg3);border:1px solid var(--bdr);
-  border-radius:6px;padding:0.9rem;margin-top:0.8rem;
-}
-.fi{
-  display:flex;align-items:center;gap:0.55rem;
-  padding:0.38rem 0;border-bottom:1px solid var(--bdr);
-  font-family:var(--ff-mono);font-size:0.7rem;color:var(--txt2);
-}
-.fi:last-child{border-bottom:none}
-.fi-ico{color:var(--gold);width:14px;text-align:center}
-
-/* ═══════════════════════════════════════════════════════
-   FILE MANAGER
-═══════════════════════════════════════════════════════ */
-.fm-bar{
-  display:flex;align-items:center;gap:0.6rem;
-  margin-bottom:1rem;flex-wrap:wrap;
-}
-.srch{
-  display:flex;align-items:center;gap:0.45rem;flex:1;min-width:160px;
-  background:var(--surf);border:1px solid var(--bdr);
-  border-radius:6px;padding:0 0.78rem;transition:var(--T);
-}
-.srch:focus-within{border-color:var(--bdr2)}
-.srch input{
-  flex:1;background:none;border:none;outline:none;
-  font-family:var(--ff-ar);font-size:0.82rem;color:var(--txt);padding:0.54rem 0;
-}
-.srch input::placeholder{color:var(--txt3)}
-
-.fgrid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-  gap:0.75rem;
-}
-.fc{
-  background:var(--surf);border:1px solid var(--bdr);
-  border-radius:var(--r);padding:1rem;
-  cursor:pointer;transition:var(--T);
-  display:flex;flex-direction:column;gap:0.45rem;
-  position:relative;
-}
-.fc:hover{border-color:var(--bdr2);transform:translateY(-2px);box-shadow:0 8px 24px var(--sh)}
-.fc-ico{font-size:1.5rem}
-.fc-name{
-  font-family:var(--ff-mono);font-size:0.7rem;color:var(--txt);
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
-.fc-sz{font-size:0.62rem;color:var(--txt3)}
-.fc-acts{
-  display:flex;gap:0.3rem;margin-top:0.25rem;
-  opacity:0;transition:opacity var(--T);
-}
-.fc:hover .fc-acts{opacity:1}
-.fc-btn{
-  flex:1;padding:0.28rem;border-radius:4px;
-  border:1px solid var(--bdr);background:transparent;
-  font-family:var(--ff-ttl);font-size:0.42rem;letter-spacing:0.12em;
-  text-transform:uppercase;color:var(--txt3);cursor:pointer;transition:var(--T);
-}
-.fc-btn.ed:hover{border-color:var(--blue-lt);color:var(--blue-lt);background:rgba(61,94,139,0.1)}
-.fc-btn.dl:hover{border-color:var(--red-lt);color:var(--red-lt);background:rgba(139,61,61,0.1)}
-
-.empty-fm{
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:4rem 2rem;
-  text-align:center;color:var(--txt3);gap:0.75rem;
-}
-.e-ico{font-size:2.8rem;opacity:0.18}
-.e-txt{font-size:0.83rem;font-style:italic}
-
-/* ═══════════════════════════════════════════════════════
-   CODE EDITOR
-═══════════════════════════════════════════════════════ */
-.ed-wrap{
-  display:flex;flex-direction:column;
-  height:calc(100vh - var(--TH) - 5.5rem);
-  min-height:400px;
-}
-.ed-bar{
-  display:flex;align-items:center;gap:0.6rem;
-  margin-bottom:0.75rem;flex-wrap:wrap;
-}
-.ed-path{
-  font-family:var(--ff-mono);font-size:0.7rem;color:var(--txt2);
-  background:var(--surf);border:1px solid var(--bdr);
-  border-radius:5px;padding:0.32rem 0.72rem;flex:1;
-}
-#code-area{
-  flex:1;width:100%;
-  background:var(--bg3);border:1px solid var(--bdr);
-  border-radius:var(--r);
-  font-family:var(--ff-mono);font-size:0.82rem;color:var(--txt);
-  padding:1.1rem;outline:none;resize:none;
-  line-height:1.72;transition:border-color var(--T);
-  tab-size:2;
-}
-#code-area:focus{border-color:var(--bdr2)}
-
-/* ═══════════════════════════════════════════════════════
-   AI ASSISTANT
-═══════════════════════════════════════════════════════ */
-.ai-wrap{
-  display:flex;flex-direction:column;
-  height:calc(100vh - var(--TH) - 5rem);
-  min-height:500px;
-}
-.ai-msgs{
-  flex:1;overflow-y:auto;padding:1rem;
-  display:flex;flex-direction:column;gap:0.9rem;
-  background:var(--bg3);border:1px solid var(--bdr);
-  border-radius:var(--r) var(--r) 0 0;
-}
-.ai-msgs::-webkit-scrollbar{width:3px}
-.ai-msg{display:flex;gap:0.7rem;animation:fadeIn 0.3s ease both}
-.ai-msg.usr{flex-direction:row-reverse}
-.ai-av{
-  width:30px;height:30px;border-radius:50%;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.72rem;font-weight:700;
-}
-.ai-av.bot{
-  background:linear-gradient(135deg,var(--gold),#7a5810);
-  color:#09080600;position:relative;
-}
-.ai-av.bot span{position:relative;z-index:1;color:#0a0800}
-.ai-av.usr{
-  background:var(--surf2);border:1px solid var(--bdr2);
-  color:var(--txt2);font-family:var(--ff-ttl);font-size:0.52rem;letter-spacing:0.1em;
-}
-.ai-bbl{
-  max-width:82%;padding:0.75rem 0.95rem;
-  border-radius:10px;font-size:0.84rem;line-height:1.75;
-}
-.ai-msg.bot .ai-bbl{
-  background:var(--surf);border:1px solid var(--bdr);
-  color:var(--txt);border-start-start-radius:2px;
-}
-.ai-msg.usr .ai-bbl{
-  background:var(--gold-dim);border:1px solid var(--bdr2);
-  color:var(--txt);border-start-end-radius:2px;
-}
-.ai-bbl.typing::after{
-  content:'● ● ●';letter-spacing:0.2em;font-size:0.55em;
-  color:var(--txt3);animation:dots 1.2s infinite;
-}
-
-/* quick prompts */
-.ai-quick{
-  display:flex;gap:0.35rem;flex-wrap:wrap;padding:0.55rem;
-  background:var(--bg2);border-inline:1px solid var(--bdr);
-}
-.aq{
-  font-family:var(--ff-ttl);font-size:0.44rem;letter-spacing:0.12em;text-transform:uppercase;
-  padding:0.28rem 0.68rem;border:1px solid var(--bdr);border-radius:20px;
-  background:transparent;color:var(--txt3);cursor:pointer;transition:var(--T);
-}
-.aq:hover{border-color:var(--bdr2);color:var(--gold);background:var(--gold-dim)}
-
-/* input bar */
-.ai-in-bar{
-  display:flex;gap:0.5rem;
-  background:var(--surf);border:1px solid var(--bdr);
-  border-top:none;border-radius:0 0 var(--r) var(--r);
-  padding:0.7rem;
-}
-.ai-inp{
-  flex:1;background:var(--bg3);border:1px solid var(--bdr);
-  border-radius:6px;padding:0.58rem 0.88rem;
-  font-family:var(--ff-ar);font-size:0.85rem;color:var(--txt);
-  outline:none;resize:none;min-height:40px;max-height:120px;
-  transition:var(--T);line-height:1.6;
-}
-body.ltr .ai-inp{font-family:var(--ff-en)}
-.ai-inp:focus{border-color:var(--bdr2)}
-.ai-inp::placeholder{color:var(--txt3)}
-.ai-send{
-  width:40px;height:40px;border-radius:var(--r);flex-shrink:0;
-  background:var(--gold);border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  color:#0a0800;font-size:1rem;transition:var(--T);
-}
-.ai-send:hover{background:var(--gold-lt)}
-.ai-send:disabled{opacity:0.38;cursor:not-allowed}
-
-/* ═══════════════════════════════════════════════════════
-   SETTINGS
-═══════════════════════════════════════════════════════ */
-.sgrid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
-  gap:1.1rem;
-}
-.sc{
-  background:var(--surf);border:1px solid var(--bdr);
-  border-radius:var(--r2);overflow:hidden;
-}
-.sc-hd{
-  padding:0.82rem 1.1rem;border-bottom:1px solid var(--bdr);
-  font-family:var(--ff-ttl);font-size:0.52rem;letter-spacing:0.2em;
-  text-transform:uppercase;color:var(--txt2);
-  display:flex;align-items:center;gap:0.45rem;
-}
-.sc-bd{padding:1.1rem;display:flex;flex-direction:column;gap:0.82rem}
-
-/* theme toggle cards */
-.th-cards{display:flex;gap:0.75rem}
-.th-card{
-  flex:1;background:var(--bg2);border:2px solid var(--bdr);
-  border-radius:var(--r);padding:0.9rem;text-align:center;
-  cursor:pointer;transition:var(--T);
-}
-.th-card.sel{border-color:var(--gold)}
-.th-card-ico{font-size:1.2rem;margin-bottom:0.35rem}
-.th-card-lbl{
-  font-family:var(--ff-ttl);font-size:0.5rem;letter-spacing:0.14em;
-  text-transform:uppercase;color:var(--txt2);
-}
-
-/* ── STATUS BAR ──────────────────────────────────────── */
-.sbar{
-  display:flex;align-items:center;gap:0.55rem;
-  padding:0.6rem 0.88rem;border-radius:6px;
-  margin-bottom:1.1rem;font-size:0.77rem;
-}
-.sbar.info{background:rgba(61,94,139,0.09);border:1px solid rgba(61,94,139,0.22);color:var(--blue-lt)}
-.sbar.ok  {background:rgba(61,139,94,0.09);border:1px solid rgba(61,139,94,0.22);color:var(--green-lt)}
-.sbar.warn{background:rgba(201,168,76,0.09);border:1px solid rgba(201,168,76,0.22);color:var(--gold-lt)}
-.sbar.err {background:rgba(139,61,61,0.09);border:1px solid rgba(139,61,61,0.22);color:var(--red-lt)}
-
-/* ── BUTTONS ─────────────────────────────────────────── */
-.btn{
-  font-family:var(--ff-ttl);font-size:0.52rem;letter-spacing:0.16em;text-transform:uppercase;
-  padding:0.54rem 1.2rem;border:none;border-radius:6px;cursor:pointer;
-  transition:var(--T);display:inline-flex;align-items:center;gap:0.38rem;white-space:nowrap;
-}
-.btn:disabled{opacity:0.36;cursor:not-allowed}
-.btn-g {background:var(--gold);color:#0a0800}
-.btn-g:hover:not(:disabled){background:var(--gold-lt)}
-.btn-gh{background:transparent;border:1px solid var(--bdr);color:var(--txt2)}
-.btn-gh:hover:not(:disabled){border-color:var(--bdr2);color:var(--txt)}
-.btn-r {background:transparent;border:1px solid rgba(139,61,61,0.4);color:var(--red-lt)}
-.btn-r:hover:not(:disabled){background:rgba(139,61,61,0.14)}
-
-.sp{
-  display:inline-block;width:10px;height:10px;
-  border:1.5px solid rgba(10,8,0,0.25);border-top-color:#0a0800;
-  border-radius:50%;animation:spin 0.6s linear infinite;
-}
-.sp-lt{border:1.5px solid rgba(255,255,255,0.2);border-top-color:var(--txt)}
-
-/* ── MODALS ──────────────────────────────────────────── */
-.modal{
-  display:none;position:fixed;inset:0;z-index:900;
-  align-items:center;justify-content:center;padding:1.5rem;
-}
-.modal.on{display:flex}
-.m-bd{
-  position:absolute;inset:0;
-  background:rgba(5,4,2,0.8);backdrop-filter:blur(10px);
-}
-.m-box{
-  position:relative;z-index:1;
-  background:var(--bg2);border:1px solid var(--bdr2);
-  border-radius:var(--r2);padding:2rem;width:min(480px,100%);
-  box-shadow:0 32px 80px rgba(0,0,0,0.55);
-  animation:slideUp 0.4s cubic-bezier(0.34,1.36,0.64,1) both;
-  transition:background var(--T2),border-color var(--T2);
-}
-.m-ttl{
-  font-family:var(--ff-ttl);font-size:0.88rem;letter-spacing:0.08em;
-  color:var(--gold-lt);margin-bottom:0.42rem;
-}
-.m-sub{
-  font-size:0.77rem;color:var(--txt3);margin-bottom:1.4rem;
-  line-height:1.65;font-style:italic;
-}
-.m-acts{display:flex;gap:0.5rem;justify-content:flex-end;align-items:center;margin-top:1.4rem}
-
-/* gh fields */
-.ghf{display:flex;flex-direction:column;gap:0.82rem}
-.ghfg{display:flex;flex-direction:column;gap:0.28rem}
-.ghfg label{font-family:var(--ff-ttl);font-size:0.44rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--txt3)}
-.ghfg input{
-  font-family:var(--ff-mono);font-size:0.8rem;color:var(--txt);
-  background:var(--bg3);border:1px solid var(--bdr);border-radius:6px;
-  padding:0.56rem 0.82rem;outline:none;transition:var(--T);
-  direction:ltr;text-align:left;
-}
-.ghfg input:focus{border-color:var(--bdr2);box-shadow:0 0 0 3px var(--gold-dim)}
-.gh-hint{font-size:0.68rem;color:var(--txt3);line-height:1.55;margin-top:0.18rem}
-.gh-hint a{color:var(--gold);text-decoration:none}
-.gh-hint a:hover{text-decoration:underline}
-.secure{
-  background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.16);
-  border-radius:6px;padding:0.6rem 0.78rem;
-  font-size:0.68rem;color:var(--gold);line-height:1.55;
-  opacity:0.82;
-}
-
-/* ── TOASTS ──────────────────────────────────────────── */
-#toasts{
-  position:fixed;bottom:1.4rem;inset-inline-end:1.4rem;
-  z-index:9000;display:flex;flex-direction:column;gap:0.42rem;
-}
-.toast{
-  display:flex;align-items:center;gap:0.5rem;
-  padding:0.7rem 1.1rem;border-radius:var(--r);
-  font-family:var(--ff-ttl);font-size:0.52rem;letter-spacing:0.12em;text-transform:uppercase;
-  transform:translateX(22px);opacity:0;transition:all 0.3s ease;
-  min-width:200px;max-width:310px;
-  box-shadow:0 8px 28px rgba(0,0,0,0.28);border:1px solid transparent;
-}
-.toast.show{transform:translateX(0);opacity:1}
-.toast.ok  {background:rgba(61,139,94,0.14); border-color:rgba(61,139,94,0.3); color:var(--green-lt)}
-.toast.err {background:rgba(139,61,61,0.14); border-color:rgba(139,61,61,0.3); color:var(--red-lt)}
-.toast.warn{background:rgba(201,168,76,0.11);border-color:rgba(201,168,76,0.24);color:var(--gold-lt)}
-.toast.info{background:rgba(61,94,139,0.14); border-color:rgba(61,94,139,0.3); color:var(--blue-lt)}
-
-/* ── KEYFRAMES ───────────────────────────────────────── */
-@keyframes fadeIn {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes slideUp{from{opacity:0;transform:translateY(28px) scale(0.97)}to{opacity:1;transform:none}}
-@keyframes blink  {0%,100%{opacity:1}50%{opacity:0.28}}
-@keyframes spin   {to{transform:rotate(360deg)}}
-@keyframes shine  {0%{transform:translateX(-200%) rotate(20deg)}60%,100%{transform:translateX(200%) rotate(20deg)}}
-@keyframes dots   {0%,20%{opacity:0}50%{opacity:1}100%{opacity:0}}
-
-/* ── RESPONSIVE ──────────────────────────────────────── */
-@media(max-width:768px){
-  :root{--SW:0px}
-  #sidebar{
-    position:fixed;z-index:500;width:252px;
-    transform:translateX(110%);
-  }
-  #sidebar.open{transform:translateX(0)}
-  body.ltr #sidebar{transform:translateX(-110%)}
-  body.ltr #sidebar.open{transform:translateX(0)}
-  .panel{padding:1rem}
-  .stats{grid-template-columns:1fr 1fr}
-  .tgrid{grid-template-columns:1fr 1fr}
-  .frow{grid-template-columns:1fr}
-  .cgrid{grid-template-columns:1fr 1fr 1fr}
-  #menu-ib{display:flex!important}
-}
-</style>
+        #toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
 </head>
-<body data-theme="dark">
-<div id="pbar"></div>
+<body>
 
-<!-- ═══ TOPBAR ══════════════════════════════════════════ -->
-<header id="topbar">
-  <a class="brand" href="#">
-    <div class="brand-mark"><span>NJ</span></div>
-    <div class="brand-txt">
-      <span class="brand-name">NJSTUDIO</span>
-      <span class="brand-by">by NJSERVICES</span>
-    </div>
-  </a>
-
-  <button id="repo-pill" onclick="openGH()">
-    <span class="rdot" id="rd1"></span>
-    <span class="repo-txt" id="repo-txt">اربط المستودع</span>
-  </button>
-
-  <div class="tb-gap"></div>
-  <div class="tb-right">
-    <button class="ib lang-ib" onclick="toggleLang()" id="lang-ib">EN</button>
-    <button class="ib" onclick="toggleTheme()" id="theme-ib" title="تبديل المظهر">🌙</button>
-    <button class="ib" onclick="toggleSB()" id="menu-ib" style="display:none">☰</button>
-  </div>
-</header>
-
-<!-- ═══ APP ════════════════════════════════════════════ -->
-<div class="app">
-
-  <!-- ─── SIDEBAR ─────────────────────────────────────── -->
-  <nav id="sidebar">
-    <div class="sb-sec">
-      <div class="sb-lbl" id="sbl-build">البناء</div>
-      <div class="ni on" id="ni-home"    onclick="go('home')">   <span class="ni-ico">◈</span><span class="ni-lbl" id="nl-home">الرئيسية</span></div>
-      <div class="ni"    id="ni-wizard"  onclick="go('wizard')"> <span class="ni-ico">✦</span><span class="ni-lbl" id="nl-wiz">بناء موقع</span></div>
-    </div>
-    <div class="sb-div"></div>
-    <div class="sb-sec">
-      <div class="sb-lbl" id="sbl-manage">الإدارة</div>
-      <div class="ni"    id="ni-files"   onclick="go('files')">  <span class="ni-ico">📁</span><span class="ni-lbl" id="nl-files">الملفات</span><span class="ni-badge" id="badge-files">0</span></div>
-      <div class="ni"    id="ni-editor"  onclick="go('editor')"> <span class="ni-ico">✎</span><span class="ni-lbl" id="nl-editor">محرر الكود</span></div>
-      <div class="ni"    id="ni-ai"      onclick="go('ai')">     <span class="ni-ico">◉</span><span class="ni-lbl" id="nl-ai">مساعد AI</span></div>
-    </div>
-    <div class="sb-div"></div>
-    <div class="sb-sec">
-      <div class="sb-lbl" id="sbl-cfg">الإعداد</div>
-      <div class="ni"    id="ni-settings" onclick="go('settings')"><span class="ni-ico">⚙</span><span class="ni-lbl" id="nl-set">الإعدادات</span></div>
-    </div>
-    <div class="sb-foot">
-      <div class="gh-card" onclick="openGH()">
-        <div class="gh-card-row">
-          <span class="rdot" id="rd2"></span>
-          <span class="gh-card-name" id="gh-name">غير متصل</span>
-        </div>
-        <div class="gh-card-sub" id="gh-sub">GitHub · انقر للإعداد</div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ─── MAIN ─────────────────────────────────────────── -->
-  <div id="main">
-
-    <!-- HOME -->
-    <div class="panel on" id="p-home">
-      <div class="ph">
-        <div><div class="ph-t" id="h-title">لوحة التحكم</div><div class="ph-s" id="h-sub">مرحباً في NJStudio</div></div>
-        <div class="ph-acts">
-          <button class="btn btn-gh" onclick="loadFiles()" id="ref-btn">↻ <span id="ref-lbl">تحديث</span></button>
-          <button class="btn btn-g"  onclick="go('wizard')">✦ <span id="h-new-lbl">بناء موقع</span></button>
-        </div>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="stat-v" id="sv-files">—</div><div class="stat-l" id="sl-files">ملف</div></div>
-        <div class="stat"><div class="stat-v" id="sv-html">—</div> <div class="stat-l" id="sl-html">صفحة HTML</div></div>
-        <div class="stat"><div class="stat-v" id="sv-conn">—</div> <div class="stat-l" id="sl-conn">الاتصال</div></div>
-        <div class="stat"><div class="stat-v" id="sv-repo">—</div> <div class="stat-l" id="sl-repo">المستودع</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" onclick="go('wizard')"><span class="card-ico">🏗</span><div class="card-ttl" id="qc-build">ابنِ موقعاً</div><div class="card-sub" id="qc-build-s">قالب جاهز في ثوانٍ</div></div>
-        <div class="card" onclick="go('files')"> <span class="card-ico">📁</span><div class="card-ttl" id="qc-files">الملفات</div>   <div class="card-sub" id="qc-files-s">تصفح وعدّل الملفات</div></div>
-        <div class="card" onclick="go('ai')">    <span class="card-ico">◉</span><div class="card-ttl" id="qc-ai">مساعد AI</div>    <div class="card-sub" id="qc-ai-s">اكتب وترجم وحسّن</div></div>
-      </div>
-    </div>
-
-    <!-- WIZARD -->
-    <div class="panel" id="p-wizard">
-      <div class="ph">
-        <div><div class="ph-t" id="wiz-title">بناء موقع جديد</div><div class="ph-s" id="wiz-sub">٤ خطوات — موقعك جاهز في دقيقة</div></div>
-      </div>
-      <div class="wiz">
-        <!-- steps bar -->
-        <div class="wiz-bar">
-          <div class="ws on" id="ws0"><div class="ws-n">1</div><div class="ws-l" id="wsl0">النوع</div></div>
-          <div class="wl"></div>
-          <div class="ws"    id="ws1"><div class="ws-n">2</div><div class="ws-l" id="wsl1">البيانات</div></div>
-          <div class="wl"></div>
-          <div class="ws"    id="ws2"><div class="ws-n">3</div><div class="ws-l" id="wsl2">التصميم</div></div>
-          <div class="wl"></div>
-          <div class="ws"    id="ws3"><div class="ws-n">4</div><div class="ws-l" id="wsl3">النشر</div></div>
-        </div>
-
-        <!-- step 1 -->
-        <div class="wp on" id="wp0">
-          <div class="tgrid" id="type-grid">
-            <div class="tc" onclick="pick('store',this)">      <span class="tc-ico">🛒</span><div class="tc-n" id="tt-store">متجر</div>         <div class="tc-d" id="td-store">بيع المنتجات أونلاين</div></div>
-            <div class="tc" onclick="pick('landing',this)">    <span class="tc-ico">🚀</span><div class="tc-n" id="tt-land">صفحة هبوط</div>     <div class="tc-d" id="td-land">Landing page مقنعة</div></div>
-            <div class="tc" onclick="pick('blog',this)">       <span class="tc-ico">✍</span><div class="tc-n" id="tt-blog">مدوّنة</div>         <div class="tc-d" id="td-blog">مقالات وتأمّلات</div></div>
-            <div class="tc" onclick="pick('portfolio',this)">  <span class="tc-ico">◈</span><div class="tc-n" id="tt-port">معرض أعمال</div>    <div class="tc-d" id="td-port">اعرض مشاريعك</div></div>
-            <div class="tc" onclick="pick('company',this)">    <span class="tc-ico">🏢</span><div class="tc-n" id="tt-comp">موقع شركة</div>     <div class="tc-d" id="td-comp">حضور رقمي احترافي</div></div>
-            <div class="tc" onclick="pick('restaurant',this)"> <span class="tc-ico">🍽</span><div class="tc-n" id="tt-rest">مطعم</div>           <div class="tc-d" id="td-rest">قائمة وحجوزات</div></div>
-          </div>
-          <div style="display:flex;justify-content:flex-end">
-            <button class="btn btn-g" onclick="wNext()"><span id="wn0-lbl">التالي</span> →</button>
-          </div>
-        </div>
-
-        <!-- step 2 -->
-        <div class="wp" id="wp1">
-          <div class="wf">
-            <div class="frow">
-              <div class="fg"><label id="fl-sn">اسم الموقع</label><input type="text" id="w-name" placeholder="مثال: متجر الفخر"/></div>
-              <div class="fg"><label id="fl-sl">اللغة</label>
-                <select id="w-lang"><option value="ar">عربي</option><option value="en">English</option></select>
-              </div>
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>NJ-Admin</h1>
+            <div class="input-group">
+                <label>GitHub Token</label>
+                <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxx">
             </div>
-            <div class="fg"><label id="fl-st">الشعار / الوصف</label><input type="text" id="w-tag" placeholder="جملة قصيرة مميزة…"/></div>
-            <div class="frow">
-              <div class="fg"><label id="fl-sa">اسم صاحب الموقع</label><input type="text" id="w-author" placeholder="NJSERVICES"/></div>
-              <div class="fg"><label id="fl-sw">واتساب (اختياري)</label><input type="text" id="w-wa" placeholder="212XXXXXXXXX" class="mono"/></div>
+            <div class="input-group">
+                <label>اسم المستودع (مثال: username/repo)</label>
+                <input type="text" id="gh-repo" placeholder="Jawad/GoldenNJ-Store">
             </div>
-          </div>
-          <div style="display:flex;justify-content:space-between;margin-top:1.2rem">
-            <button class="btn btn-gh" onclick="wPrev()">← <span id="wb1-lbl">رجوع</span></button>
-            <button class="btn btn-g"  onclick="wNext()"><span id="wn1-lbl">التالي</span> →</button>
-          </div>
-        </div>
-
-        <!-- step 3 -->
-        <div class="wp" id="wp2">
-          <div class="fg" style="margin-bottom:1rem">
-            <label id="fl-style">أسلوب التصميم</label>
-            <select id="w-style">
-              <option value="dark-gold">Dark Gold — فاخر داكن</option>
-              <option value="light-minimal">Light Minimal — فاتح نظيف</option>
-              <option value="dark-blue">Dark Blue — تقني احترافي</option>
-              <option value="warm-earth">Warm Earth — دافئ طبيعي</option>
-            </select>
-          </div>
-          <div class="cgrid" style="margin-bottom:1.2rem">
-            <div class="cf"><label id="cl-pr">الرئيسي</label> <input type="color" id="wc-pr" value="#1a0f08"/></div>
-            <div class="cf"><label id="cl-ac">المميز</label>   <input type="color" id="wc-ac" value="#c9a84c"/></div>
-            <div class="cf"><label id="cl-bg">الخلفية</label>  <input type="color" id="wc-bg" value="#f5f0e8"/></div>
-          </div>
-          <div style="display:flex;justify-content:space-between">
-            <button class="btn btn-gh" onclick="wPrev()">← <span id="wb2-lbl">رجوع</span></button>
-            <button class="btn btn-g"  onclick="wNext()"><span id="wn2-lbl">مراجعة</span> →</button>
-          </div>
-        </div>
-
-        <!-- step 4 -->
-        <div class="wp" id="wp3">
-          <div class="rv" id="rv-card"></div>
-          <div class="files-prev" id="files-prev"></div>
-          <div style="display:flex;justify-content:space-between;margin-top:1.2rem;gap:0.6rem;flex-wrap:wrap">
-            <button class="btn btn-gh" onclick="wPrev()">← <span id="wb3-lbl">رجوع</span></button>
-            <button class="btn btn-g"  onclick="publish()" id="pub-btn">🚀 <span id="pub-lbl">نشر الموقع</span></button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FILES -->
-    <div class="panel" id="p-files">
-      <div class="ph">
-        <div><div class="ph-t" id="f-title">الملفات</div><div class="ph-s" id="f-sub">تصفح وأدِر ملفات المستودع</div></div>
-        <div class="ph-acts">
-          <button class="btn btn-gh" onclick="loadFiles()">↻</button>
-          <button class="btn btn-g"  onclick="newFileMod()" id="nf-btn">＋ <span id="nf-lbl">ملف جديد</span></button>
-        </div>
-      </div>
-      <div class="fm-bar">
-        <div class="srch">
-          <span style="color:var(--txt3);font-size:0.8rem">🔍</span>
-          <input type="text" id="fm-s" placeholder="بحث…" oninput="filterF(this.value)"/>
-        </div>
-      </div>
-      <div class="fgrid" id="fgrid">
-        <div class="empty-fm"><span class="e-ico">📁</span><span class="e-txt" id="no-f-txt">اربط مستودع GitHub لعرض الملفات</span></div>
-      </div>
-    </div>
-
-    <!-- EDITOR -->
-    <div class="panel" id="p-editor">
-      <div class="ph">
-        <div><div class="ph-t" id="e-title">محرر الكود</div><div class="ph-s" id="e-sub">عدّل أي ملف مباشرة</div></div>
-        <div class="ph-acts">
-          <button class="btn btn-gh" onclick="go('files')" id="e-back-btn">← <span id="e-back-lbl">الملفات</span></button>
-          <button class="btn btn-g"  onclick="saveFile()"  id="e-save-btn">⬆ <span id="e-save-lbl">حفظ ونشر</span></button>
-        </div>
-      </div>
-      <div class="sbar info" id="e-sbar"><span>ℹ️</span><span id="e-sbar-txt">اختر ملفاً من مدير الملفات.</span></div>
-      <div class="ed-wrap">
-        <div class="ed-bar">
-          <div class="ed-path" id="ed-path">—</div>
-          <button class="btn btn-gh" onclick="fmtCode()" style="font-size:0.44rem;padding:0.36rem 0.68rem">{ } <span id="fmt-lbl">تنسيق</span></button>
-        </div>
-        <textarea id="code-area" spellcheck="false" placeholder="اختر ملفاً للتعديل…" onkeydown="tabHandler(event)"></textarea>
-      </div>
-    </div>
-
-    <!-- AI -->
-    <div class="panel" id="p-ai">
-      <div class="ph">
-        <div><div class="ph-t" id="ai-title">مساعد الذكاء الاصطناعي</div><div class="ph-s" id="ai-sub">مدعوم بـ Claude — اكتب، ترجم، حسّن</div></div>
-        <div class="ph-acts">
-          <button class="btn btn-gh" onclick="clearAI()" id="clr-btn">✕ <span id="clr-lbl">مسح</span></button>
-        </div>
-      </div>
-      <div class="sbar warn" id="ai-notice" style="display:none">
-        <span>⚠️</span><span id="ai-notice-txt">أدخل Claude API Key في الإعدادات لتفعيل المساعد.</span>
-      </div>
-      <div class="ai-wrap">
-        <div class="ai-msgs" id="ai-msgs"></div>
-        <div class="ai-quick" id="ai-quick">
-          <button class="aq" onclick="aqPrompt('write')"    id="aq1">✍ اكتب مقالاً</button>
-          <button class="aq" onclick="aqPrompt('translate')" id="aq2">🌐 ترجم</button>
-          <button class="aq" onclick="aqPrompt('improve')"   id="aq3">✨ حسّن النص</button>
-          <button class="aq" onclick="aqPrompt('title')"     id="aq4">💡 عنوان</button>
-          <button class="aq" onclick="aqPrompt('product')"   id="aq5">🛒 وصف منتج</button>
-          <button class="aq" onclick="aqPrompt('seo')"       id="aq6">📈 SEO</button>
-        </div>
-        <div class="ai-in-bar">
-          <textarea class="ai-inp" id="ai-inp" rows="1"
-            placeholder="اسألني أي شيء…"
-            onkeydown="aiKey(event)"
-            oninput="autoH(this)"></textarea>
-          <button class="ai-send" id="ai-send" onclick="sendAI()">➤</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- SETTINGS -->
-    <div class="panel" id="p-settings">
-      <div class="ph">
-        <div><div class="ph-t" id="s-title">الإعدادات</div><div class="ph-s" id="s-sub">إعداد الاتصال والتفضيلات</div></div>
-      </div>
-      <div class="sgrid">
-
-        <div class="sc">
-          <div class="sc-hd">🔗 <span id="sc-gh">اتصال GitHub</span></div>
-          <div class="sc-bd">
-            <div class="sbar info" style="margin-bottom:0"><span>ℹ️</span><span id="s-gh-txt">اضغط لإعداد الاتصال</span></div>
-            <button class="btn btn-g" onclick="openGH()" style="width:100%;justify-content:center">⚙ <span id="s-gh-btn">إعداد GitHub</span></button>
-          </div>
-        </div>
-
-        <div class="sc">
-          <div class="sc-hd">◉ <span id="sc-ai">Claude API</span></div>
-          <div class="sc-bd">
-            <div class="fg">
-              <label>Claude API Key</label>
-              <input type="password" id="s-claude" class="mono" placeholder="sk-ant-…" autocomplete="off"/>
-            </div>
-            <div style="font-size:0.68rem;color:var(--txt3);line-height:1.55">
-              احصل على مفتاحك من
-              <a href="https://console.anthropic.com" target="_blank" style="color:var(--gold)">console.anthropic.com</a>
-            </div>
-            <button class="btn btn-g" onclick="saveClaudeKey()" style="width:100%;justify-content:center">
-              <span id="save-ai-lbl">حفظ المفتاح</span>
+            <button onclick="authenticate()" id="btn-login">
+                <i data-lucide="key"></i> دخول للوحة
             </button>
-          </div>
         </div>
+    </div>
 
-        <div class="sc">
-          <div class="sc-hd">🎨 <span id="sc-theme">المظهر</span></div>
-          <div class="sc-bd">
-            <div class="th-cards">
-              <div class="th-card" onclick="setTheme('dark')" id="th-dark">
-                <div class="th-card-ico">🌙</div>
-                <div class="th-card-lbl" id="th-dark-lbl">داكن</div>
-              </div>
-              <div class="th-card" onclick="setTheme('light')" id="th-light">
-                <div class="th-card-ico">☀️</div>
-                <div class="th-card-lbl" id="th-light-lbl">فاتح</div>
-              </div>
+    <div id="dashboard">
+        <div class="sidebar">
+            <div class="logo">NJSERVICES</div>
+            <div class="nav-item active"><i data-lucide="layout-dashboard"></i> الإعدادات العامة</div>
+            <div class="nav-item"><i data-lucide="monitor"></i> قسم الواجهة (Hero)</div>
+            <div class="nav-item"><i data-lucide="shopping-bag"></i> المنتجات</div>
+            <div class="nav-item"><i data-lucide="share-2"></i> التواصل الاجتماعي</div>
+            <div style="margin-top: auto;">
+                <button onclick="logout()" style="background: transparent; color: #e74c3c; border: 1px solid #e74c3c;">
+                    <i data-lucide="log-out"></i> خروج
+                </button>
             </div>
-          </div>
         </div>
 
-        <div class="sc">
-          <div class="sc-hd">🌐 <span id="sc-lang">اللغة</span></div>
-          <div class="sc-bd">
-            <div class="th-cards">
-              <div class="th-card" onclick="setLang('ar')" id="lang-ar-card">
-                <div class="th-card-ico">🇸🇦</div>
-                <div class="th-card-lbl">العربية</div>
-              </div>
-              <div class="th-card" onclick="setLang('en')" id="lang-en-card">
-                <div class="th-card-ico">🇬🇧</div>
-                <div class="th-card-lbl">English</div>
-              </div>
+        <div class="main-content">
+            <div class="header">
+                <div>
+                    <h2 style="color: var(--text-main);">إدارة المحتوى</h2>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 5px;" id="repo-display"></p>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <div class="status">
+                        <div class="status-dot"></div> متصل
+                    </div>
+                    <button onclick="saveChanges()" id="btn-save" style="width: auto; padding: 10px 25px;">
+                        <i data-lucide="cloud-upload"></i> حفظ ونشر التعديلات
+                    </button>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="sc">
-          <div class="sc-hd">ℹ️ <span id="sc-about">حول NJStudio</span></div>
-          <div class="sc-bd">
-            <div style="font-size:0.78rem;color:var(--txt3);line-height:1.7">
-              <div style="font-family:var(--ff-ttl);font-size:0.6rem;letter-spacing:0.14em;color:var(--gold-lt);margin-bottom:0.4rem">NJSTUDIO v2.0</div>
-              <span id="about-txt">مصنع المواقع الرقمية من وكالة النخبة NJSERVICES. ملف واحد — مواقع لا حدود لها.</span>
+            <div class="card">
+                <h2><i data-lucide="settings"></i> الإعدادات العامة</h2>
+                <div class="grid-2">
+                    <div class="input-group">
+                        <label>اسم الموقع</label>
+                        <input type="text" id="site_name">
+                    </div>
+                    <div class="input-group">
+                        <label>العملة</label>
+                        <input type="text" id="currency">
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div class="card">
+                <h2><i data-lucide="monitor"></i> قسم الواجهة (Hero Section)</h2>
+                <div class="input-group">
+                    <label>العنوان الرئيسي</label>
+                    <input type="text" id="hero_headline">
+                </div>
+                <div class="input-group">
+                    <label>الوصف الفرعي</label>
+                    <input type="text" id="hero_subheadline">
+                </div>
+                <div class="input-group">
+                    <label>نص الزر</label>
+                    <input type="text" id="hero_button">
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i data-lucide="share-2"></i> الروابط</h2>
+                <div class="grid-2">
+                    <div class="input-group">
+                        <label>رقم الواتساب</label>
+                        <input type="text" id="link_whatsapp">
+                    </div>
+                    <div class="input-group">
+                        <label>رابط إنستغرام</label>
+                        <input type="text" id="link_instagram">
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-      </div>
     </div>
 
-  </div><!-- /main -->
-</div><!-- /app -->
-
-<!-- MODALS -->
-<!-- GH Modal -->
-<div class="modal" id="m-gh">
-  <div class="m-bd" onclick="closeGH()"></div>
-  <div class="m-box">
-    <div class="m-ttl" id="mgh-t">🔗 ربط GitHub</div>
-    <div class="m-sub" id="mgh-s">أدخل بيانات مستودعك — تُحفظ في متصفحك فقط ولا تُرسل لأي خادم.</div>
-    <div class="ghf">
-      <div class="ghfg">
-        <label>Personal Access Token (Classic)</label>
-        <input type="password" id="gi-tok" autocomplete="off" spellcheck="false" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
-        <div class="gh-hint">أنشئه في <a href="https://github.com/settings/tokens" target="_blank">GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)</a><br/>فعّل خيار: <strong>repo</strong> (كاملاً)</div>
-      </div>
-      <div class="ghfg"><label id="gl-own">GitHub Username</label><input type="text" id="gi-own" placeholder="jawadnajih27-spec"/></div>
-      <div class="ghfg"><label id="gl-rep">Repository Name</label><input type="text" id="gi-rep" placeholder="ELGhazi"/></div>
-      <div class="ghfg"><label>Branch</label><input type="text" id="gi-br" value="main"/></div>
-      <div class="secure" id="mgh-sec">🔒 Token يُحفظ في localStorage فقط — يُرسل مباشرةً لـ api.github.com عبر HTTPS.</div>
-    </div>
-    <div class="m-acts">
-      <button class="btn btn-r"  onclick="discGH()"   id="disc-btn" style="margin-inline-end:auto;font-size:0.44rem;padding:0.4rem 0.75rem">قطع الاتصال</button>
-      <button class="btn btn-gh" onclick="closeGH()"  id="mgh-can">إلغاء</button>
-      <button class="btn btn-g"  onclick="connectGH()" id="mgh-con">اتصال</button>
-    </div>
-  </div>
-</div>
-
-<!-- New File Modal -->
-<div class="modal" id="m-nf">
-  <div class="m-bd" onclick="closeNF()"></div>
-  <div class="m-box">
-    <div class="m-ttl" id="mnf-t">＋ ملف جديد</div>
-    <div class="m-sub" id="mnf-s">سيُنشأ في GitHub مباشرة.</div>
-    <div class="ghf">
-      <div class="ghfg"><label id="nfl-n">اسم الملف</label><input type="text" id="nf-name" placeholder="about.html" class="mono"/></div>
-      <div class="ghfg">
-        <label id="nfl-c">محتوى أولي (اختياري)</label>
-        <textarea id="nf-cont" style="font-family:var(--ff-mono);font-size:0.75rem;direction:ltr;text-align:left;min-height:75px;background:var(--bg3);border:1px solid var(--bdr);border-radius:6px;padding:0.58rem;outline:none;color:var(--txt);width:100%;resize:vertical" placeholder="<!DOCTYPE html>…"></textarea>
-      </div>
-    </div>
-    <div class="m-acts">
-      <button class="btn btn-gh" onclick="closeNF()"       id="mnf-can">إلغاء</button>
-      <button class="btn btn-g"  onclick="createFile()"    id="mnf-cr">إنشاء</button>
-    </div>
-  </div>
-</div>
-
-<!-- Delete Modal -->
-<div class="modal" id="m-del">
-  <div class="m-bd" onclick="closeDel()"></div>
-  <div class="m-box">
-    <div class="m-ttl" id="mdel-t">حذف الملف؟</div>
-    <div class="m-sub" id="mdel-s">سيُحذف نهائياً من GitHub ولا يمكن التراجع.</div>
-    <div class="m-acts">
-      <button class="btn btn-gh" onclick="closeDel()"   id="mdel-can">إلغاء</button>
-      <button class="btn btn-r"  onclick="execDel()"    id="mdel-ok">حذف</button>
-    </div>
-  </div>
-</div>
-
-<div id="toasts"></div>
-
-<!-- ════════════════════════════════════════════════════
-     JAVASCRIPT
-════════════════════════════════════════════════════ -->
-<script>
-'use strict';
-
-/* ── STATE ─────────────────────────────────────────── */
-let cfg       = null;   // { token, owner, repo, branch }
-let files     = [];     // repo file list
-let openFile  = null;   // { path, sha }
-let delTarget = null;   // { path, sha }
-let wizStep   = 0;
-let wizD      = { type:'', name:'', lang:'ar', tag:'', author:'', wa:'', style:'dark-gold', pr:'#1a0f08', ac:'#c9a84c', bg:'#f5f0e8' };
-let uiLang    = 'ar';
-let theme     = 'dark';
-let chatHist  = [];
-
-const K_CFG   = 'njs_gh_v1';
-const K_LANG  = 'njs_lang';
-const K_THEME = 'njs_theme';
-const K_AI    = 'njs_claude';
-
-/* ── BOOT ──────────────────────────────────────────── */
-(function(){
-  // theme
-  const t = localStorage.getItem(K_THEME)||'dark';
-  setTheme(t, false);
-  // lang
-  const l = localStorage.getItem(K_LANG)||'ar';
-  setLang(l, false);
-  // github
-  cfg = loadCfg();
-  if(cfg){ setDots('spin','جارٍ الاتصال…'); loadFiles(); }
-  // AI
-  const k = localStorage.getItem(K_AI)||'';
-  if(k){ sv('s-claude',k); checkAI(); }
-  // welcome message
-  aiPush('bot', getLang().aiWelcome);
-})();
-
-/* ── CONFIG ────────────────────────────────────────── */
-function loadCfg(){
-  try{const c=JSON.parse(localStorage.getItem(K_CFG));return(c&&c.token&&c.owner&&c.repo)?c:null;}
-  catch{return null;}
-}
-function saveCfg(c){ localStorage.setItem(K_CFG,JSON.stringify(c)) }
-function wipeCfg()  { localStorage.removeItem(K_CFG) }
-
-/* ── LANGUAGE STRINGS ──────────────────────────────── */
-const LANG = {
-  ar:{
-    homeTitle:'لوحة التحكم', homeSub:'مرحباً في NJStudio — مصنع مواقعك الرقمية',
-    sblBuild:'البناء', sblManage:'الإدارة', sblCfg:'الإعداد',
-    nlHome:'الرئيسية', nlWiz:'بناء موقع', nlFiles:'الملفات',
-    nlEditor:'محرر الكود', nlAI:'مساعد AI', nlSet:'الإعدادات',
-    slFiles:'ملف', slHtml:'صفحة HTML', slConn:'الاتصال', slRepo:'المستودع',
-    qcBuild:'ابنِ موقعاً', qcBuildS:'قالب جاهز في ثوانٍ',
-    qcFiles:'الملفات', qcFilesS:'تصفح وعدّل الملفات',
-    qcAI:'مساعد AI', qcAIS:'اكتب وترجم وحسّن',
-    refLbl:'تحديث', hNewLbl:'بناء موقع',
-    wizTitle:'بناء موقع جديد', wizSub:'٤ خطوات — موقعك جاهز في دقيقة',
-    wsl:['النوع','البيانات','التصميم','النشر'],
-    ttStore:'متجر', tdStore:'بيع المنتجات أونلاين',
-    ttLand:'صفحة هبوط', tdLand:'Landing page مقنعة',
-    ttBlog:'مدوّنة', tdBlog:'مقالات وتأمّلات',
-    ttPort:'معرض أعمال', tdPort:'اعرض مشاريعك',
-    ttComp:'موقع شركة', tdComp:'حضور رقمي احترافي',
-    ttRest:'مطعم', tdRest:'قائمة وحجوزات',
-    flSn:'اسم الموقع', flSl:'اللغة', flSt:'الشعار / الوصف',
-    flSa:'اسم صاحب الموقع', flSw:'واتساب (اختياري)',
-    flStyle:'أسلوب التصميم', clPr:'الرئيسي', clAc:'المميز', clBg:'الخلفية',
-    wn0:'التالي', wn1:'التالي', wn2:'مراجعة', wb:'رجوع',
-    pubLbl:'نشر الموقع',
-    fTitle:'الملفات', fSub:'تصفح وأدِر ملفات المستودع',
-    nfLbl:'ملف جديد', noFTxt:'اربط مستودع GitHub لعرض الملفات',
-    eTitle:'محرر الكود', eSub:'عدّل أي ملف مباشرة',
-    eBackLbl:'الملفات', eSaveLbl:'حفظ ونشر',
-    eSbarTxt:'اختر ملفاً من مدير الملفات للتعديل.',
-    fmtLbl:'تنسيق',
-    aiTitle:'مساعد الذكاء الاصطناعي', aiSub:'مدعوم بـ Claude',
-    clrLbl:'مسح', aiNoticeTxt:'أدخل Claude API Key في الإعدادات.',
-    aiWelcome:'مرحباً! أنا مساعدك في NJStudio. يمكنني مساعدتك في كتابة محتوى المواقع، ترجمة النصوص، تحسين الأكواد، وكتابة وصف المنتجات. كيف يمكنني مساعدتك؟',
-    aiPH:'اسألني أي شيء…',
-    aq1:'✍ اكتب مقالاً', aq2:'🌐 ترجم', aq3:'✨ حسّن',
-    aq4:'💡 عنوان', aq5:'🛒 وصف منتج', aq6:'📈 SEO',
-    sTitle:'الإعدادات', sSub:'إعداد الاتصال والتفضيلات',
-    scGH:'اتصال GitHub', scAI:'Claude API',
-    scTheme:'المظهر', scLang:'اللغة', scAbout:'حول NJStudio',
-    sGhTxt:'اضغط لإعداد الاتصال بمستودع GitHub',
-    sGhBtn:'إعداد GitHub', saveAILbl:'حفظ المفتاح',
-    thDarkLbl:'داكن', thLightLbl:'فاتح',
-    aboutTxt:'مصنع المواقع الرقمية من وكالة النخبة NJSERVICES.',
-    langBtn:'EN',
-    mghT:'🔗 ربط GitHub', mghS:'أدخل بيانات مستودعك — تُحفظ في متصفحك فقط.',
-    mghSec:'🔒 Token يُحفظ في localStorage — لا يُرسل إلا لـ api.github.com عبر HTTPS.',
-    discBtn:'قطع الاتصال', mghCan:'إلغاء', mghCon:'اتصال',
-    mnfT:'＋ ملف جديد', mnfS:'سيُنشأ في GitHub مباشرة.',
-    nflN:'اسم الملف', nflC:'محتوى أولي (اختياري)',
-    mnfCan:'إلغاء', mnfCr:'إنشاء',
-    mdelT:'حذف الملف؟', mdelS:'سيُحذف نهائياً من GitHub ولا يمكن التراجع.',
-    mdelCan:'إلغاء', mdelOk:'حذف',
-    notConn:'غير متصل', ghSetup:'GitHub · انقر للإعداد',
-    editLbl:'تعديل', delLbl:'حذف',
-    rvTitle:'ملخص المشروع', rvType:'النوع', rvName:'الاسم',
-    rvLang:'اللغة', rvStyle:'التصميم', rvFiles:'الملفات التي ستُنشأ',
-    connected:'متصل بـ',
-    aqPrompts:{
-      write:'اكتب مقالاً قصيراً عن موضوع مثير للاهتمام.',
-      translate:'ترجم هذا النص للإنجليزية:\n[أدخل النص هنا]',
-      improve:'حسّن هذا النص:\n[أدخل النص هنا]',
-      title:'اقترح ١٠ عناوين إبداعية لموقع متجر إلكتروني.',
-      product:'اكتب وصفاً تسويقياً لمنتج:\n[اسم المنتج وميزاته]',
-      seo:'اكتب وصف SEO لصفحة ويب بعنوان:\n[العنوان هنا]',
-    },
-    aiSys:'أنت مساعد إبداعي متخصص في بناء المواقع وكتابة المحتوى الرقمي. تساعد في كتابة النصوص التسويقية، الترجمة، تحسين المحتوى، وصف المنتجات، وتحسين SEO. أجب بإيجاز واحترافية.',
-  },
-  en:{
-    homeTitle:'Dashboard', homeSub:'Welcome to NJStudio — Your Digital Site Factory',
-    sblBuild:'Build', sblManage:'Manage', sblCfg:'Configure',
-    nlHome:'Dashboard', nlWiz:'Build Site', nlFiles:'Files',
-    nlEditor:'Code Editor', nlAI:'AI Assistant', nlSet:'Settings',
-    slFiles:'Files', slHtml:'HTML Pages', slConn:'Connection', slRepo:'Repository',
-    qcBuild:'Build Site', qcBuildS:'Ready template in seconds',
-    qcFiles:'Files', qcFilesS:'Browse and edit files',
-    qcAI:'AI Assistant', qcAIS:'Write, translate, improve',
-    refLbl:'Refresh', hNewLbl:'Build Site',
-    wizTitle:'Build New Site', wizSub:'4 steps — your site ready in minutes',
-    wsl:['Type','Details','Design','Publish'],
-    ttStore:'Store', tdStore:'Sell products online',
-    ttLand:'Landing', tdLand:'High-converting landing page',
-    ttBlog:'Blog', tdBlog:'Articles & reflections',
-    ttPort:'Portfolio', tdPort:'Showcase your work',
-    ttComp:'Company', tdComp:'Professional digital presence',
-    ttRest:'Restaurant', tdRest:'Menu & reservations',
-    flSn:'Site Name', flSl:'Language', flSt:'Tagline / Description',
-    flSa:'Owner Name', flSw:'WhatsApp (optional)',
-    flStyle:'Design Style', clPr:'Primary', clAc:'Accent', clBg:'Background',
-    wn0:'Next', wn1:'Next', wn2:'Review', wb:'Back',
-    pubLbl:'Publish Site',
-    fTitle:'Files', fSub:'Browse and manage repository files',
-    nfLbl:'New File', noFTxt:'Connect GitHub repo to browse files',
-    eTitle:'Code Editor', eSub:'Edit any file directly',
-    eBackLbl:'Files', eSaveLbl:'Save & Publish',
-    eSbarTxt:'Select a file from the file manager to edit.',
-    fmtLbl:'Format',
-    aiTitle:'AI Assistant', aiSub:'Powered by Claude',
-    clrLbl:'Clear', aiNoticeTxt:'Enter Claude API Key in Settings to activate.',
-    aiWelcome:"Hello! I'm your NJStudio AI assistant. I can help with writing website content, translating text, improving code, and writing product descriptions. How can I help you today?",
-    aiPH:'Ask me anything…',
-    aq1:'✍ Write Article', aq2:'🌐 Translate', aq3:'✨ Improve',
-    aq4:'💡 Title Ideas', aq5:'🛒 Product Desc', aq6:'📈 SEO',
-    sTitle:'Settings', sSub:'Configure connection and preferences',
-    scGH:'GitHub Connection', scAI:'Claude API',
-    scTheme:'Theme', scLang:'Language', scAbout:'About NJStudio',
-    sGhTxt:'Click to configure GitHub repository connection',
-    sGhBtn:'Configure GitHub', saveAILbl:'Save Key',
-    thDarkLbl:'Dark', thLightLbl:'Light',
-    aboutTxt:'The digital site factory by NJSERVICES agency.',
-    langBtn:'عربي',
-    mghT:'🔗 Connect GitHub', mghS:'Enter your repo details — stored in browser only.',
-    mghSec:'🔒 Token stored in localStorage — only sent to api.github.com over HTTPS.',
-    discBtn:'Disconnect', mghCan:'Cancel', mghCon:'Connect',
-    mnfT:'＋ New File', mnfS:'File will be created in GitHub directly.',
-    nflN:'File Name', nflC:'Initial Content (optional)',
-    mnfCan:'Cancel', mnfCr:'Create',
-    mdelT:'Delete File?', mdelS:'Will be permanently deleted from GitHub.',
-    mdelCan:'Cancel', mdelOk:'Delete',
-    notConn:'Not Connected', ghSetup:'GitHub · Click to setup',
-    editLbl:'Edit', delLbl:'Delete',
-    rvTitle:'Project Summary', rvType:'Type', rvName:'Name',
-    rvLang:'Language', rvStyle:'Design', rvFiles:'Files to be created',
-    connected:'Connected to',
-    aqPrompts:{
-      write:'Write a short engaging article about digital marketing.',
-      translate:'Translate this text to Arabic:\n[paste text here]',
-      improve:'Improve this text:\n[paste text here]',
-      title:'Suggest 10 creative titles for an e-commerce website.',
-      product:'Write a marketing description for a product:\n[product name and features]',
-      seo:'Write an SEO meta description for a web page titled:\n[title here]',
-    },
-    aiSys:'You are a creative assistant specialized in web development and digital content writing. You help with marketing copy, translation, content improvement, product descriptions, and SEO optimization. Answer concisely and professionally.',
-  }
-};
-
-function getLang(){ return LANG[uiLang]; }
-
-function setLang(l, save=true){
-  uiLang = l;
-  if(save) localStorage.setItem(K_LANG, l);
-  const ar = l==='ar';
-  const t  = getLang();
-  document.documentElement.lang = l;
-  document.documentElement.dir  = ar?'rtl':'ltr';
-  document.body.classList.toggle('ltr',!ar);
-  document.title = ar?'NJStudio — مصنع المواقع الرقمية':'NJStudio — Digital Site Factory';
-
-  tx('lang-ib', t.langBtn);
-  // sidebar
-  tx('sbl-build',t.sblBuild); tx('sbl-manage',t.sblManage); tx('sbl-cfg',t.sblCfg);
-  tx('nl-home',t.nlHome); tx('nl-wiz',t.nlWiz); tx('nl-files',t.nlFiles);
-  tx('nl-editor',t.nlEditor); tx('nl-ai',t.nlAI); tx('nl-set',t.nlSet);
-  // home
-  tx('h-title',t.homeTitle); tx('h-sub',t.homeSub);
-  tx('ref-lbl',t.refLbl); tx('h-new-lbl',t.hNewLbl);
-  tx('sl-files',t.slFiles); tx('sl-html',t.slHtml); tx('sl-conn',t.slConn); tx('sl-repo',t.slRepo);
-  tx('qc-build',t.qcBuild); tx('qc-build-s',t.qcBuildS);
-  tx('qc-files',t.qcFiles); tx('qc-files-s',t.qcFilesS);
-  tx('qc-ai',t.qcAI); tx('qc-ai-s',t.qcAIS);
-  // wizard
-  tx('wiz-title',t.wizTitle); tx('wiz-sub',t.wizSub);
-  t.wsl.forEach((v,i)=>tx('wsl'+i,v));
-  tx('tt-store',t.ttStore); tx('td-store',t.tdStore);
-  tx('tt-land',t.ttLand);   tx('td-land',t.tdLand);
-  tx('tt-blog',t.ttBlog);   tx('td-blog',t.tdBlog);
-  tx('tt-port',t.ttPort);   tx('td-port',t.tdPort);
-  tx('tt-comp',t.ttComp);   tx('td-comp',t.tdComp);
-  tx('tt-rest',t.ttRest);   tx('td-rest',t.tdRest);
-  tx('fl-sn',t.flSn); tx('fl-sl',t.flSl); tx('fl-st',t.flSt);
-  tx('fl-sa',t.flSa); tx('fl-sw',t.flSw); tx('fl-style',t.flStyle);
-  tx('cl-pr',t.clPr); tx('cl-ac',t.clAc); tx('cl-bg',t.clBg);
-  tx('wn0-lbl',t.wn0); tx('wn1-lbl',t.wn1); tx('wn2-lbl',t.wn2);
-  tx('wb1-lbl',t.wb); tx('wb2-lbl',t.wb); tx('wb3-lbl',t.wb);
-  tx('pub-lbl',t.pubLbl);
-  // files
-  tx('f-title',t.fTitle); tx('f-sub',t.fSub);
-  tx('nf-lbl',t.nfLbl); tx('no-f-txt',t.noFTxt);
-  at('fm-s','placeholder',ar?'بحث…':'Search…');
-  // editor
-  tx('e-title',t.eTitle); tx('e-sub',t.eSub);
-  tx('e-back-lbl',t.eBackLbl); tx('e-save-lbl',t.eSaveLbl);
-  tx('e-sbar-txt',t.eSbarTxt); tx('fmt-lbl',t.fmtLbl);
-  // ai
-  tx('ai-title',t.aiTitle); tx('ai-sub',t.aiSub);
-  tx('clr-lbl',t.clrLbl); tx('ai-notice-txt',t.aiNoticeTxt);
-  at('ai-inp','placeholder',t.aiPH);
-  tx('aq1',t.aq1); tx('aq2',t.aq2); tx('aq3',t.aq3);
-  tx('aq4',t.aq4); tx('aq5',t.aq5); tx('aq6',t.aq6);
-  // settings
-  tx('s-title',t.sTitle); tx('s-sub',t.sSub);
-  tx('sc-gh',t.scGH); tx('sc-ai',t.scAI);
-  tx('sc-theme',t.scTheme); tx('sc-lang',t.scLang); tx('sc-about',t.scAbout);
-  tx('s-gh-txt',t.sGhTxt); tx('s-gh-btn',t.sGhBtn);
-  tx('save-ai-lbl',t.saveAILbl);
-  tx('th-dark-lbl',t.thDarkLbl); tx('th-light-lbl',t.thLightLbl);
-  tx('about-txt',t.aboutTxt);
-  // modals
-  tx('mgh-t',t.mghT); tx('mgh-s',t.mghS); tx('mgh-sec',t.mghSec);
-  tx('disc-btn',t.discBtn); tx('mgh-can',t.mghCan); tx('mgh-con',t.mghCon);
-  tx('mnf-t',t.mnfT); tx('mnf-s',t.mnfS);
-  tx('nfl-n',t.nflN); tx('nfl-c',t.nflC);
-  tx('mnf-can',t.mnfCan); tx('mnf-cr',t.mnfCr);
-  tx('mdel-t',t.mdelT); tx('mdel-s',t.mdelS);
-  tx('mdel-can',t.mdelCan); tx('mdel-ok',t.mdelOk);
-  // gh status
-  const gn = cfg ? `${cfg.owner}/${cfg.repo}` : t.notConn;
-  tx('repo-txt', gn); tx('gh-name', gn);
-  tx('gh-sub', cfg ? `${cfg.owner}/${cfg.repo}` : t.ghSetup);
-  // re-render
-  renderFiles();
-  updateStats();
-  // lang cards
-  document.getElementById('lang-ar-card').classList.toggle('sel', l==='ar');
-  document.getElementById('lang-en-card').classList.toggle('sel', l==='en');
-}
-
-function toggleLang(){ setLang(uiLang==='ar'?'en':'ar'); }
-
-/* ── THEME ─────────────────────────────────────────── */
-function setTheme(t, save=true){
-  theme = t;
-  document.body.dataset.theme = t;
-  if(save) localStorage.setItem(K_THEME, t);
-  const ib = document.getElementById('theme-ib');
-  if(ib) ib.textContent = t==='dark'?'☀️':'🌙';
-  document.getElementById('th-dark').classList.toggle('sel', t==='dark');
-  document.getElementById('th-light').classList.toggle('sel', t==='light');
-}
-function toggleTheme(){ setTheme(theme==='dark'?'light':'dark'); }
-
-/* ── NAVIGATION ────────────────────────────────────── */
-const PANELS = ['home','wizard','files','editor','ai','settings'];
-function go(p){
-  PANELS.forEach(id=>{
-    document.getElementById('p-'+id).classList.toggle('on', id===p);
-    const n=document.getElementById('ni-'+id);
-    if(n) n.classList.toggle('on', id===p);
-  });
-  document.getElementById('sidebar').classList.remove('open');
-}
-function toggleSB(){ document.getElementById('sidebar').classList.toggle('open'); }
-
-/* ── GITHUB API ─────────────────────────────────────── */
-function API(path){
-  const base = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents`;
-  return path ? `${base}/${path}` : base;
-}
-function H(){
-  return{
-    'Authorization':`token ${cfg.token}`,
-    'Accept':'application/vnd.github.v3+json',
-    'Content-Type':'application/json',
-  };
-}
-function b64e(s){ return btoa(unescape(encodeURIComponent(s))) }
-function b64d(s){ return decodeURIComponent(escape(atob(s.replace(/\n/g,'')))) }
-
-async function gFetch(url, opts={}, ms=12000){
-  return new Promise((resolve, reject)=>{
-    const timer = setTimeout(()=>{
-      reject(new Error(uiLang==='ar'?'انتهت مهلة الاتصال (12 ثانية) — تحقق من الـ Token والمستودع':'Connection timeout (12s) — check Token and repo'));
-    }, ms);
-    fetch(url, opts)
-      .then(r=>{ clearTimeout(timer); resolve(r); })
-      .catch(e=>{ clearTimeout(timer); reject(e); });
-  });
-}
-
-async function loadFiles(){
-  if(!cfg) return;
-  setDots('spin', uiLang==='ar'?'جارٍ التحميل…':'Loading…');
-  progress(20);
-  try{
-    const url = `${API()}?ref=${cfg.branch}&_=${Date.now()}`;
-    const r = await fetch(url, {headers:H()});
-    progress(65);
-    if(r.status===401) throw new Error(uiLang==='ar'?'Token غير صالح':'Invalid Token');
-    if(r.status===404) throw new Error(uiLang==='ar'?`المستودع "${cfg.repo}" غير موجود`:`Repo "${cfg.repo}" not found`);
-    if(r.status===403) throw new Error(uiLang==='ar'?'صلاحية مرفوضة':'Access denied');
-    if(!r.ok) throw new Error(`GitHub ${r.status}`);
-    const d = await r.json();
-    files = Array.isArray(d)?d:[];
-    renderFiles();
-    updateStats();
-    setDots('on',`${cfg.owner}/${cfg.repo}`);
-    progress(100); setTimeout(()=>progress(0),500);
-    toast(uiLang==='ar'?`✓ متصل — ${files.length} ملف`:`✓ Connected — ${files.length} files`,'ok');
-  }catch(e){
-    setDots('err', e.message.substring(0,50));
-    toast(e.message,'err');
-    progress(0);
-  }
-}
-
-async function getFile(path){
-  const r = await gFetch(`${API(path)}?ref=${cfg.branch}&_=${Date.now()}`,{headers:H()});
-  if(!r.ok) throw new Error(`HTTP ${r.status}`);
-  return r.json();
-}
-
-async function putFile(path, content, msg, sha=null){
-  const body = {message:msg, content:b64e(content), branch:cfg.branch};
-  if(sha) body.sha = sha;
-  const r    = await gFetch(API(path),{method:'PUT',headers:H(),body:JSON.stringify(body)});
-  const json = await r.json();
-  if(!r.ok) throw new Error(json.message||`GitHub ${r.status}`);
-  return json;
-}
-
-async function delFile(path, sha, msg){
-  const r = await gFetch(API(path),{
-    method:'DELETE',headers:H(),
-    body:JSON.stringify({message:msg, sha, branch:cfg.branch})
-  });
-  if(!r.ok){const j=await r.json();throw new Error(j.message||`GitHub ${r.status}`);}
-}
-
-/* ── GH MODAL ──────────────────────────────────────── */
-function openGH(){
-  if(cfg){ sv('gi-own',cfg.owner); sv('gi-rep',cfg.repo); sv('gi-br',cfg.branch||'main'); }
-  document.getElementById('m-gh').classList.add('on');
-}
-function closeGH(){ document.getElementById('m-gh').classList.remove('on') }
-
-async function connectGH(){
-  const tok = gv('gi-tok');
-  const own = gv('gi-own');
-  const rep = gv('gi-rep');
-  const br  = gv('gi-br')||'main';
-
-  if(!own||!rep){ toast(uiLang==='ar'?'أدخل اسم المستخدم والمستودع':'Enter username and repo','err'); return; }
-  if(!tok&&!cfg?.token){ toast(uiLang==='ar'?'أدخل الـ Token':'Enter Token','err'); return; }
-
-  const finalTok = tok || cfg.token;
-  const btn = document.getElementById('mgh-con');
-  btn.disabled=true;
-  btn.innerHTML=`<span class="sp"></span>`;
-
-  /* ── اختبار مباشر بدون AbortController ── */
-  const testUrl = `https://api.github.com/repos/${own}/${rep}`;
-  const testHeaders = {
-    'Authorization': `token ${finalTok}`,
-    'Accept': 'application/vnd.github.v3+json',
-  };
-
-  let timedOut = false;
-  const timeoutId = setTimeout(()=>{
-    timedOut = true;
-    btn.disabled=false;
-    btn.textContent = getLang().mghCon;
-    toast(uiLang==='ar'?'انتهت المهلة — تحقق من اتصال الإنترنت والـ Token':'Timeout — check internet and Token','err');
-    setDots('err','timeout');
-  }, 10000);
-
-  try{
-    const r = await fetch(testUrl, { headers: testHeaders });
-    clearTimeout(timeoutId);
-    if(timedOut) return;
-
-    if(r.status===401){ throw new Error(uiLang==='ar'?'Token غير صالح — تحقق منه في GitHub':'Invalid Token — check it on GitHub'); }
-    if(r.status===404){ throw new Error(uiLang==='ar'?`المستودع "${rep}" غير موجود — تحقق من الاسم`:`Repo "${rep}" not found — check the name`); }
-    if(r.status===403){ throw new Error(uiLang==='ar'?'صلاحية مرفوضة — فعّل خيار repo في الـ Token':'Access denied — enable repo scope in Token'); }
-    if(!r.ok){ throw new Error(`GitHub HTTP ${r.status}`); }
-
-    cfg = {token:finalTok, owner:own, repo:rep, branch:br};
-    saveCfg(cfg);
-    closeGH();
-    setDots('spin', uiLang==='ar'?'جارٍ تحميل الملفات…':'Fetching files…');
-    await loadFiles();
-
-  }catch(e){
-    clearTimeout(timeoutId);
-    if(timedOut) return;
-    btn.disabled=false;
-    btn.textContent = getLang().mghCon;
-    toast(e.message,'err');
-    setDots('err', e.message.substring(0,50));
-  }
-}
-
-function discGH(){
-  if(!confirm(uiLang==='ar'?'قطع الاتصال؟':'Disconnect?')) return;
-  wipeCfg(); cfg=null; files=[];
-  setDots('off', getLang().notConn);
-  closeGH(); renderFiles(); updateStats();
-  toast(uiLang==='ar'?'تم قطع الاتصال':'Disconnected','warn');
-}
-
-/* ── RENDER FILES ──────────────────────────────────── */
-const ICONS={html:'🌐',css:'🎨',js:'⚡',json:'📋',md:'📝',txt:'📄',png:'🖼',jpg:'🖼',jpeg:'🖼',gif:'🖼',svg:'✦',ico:'🔖',yml:'⚙',yaml:'⚙',default:'📄'};
-function fIco(n){ const e=n.split('.').pop().toLowerCase(); return ICONS[e]||ICONS.default; }
-function fmtSz(b){ return b>1024?Math.round(b/1024)+'KB':b+'B'; }
-
-function renderFiles(q=''){
-  const g = document.getElementById('fgrid');
-  const t = getLang();
-  const f = files.filter(x=>x.type==='file'&&(!q||x.name.toLowerCase().includes(q.toLowerCase())));
-  if(!f.length){
-    g.innerHTML=`<div class="empty-fm"><span class="e-ico">📁</span><span class="e-txt">${t.noFTxt}</span></div>`;
-    return;
-  }
-  g.innerHTML = f.map(x=>`
-    <div class="fc">
-      <div class="fc-ico">${fIco(x.name)}</div>
-      <div class="fc-name" title="${x.name}">${x.name}</div>
-      <div class="fc-sz">${x.size?fmtSz(x.size):''}</div>
-      <div class="fc-acts">
-        <button class="fc-btn ed" onclick="openEditor('${x.path}','${x.sha}')">${t.editLbl}</button>
-        <button class="fc-btn dl" onclick="askDel('${x.path}','${x.sha}')">${t.delLbl}</button>
-      </div>
-    </div>`).join('');
-}
-function filterF(q){ renderFiles(q); }
-
-/* ── STATS ─────────────────────────────────────────── */
-function updateStats(){
-  const f = files.filter(x=>x.type==='file');
-  const h = f.filter(x=>x.name.endsWith('.html'));
-  tx('sv-files', f.length||'—');
-  tx('sv-html',  h.length||'—');
-  tx('sv-conn',  cfg?'✓':'—');
-  tx('sv-repo',  cfg?cfg.repo:'—');
-  tx('badge-files', f.length);
-}
-
-/* ── CODE EDITOR ───────────────────────────────────── */
-async function openEditor(path, sha){
-  if(!cfg){ toast(uiLang==='ar'?'اربط GitHub أولاً':'Connect GitHub first','warn'); return; }
-  go('editor');
-  setSbar('info', uiLang==='ar'?'⏳ جارٍ تحميل الملف…':'⏳ Loading file…');
-  try{
-    const d = await getFile(path);
-    openFile = {path, sha:d.sha};
-    tx('ed-path', path);
-    document.getElementById('code-area').value = b64d(d.content);
-    setSbar('ok',(uiLang==='ar'?'تم تحميل: ':'Loaded: ')+path);
-  }catch(e){
-    setSbar('err','✗ '+e.message);
-    toast(e.message,'err');
-  }
-}
-
-async function saveFile(){
-  if(!openFile){ toast(uiLang==='ar'?'لا يوجد ملف مفتوح':'No file open','warn'); return; }
-  const content = document.getElementById('code-area').value;
-  const btn     = document.getElementById('e-save-btn');
-  btn.disabled=true;
-  btn.innerHTML=`<span class="sp sp-lt"></span>`;
-  setSbar('info', uiLang==='ar'?'⏳ جارٍ الحفظ…':'⏳ Saving…');
-  try{
-    const r = await putFile(openFile.path, content, `edit: ${openFile.path}`, openFile.sha);
-    openFile.sha = r.content.sha;
-    setSbar('ok',(uiLang==='ar'?'✓ نُشر: ':'✓ Saved: ')+openFile.path);
-    toast(uiLang==='ar'?'نُشر بنجاح ✓':'Saved ✓','ok');
-    await loadFiles();
-  }catch(e){
-    setSbar('err','✗ '+e.message);
-    toast(e.message,'err');
-  }finally{
-    btn.disabled=false;
-    btn.innerHTML=`⬆ <span id="e-save-lbl">${getLang().eSaveLbl}</span>`;
-  }
-}
-
-function tabHandler(e){
-  if(e.key==='Tab'){
-    e.preventDefault();
-    const t=e.target,s=t.selectionStart;
-    t.value=t.value.substring(0,s)+'  '+t.value.substring(t.selectionEnd);
-    t.selectionStart=t.selectionEnd=s+2;
-  }
-  if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();saveFile();}
-}
-function fmtCode(){
-  const ta=document.getElementById('code-area');
-  if(!openFile?.path) return;
-  if(openFile.path.endsWith('.json')){
-    try{ta.value=JSON.stringify(JSON.parse(ta.value),null,2);}catch{}
-  }
-}
-
-/* ── NEW FILE ──────────────────────────────────────── */
-function newFileMod(){ if(!cfg){openGH();return;} sv('nf-name',''); sv('nf-cont',''); document.getElementById('m-nf').classList.add('on'); }
-function closeNF()   { document.getElementById('m-nf').classList.remove('on'); }
-
-async function createFile(){
-  const name = gv('nf-name');
-  const cont = document.getElementById('nf-cont').value;
-  if(!name){ toast(uiLang==='ar'?'أدخل اسم الملف':'Enter file name','err'); return; }
-  const btn=document.getElementById('mnf-cr');
-  btn.disabled=true;
-  try{
-    await putFile(name, cont||' ', `create: ${name}`);
-    closeNF();
-    toast((uiLang==='ar'?'تم إنشاء: ':'Created: ')+name,'ok');
-    await loadFiles();
-  }catch(e){toast(e.message,'err');}
-  finally{btn.disabled=false;}
-}
-
-/* ── DELETE ────────────────────────────────────────── */
-function askDel(path,sha){ delTarget={path,sha}; document.getElementById('m-del').classList.add('on'); }
-function closeDel()       { document.getElementById('m-del').classList.remove('on'); }
-
-async function execDel(){
-  if(!delTarget) return;
-  const btn=document.getElementById('mdel-ok');
-  btn.disabled=true;
-  try{
-    await delFile(delTarget.path, delTarget.sha, `delete: ${delTarget.path}`);
-    closeDel();
-    toast((uiLang==='ar'?'حُذف: ':'Deleted: ')+delTarget.path,'ok');
-    delTarget=null;
-    await loadFiles();
-  }catch(e){toast(e.message,'err');}
-  finally{btn.disabled=false;}
-}
-
-/* ── AI ASSISTANT ──────────────────────────────────── */
-function checkAI(){
-  const k = localStorage.getItem(K_AI);
-  const n = document.getElementById('ai-notice');
-  if(n) n.style.display = k?'none':'flex';
-}
-
-function saveClaudeKey(){
-  const k = gv('s-claude');
-  if(!k){ toast(uiLang==='ar'?'أدخل المفتاح أولاً':'Enter key first','warn'); return; }
-  localStorage.setItem(K_AI, k);
-  checkAI();
-  toast(uiLang==='ar'?'تم حفظ المفتاح ✓':'Key saved ✓','ok');
-}
-
-function aiPush(role, text, typing=false){
-  const id   = 'msg_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
-  const msgs = document.getElementById('ai-msgs');
-  const ar   = uiLang==='ar';
-  const av   = role==='bot'
-    ? `<div class="ai-av bot"><span>NJ</span></div>`
-    : `<div class="ai-av usr">${ar?'أنا':'Me'}</div>`;
-  const bbl  = `<div class="ai-bbl${typing?' typing':''}" id="${id}">${typing?'':esc(text).replace(/\n/g,'<br/>')}</div>`;
-  const d    = document.createElement('div');
-  d.className= `ai-msg ${role}`;
-  d.innerHTML= role==='bot'? av+bbl : bbl+av;
-  msgs.appendChild(d);
-  msgs.scrollTop=msgs.scrollHeight;
-  return id;
-}
-
-function aiUpdate(id, text){
-  const el=document.getElementById(id);
-  if(el){
-    el.classList.remove('typing');
-    el.innerHTML=esc(text).replace(/\n/g,'<br/>');
-    el.closest('.ai-msgs').scrollTop=99999;
-  }
-}
-
-async function sendAI(){
-  const inp = document.getElementById('ai-inp');
-  const msg = inp.value.trim();
-  if(!msg) return;
-
-  const key = localStorage.getItem(K_AI);
-  if(!key){
-    toast(uiLang==='ar'?'أدخل Claude API Key في الإعدادات':'Enter Claude API Key in Settings','warn');
-    go('settings'); return;
-  }
-
-  inp.value=''; inp.style.height='40px';
-  aiPush('usr', msg);
-  chatHist.push({role:'user',content:msg});
-
-  const tid = aiPush('bot','',true);
-  document.getElementById('ai-send').disabled=true;
-
-  try{
-    const r = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key':key,
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-direct-browser-access':'true',
-      },
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1200,
-        system: getLang().aiSys + ` اللغة الحالية: ${uiLang==='ar'?'العربية':'English'}.`,
-        messages: chatHist.slice(-12),
-      })
-    });
-    const data  = await r.json();
-    const reply = data.content?.[0]?.text || (uiLang==='ar'?'لم أتلقَّ رداً':'No response');
-    aiUpdate(tid, reply);
-    chatHist.push({role:'assistant', content:reply});
-  }catch(e){
-    aiUpdate(tid, uiLang==='ar'?`خطأ: ${e.message}`:`Error: ${e.message}`);
-  }finally{
-    document.getElementById('ai-send').disabled=false;
-  }
-}
-
-function clearAI(){
-  chatHist=[];
-  document.getElementById('ai-msgs').innerHTML='';
-  aiPush('bot', getLang().aiWelcome);
-}
-
-function aqPrompt(type){
-  const p = getLang().aqPrompts[type]||'';
-  document.getElementById('ai-inp').value=p;
-  document.getElementById('ai-inp').focus();
-}
-
-function aiKey(e){
-  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendAI();}
-}
-function autoH(el){
-  el.style.height='auto';
-  el.style.height=Math.min(el.scrollHeight,120)+'px';
-}
-
-/* ── WIZARD ────────────────────────────────────────── */
-function pick(type, el){
-  wizD.type=type;
-  document.querySelectorAll('.tc').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
-}
-
-function wNext(){
-  const t = getLang();
-  if(wizStep===0 && !wizD.type){ toast(uiLang==='ar'?'اختر نوع الموقع أولاً':'Select a site type first','warn'); return; }
-  if(wizStep===1){
-    wizD.name = gv('w-name'); wizD.lang = gv('w-lang');
-    wizD.tag  = gv('w-tag');  wizD.author= gv('w-author');
-    wizD.wa   = gv('w-wa');
-    if(!wizD.name){ toast(uiLang==='ar'?'أدخل اسم الموقع':'Enter site name','warn'); return; }
-  }
-  if(wizStep===2){
-    wizD.style = gv('w-style');
-    wizD.pr    = document.getElementById('wc-pr').value;
-    wizD.ac    = document.getElementById('wc-ac').value;
-    wizD.bg    = document.getElementById('wc-bg').value;
-    buildReview();
-  }
-  if(wizStep<3) advWiz(wizStep+1);
-}
-function wPrev(){ if(wizStep>0) advWiz(wizStep-1); }
-
-function advWiz(next){
-  ['ws'+wizStep,'wp'+wizStep].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el){el.classList.remove('on'); if(id.startsWith('ws')) el.classList.add('done');}
-  });
-  if(next<wizStep){
-    document.getElementById('ws'+wizStep).classList.remove('done');
-    document.getElementById('ws'+next).classList.remove('done');
-  }
-  wizStep=next;
-  document.getElementById('ws'+wizStep).classList.add('on');
-  document.getElementById('ws'+wizStep).classList.remove('done');
-  document.getElementById('wp'+wizStep).classList.add('on');
-}
-
-function buildReview(){
-  const t  = getLang();
-  const ar = uiLang==='ar';
-  const names={store:t.ttStore,landing:t.ttLand,blog:t.ttBlog,portfolio:t.ttPort,company:t.ttComp,restaurant:t.ttRest};
-  document.getElementById('rv-card').innerHTML=`
-    <div class="rv-ttl">${t.rvTitle}</div>
-    <div class="rv-row"><span class="rv-k">${t.rvType}</span>  <span class="rv-v">${names[wizD.type]||wizD.type}</span></div>
-    <div class="rv-row"><span class="rv-k">${t.rvName}</span>  <span class="rv-v">${wizD.name}</span></div>
-    <div class="rv-row"><span class="rv-k">${t.rvLang}</span>  <span class="rv-v">${wizD.lang==='ar'?'عربي':'English'}</span></div>
-    <div class="rv-row"><span class="rv-k">${t.rvStyle}</span> <span class="rv-v">${wizD.style}</span></div>
-  `;
-  const fls = tplFiles(wizD.type);
-  document.getElementById('files-prev').innerHTML=`
-    <div style="font-family:var(--ff-ttl);font-size:0.48rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--txt3);margin-bottom:0.55rem">${t.rvFiles}</div>
-    ${fls.map(f=>`<div class="fi"><span class="fi-ico">✦</span>${f}</div>`).join('')}
-  `;
-}
-
-function tplFiles(type){
-  const m={
-    store:      ['index.html','product.html','cart.html','products.json'],
-    landing:    ['index.html'],
-    blog:       ['index.html','data.json'],
-    portfolio:  ['index.html','projects.html','data.json'],
-    company:    ['index.html','about.html','services.html','contact.html','data.json'],
-    restaurant: ['index.html','menu.html','data.json'],
-  };
-  return m[type]||['index.html','data.json'];
-}
-
-/* ── TEMPLATES ─────────────────────────────────────── */
-function genHTML(type, d){
-  const ar  = d.lang==='ar';
-  const dir = ar?'rtl':'ltr';
-  const ff  = ar?"'Noto Naskh Arabic',serif":"'Cormorant Garamond',Georgia,serif";
-  const waBtn = d.wa ? `<a class="cta" href="https://wa.me/${d.wa}" target="_blank">${ar?'تواصل معنا':'Contact Us'}</a>` : '';
-
-  const base = `
-:root{--pr:${d.pr};--ac:${d.ac};--bg:${d.bg};--ff:${ff}}
-*{box-sizing:border-box;margin:0;padding:0}
-html{font-size:17px;scroll-behavior:smooth}
-body{font-family:var(--ff);background:var(--bg);color:var(--pr);direction:${dir};overflow-x:hidden}
-a{color:var(--ac);text-decoration:none}
-img{max-width:100%}
-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;
-  background:var(--pr);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
-.logo{font-size:1.1rem;font-weight:700;color:var(--ac);letter-spacing:0.05em}
-.nav-links{display:flex;gap:1.5rem}
-.nav-links a{color:rgba(255,255,255,0.7);font-size:0.88rem;transition:color .3s}
-.nav-links a:hover{color:var(--ac)}
-.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;text-align:center;padding:5rem 2rem;
-  background:linear-gradient(135deg,var(--pr) 0%,color-mix(in srgb,var(--pr) 70%,#000) 100%);
-  color:#fff;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,168,76,0.15),transparent)}
-h1{font-size:clamp(2rem,5vw,3.8rem);margin-bottom:0.8rem;color:var(--ac);line-height:1.2}
-.tagline{font-size:clamp(1rem,2vw,1.25rem);opacity:0.75;max-width:560px;line-height:1.8;margin-bottom:2.5rem}
-.cta-group{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-.cta{display:inline-block;padding:.85rem 2.2rem;background:var(--ac);color:var(--pr);
-  font-weight:700;border-radius:4px;font-size:.9rem;transition:.3s;letter-spacing:0.05em}
-.cta:hover{opacity:.88;transform:translateY(-2px)}
-.cta.ghost{background:transparent;border:2px solid var(--ac);color:var(--ac)}
-footer{text-align:center;padding:2.5rem 2rem;background:var(--pr);color:rgba(255,255,255,0.55);font-size:.82rem}
-footer span{color:var(--ac)}
-@media(max-width:640px){nav{padding:.8rem 1rem}.nav-links{gap:1rem}}`;
-
-  const templates = {
-    store:`<!DOCTYPE html>
-<html lang="${d.lang}" dir="${dir}">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${d.name}</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet"/>
-<style>${base}
-section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
-.sec-title{text-align:center;margin-bottom:2.5rem}
-.sec-title h2{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--pr);margin-bottom:.5rem}
-.sec-title p{color:#666;font-size:.95rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
-.prod-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;
-  overflow:hidden;transition:.3s;cursor:pointer}
-.prod-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.12);transform:translateY(-4px)}
-.prod-img{height:200px;background:linear-gradient(135deg,${d.pr},${d.ac});
-  display:flex;align-items:center;justify-content:center;font-size:3rem;color:#fff}
-.prod-body{padding:1.2rem}
-.prod-name{font-weight:700;font-size:1rem;margin-bottom:.35rem;color:var(--pr)}
-.prod-desc{font-size:.85rem;color:#666;line-height:1.6;margin-bottom:.8rem}
-.prod-footer{display:flex;align-items:center;justify-content:space-between}
-.prod-price{font-size:1.15rem;font-weight:700;color:var(--ac)}
-.add-btn{padding:.45rem 1rem;background:var(--pr);color:var(--ac);border:none;
-  border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600;transition:.3s}
-.add-btn:hover{opacity:.85}
-.cart-bar{position:fixed;bottom:1.5rem;inset-inline-end:1.5rem;
-  background:var(--pr);color:var(--ac);padding:.8rem 1.5rem;border-radius:30px;
-  font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.3);
-  display:none;font-size:.9rem;z-index:200}
-</style></head>
-<body>
-<nav>
-  <div class="logo">${d.name}</div>
-  <div class="nav-links">
-    <a href="#products">${ar?'المنتجات':'Products'}</a>
-    ${d.wa?`<a href="https://wa.me/${d.wa}">${ar?'تواصل':'Contact'}</a>`:''}
-  </div>
-</nav>
-<section class="hero">
-  <h1>${d.name}</h1>
-  <p class="tagline">${d.tag||ar?'أفضل المنتجات بأعلى جودة':'Premium products, exceptional quality'}</p>
-  <div class="cta-group">
-    <a class="cta" href="#products">${ar?'تسوّق الآن':'Shop Now'}</a>
-    ${waBtn?`<a class="cta ghost" href="https://wa.me/${d.wa}">${ar?'تواصل معنا':'Contact Us'}</a>`:''}
-  </div>
-</section>
-<section id="products">
-  <div class="sec-title">
-    <h2>${ar?'منتجاتنا':'Our Products'}</h2>
-    <p>${ar?'اكتشف تشكيلتنا المميزة':'Discover our premium collection'}</p>
-  </div>
-  <div class="grid" id="products-grid">
-    ${[['🎯',ar?'منتج مميز':'Featured Product','39.99'],
-       ['✨',ar?'عرض خاص':'Special Offer','24.99'],
-       ['🏆',ar?'الأكثر مبيعاً':'Best Seller','54.99'],
-       ['💎',ar?'إصدار محدود':'Limited Edition','89.99']].map(([ico,name,price])=>`
-    <div class="prod-card">
-      <div class="prod-img">${ico}</div>
-      <div class="prod-body">
-        <div class="prod-name">${name}</div>
-        <div class="prod-desc">${ar?'وصف المنتج — عدّله من لوحة التحكم':'Product description — edit from admin panel'}</div>
-        <div class="prod-footer">
-          <span class="prod-price">$${price}</span>
-          <button class="add-btn" onclick="addCart(this)">${ar?'أضف للسلة':'Add to Cart'}</button>
-        </div>
-      </div>
-    </div>`).join('')}
-  </div>
-</section>
-<div class="cart-bar" id="cart-bar" onclick="viewCart()">🛒 <span id="cart-count">0</span> ${ar?'عناصر':'items'}</div>
-<footer>© 2026 <span>${d.name}</span> · ${ar?'جميع الحقوق محفوظة':'All rights reserved'}</footer>
-<script>
-let cart=[];
-function addCart(btn){
-  cart.push(1);
-  document.getElementById('cart-count').textContent=cart.length;
-  document.getElementById('cart-bar').style.display='block';
-  btn.textContent='${ar?'✓ تمت الإضافة':'✓ Added'}';
-  btn.style.background='${d.ac}';
-  setTimeout(()=>{btn.textContent='${ar?'أضف للسلة':'Add to Cart'}';btn.style.background='';},1500);
-}
-function viewCart(){alert('${ar?'السلة: ':'Cart: '}'+cart.length+' ${ar?'منتج':'items'} — ${ar?'قريباً: نظام دفع كامل!':'Coming soon: full checkout system!'}');}
-
-fetch('products.json?v='+Date.now())
-  .then(r=>r.json()).then(d=>{
-    if(!d.products||!d.products.length) return;
-    const g=document.getElementById('products-grid');
-    const ar='${d.lang}'==='ar';
-    g.innerHTML=d.products.map(p=>\`
-      <div class="prod-card">
-        <div class="prod-img">\${p.emoji||'🛍'}</div>
-        <div class="prod-body">
-          <div class="prod-name">\${ar?p.name:(p.nameEn||p.name)}</div>
-          <div class="prod-desc">\${ar?p.desc:(p.descEn||p.desc)||''}</div>
-          <div class="prod-footer">
-            <span class="prod-price">\${p.price} \${p.currency||'$'}</span>
-            <button class="add-btn" onclick="addCart(this)">${ar?'أضف للسلة':'Add to Cart'}</button>
-          </div>
-        </div>
-      </div>\`).join('');
-  }).catch(()=>{});
-<\/script>
-</body></html>`,
-
-    landing:`<!DOCTYPE html>
-<html lang="${d.lang}" dir="${dir}">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${d.name}</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet"/>
-<style>${base}
-.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-  gap:1.2rem;padding:4rem 2rem;max-width:1100px;margin:0 auto}
-.feat{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:10px;
-  padding:1.8rem 1.5rem;text-align:center;transition:.3s}
-.feat:hover{box-shadow:0 12px 36px rgba(0,0,0,.1);transform:translateY(-3px)}
-.feat-ico{font-size:2rem;margin-bottom:.7rem}
-.feat-title{font-weight:700;font-size:1rem;color:var(--pr);margin-bottom:.4rem}
-.feat-desc{font-size:.85rem;color:#777;line-height:1.65}
-.cta-section{text-align:center;padding:5rem 2rem;background:var(--pr);color:#fff}
-.cta-section h2{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--ac);margin-bottom:1rem}
-.cta-section p{opacity:.75;margin-bottom:2rem;font-size:1.05rem}
-</style></head>
-<body>
-<nav><div class="logo">${d.name}</div>
-  <div class="nav-links">
-    <a href="#features">${ar?'المميزات':'Features'}</a>
-    <a href="#cta">${ar?'ابدأ الآن':'Get Started'}</a>
-  </div>
-</nav>
-<section class="hero">
-  <h1>${d.name}</h1>
-  <p class="tagline">${d.tag||ar?'ابدأ رحلتك الرقمية اليوم':'Start your digital journey today'}</p>
-  <div class="cta-group">
-    <a class="cta" href="#cta">${ar?'ابدأ الآن':'Get Started'}</a>
-    ${waBtn?`<a class="cta ghost" href="https://wa.me/${d.wa}">${ar?'تواصل معنا':'Contact Us'}</a>`:''}
-  </div>
-</section>
-<div class="features" id="features">
-  ${[['⚡',ar?'سريع وفعّال':'Fast & Efficient',ar?'نتائج ملموسة في وقت قياسي':'Tangible results in record time'],
-     ['🎯',ar?'دقة عالية':'High Precision',ar?'نستهدف جمهورك بدقة مطلقة':'We target your audience with absolute precision'],
-     ['🏆',ar?'جودة لا تُضاهى':'Unmatched Quality',ar?'معايير عالمية في كل خطوة':'World-class standards at every step'],
-     ['💡',ar?'حلول مبتكرة':'Innovative Solutions',ar?'نفكر خارج الصندوق دائماً':'We always think outside the box']].map(([ico,t,d2])=>`
-  <div class="feat"><div class="feat-ico">${ico}</div><div class="feat-title">${t}</div><div class="feat-desc">${d2}</div></div>`).join('')}
-</div>
-<section class="cta-section" id="cta">
-  <h2>${ar?'جاهز للانطلاق؟':'Ready to Launch?'}</h2>
-  <p>${ar?'تواصل معنا اليوم وابدأ رحلة نجاحك':'Contact us today and start your success journey'}</p>
-  <div class="cta-group">
-    ${waBtn}
-    <a class="cta ghost" href="mailto:info@${d.author.toLowerCase().replace(/\s/g,'')}.com">${ar?'راسلنا':'Email Us'}</a>
-  </div>
-</section>
-<footer>© 2026 <span>${d.name}</span> · ${ar?'جميع الحقوق محفوظة':'All rights reserved'}</footer>
-</body></html>`,
-
-    blog:`<!DOCTYPE html>
-<html lang="${d.lang}" dir="${dir}">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${d.name}</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
-<style>${base}
-.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-  gap:1.5rem;padding:4rem 2rem;max-width:1100px;margin:0 auto}
-.post{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;
-  overflow:hidden;transition:.3s;cursor:pointer}
-.post:hover{box-shadow:0 16px 48px rgba(0,0,0,.12);transform:translateY(-4px)}
-.post-thumb{height:180px;background:linear-gradient(135deg,${d.pr},${d.ac});
-  display:flex;align-items:center;justify-content:center;font-size:2.5rem}
-.post-body{padding:1.3rem}
-.post-cat{font-size:.72rem;color:var(--ac);font-weight:600;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.08em}
-.post-title{font-size:1.1rem;font-weight:700;color:var(--pr);margin-bottom:.5rem;line-height:1.4}
-.post-exc{font-size:.88rem;color:#666;line-height:1.7}
-.post-meta{display:flex;justify-content:space-between;margin-top:1rem;
-  padding-top:.8rem;border-top:1px solid rgba(0,0,0,.06);font-size:.75rem;color:#999}
-</style></head>
-<body>
-<nav><div class="logo">${d.name}</div></nav>
-<section class="hero">
-  <h1>${d.name}</h1>
-  <p class="tagline">${d.tag||ar?'أفكار وتأمّلات':'Thoughts & Reflections'}</p>
-  <a class="cta" href="#posts">${ar?'اقرأ المقالات':'Read Articles'}</a>
-</section>
-<div class="posts" id="posts" style="margin-bottom:2rem">
-  <div style="grid-column:1/-1;text-align:center;color:#999;font-style:italic;padding:2rem">
-    ${ar?'جارٍ تحميل المقالات…':'Loading articles…'}
-  </div>
-</div>
-<footer>© 2026 <span>${d.name}</span></footer>
-<script>
-fetch('data.json?v='+Date.now())
-  .then(r=>r.json()).then(d=>{
-    const ar='${d.lang}'==='ar';
-    const posts=d.posts||[];
-    const g=document.getElementById('posts');
-    if(!posts.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:3rem;color:#999">${ar?'لا توجد مقالات بعد':'No articles yet'}</div>';return;}
-    g.innerHTML=posts.map(p=>\`
-      <div class="post">
-        <div class="post-thumb">✦</div>
-        <div class="post-body">
-          <div class="post-cat">\${ar?p.category:(p.categoryEn||p.category)||''}</div>
-          <div class="post-title">\${ar?p.title:(p.titleEn||p.title)}</div>
-          <div class="post-exc">\${ar?p.excerpt:(p.excerptEn||p.excerpt)||''}</div>
-          <div class="post-meta">
-            <span>\${ar?p.author:(p.authorEn||p.author)}</span>
-            <span>\${p.date||''}</span>
-          </div>
-        </div>
-      </div>\`).join('');
-  }).catch(()=>{});
-<\/script>
-</body></html>`,
-
-    portfolio:`<!DOCTYPE html>
-<html lang="${d.lang}" dir="${dir}">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${d.name}</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet"/>
-<style>${base}
-.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:1.5rem;padding:4rem 2rem;max-width:1100px;margin:0 auto}
-.proj{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;
-  overflow:hidden;transition:.3s}
-.proj:hover{box-shadow:0 16px 48px rgba(0,0,0,.14);transform:translateY(-5px)}
-.proj-img{height:190px;background:linear-gradient(135deg,${d.pr} 0%,${d.ac} 100%);
-  display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#fff}
-.proj-body{padding:1.2rem}
-.proj-title{font-weight:700;font-size:1rem;color:var(--pr);margin-bottom:.4rem}
-.proj-desc{font-size:.85rem;color:#666;line-height:1.65}
-.about{background:var(--pr);color:#fff;padding:5rem 2rem;text-align:center}
-.about h2{color:var(--ac);margin-bottom:1rem;font-size:clamp(1.4rem,3vw,2rem)}
-.about p{max-width:600px;margin:0 auto;line-height:1.8;opacity:.8}
-</style></head>
-<body>
-<nav><div class="logo" style="font-family:'Cinzel',serif">${d.name}</div>
-  <div class="nav-links">
-    <a href="#projects">${ar?'المشاريع':'Projects'}</a>
-    <a href="#about">${ar?'عني':'About'}</a>
-    ${d.wa?`<a href="https://wa.me/${d.wa}">${ar?'تواصل':'Contact'}</a>`:''}
-  </div>
-</nav>
-<section class="hero">
-  <h1>${d.name}</h1>
-  <p class="tagline">${d.tag||ar?'مصمم رقمي إبداعي':'Creative Digital Designer'}</p>
-  ${waBtn}
-</section>
-<div class="projects" id="projects">
-  ${['◈','✦','❋','◉'].map((ico,i)=>`
-  <div class="proj">
-    <div class="proj-img">${ico}</div>
-    <div class="proj-body">
-      <div class="proj-title">${ar?`مشروع ${i+1}`:`Project ${i+1}`}</div>
-      <div class="proj-desc">${ar?'وصف المشروع — عدّله من لوحة التحكم':'Project description — edit from admin panel'}</div>
-    </div>
-  </div>`).join('')}
-</div>
-<section class="about" id="about">
-  <h2>${ar?'من أنا؟':'About Me'}</h2>
-  <p>${d.tag||ar?'مصمم رقمي شغوف بخلق تجارب إبداعية استثنائية':'A passionate digital designer creating exceptional creative experiences'}</p>
-</section>
-<footer>© 2026 <span>${d.name}</span></footer>
-</body></html>`,
-
-    company:`<!DOCTYPE html>
-<html lang="${d.lang}" dir="${dir}">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${d.name}</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet"/>
-<style>${base}
-.services{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:1.2rem;padding:4rem 2rem;max-width:1100px;margin:0 auto}
-.svc{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:10px;
-  padding:2rem 1.5rem;text-align:center;transition:.3s}
-.svc:hover{box-shadow:0 12px 36px rgba(0,0,0,.1);transform:translateY(-4px)}
-.svc-ico{font-size:2rem;margin-bottom:.7rem}
-.svc-title{font-weight:700;font-size:1rem;color:var(--pr);margin-bottom:.4rem}
-.svc-desc{font-size:.85rem;color:#666;line-height:1.65}
-.svc-price{margin-top:.8rem;font-weight:700;color:var(--ac);font-size:1.05rem}
-.steps{background:var(--pr);padding:4rem 2rem;color:#fff}
-.steps h2{text-align:center;color:var(--ac);margin-bottom:2.5rem;font-size:clamp(1.4rem,3vw,2rem)}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:1.5rem;max-width:900px;margin:0 auto}
-.step{text-align:center;padding:1.5rem}
-.step-n{width:42px;height:42px;border-radius:50%;background:var(--ac);color:var(--pr);
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:1rem;margin:0 auto .8rem}
-.step-t{font-weight:600;margin-bottom:.4rem}
-.step-d{font-size:.85rem;opacity:.7;line-height:1.6}
-</style></head>
-<body>
-<nav><div class="logo">${d.name}</div>
-  <div class="nav-links">
-    <a href="#services">${ar?'خدماتنا':'Services'}</a>
-    <a href="#process">${ar?'كيف نعمل':'Process'}</a>
-    ${d.wa?`<a href="https://wa.me/${d.wa}">${ar?'تواصل':'Contact'}</a>`:''}
-  </div>
-</nav>
-<section class="hero">
-  <h1>${d.name}</h1>
-  <p class="tagline">${d.tag||ar?'شريكك الاستراتيجي في النجاح الرقمي':'Your strategic partner in digital success'}</p>
-  <div class="cta-group">
-    <a class="cta" href="#services">${ar?'استكشف خدماتنا':'Our Services'}</a>
-    ${waBtn?`<a class="cta ghost" href="https://wa.me/${d.wa}">${ar?'احجز استشارة':'Book Consultation'}</a>`:''}
-  </div>
-</section>
-<div class="services" id="services">
-  ${[['🎨',ar?'تصميم الهوية':'Brand Design','$199'],
-     ['💻',ar?'تطوير المواقع':'Web Development','$399'],
-     ['📈',ar?'التسويق الرقمي':'Digital Marketing','$299'],
-     ['🚀',ar?'صفحات الهبوط':'Landing Pages','$149']].map(([ico,t,p])=>`
-  <div class="svc">
-    <div class="svc-ico">${ico}</div>
-    <div class="svc-title">${t}</div>
-    <div class="svc-desc">${ar?'خدمة احترافية بمعايير عالمية':'Professional service with world-class standards'}</div>
-    <div class="svc-price">${ar?'يبدأ من ':'From '}${p}</div>
-  </div>`).join('')}
-</div>
-<section class="steps" id="process">
-  <h2>${ar?'كيف نعمل؟':'How We Work'}</h2>
-  <div class="steps-grid">
-    ${[[ar?'الاستشارة':'Consult',ar?'نفهم احتياجاتك':'We understand your needs'],
-       [ar?'التصميم':'Design',ar?'نبتكر الحل الأمثل':'We create the optimal solution'],
-       [ar?'التطوير':'Develop',ar?'نبني بأعلى المعايير':'We build to highest standards'],
-       [ar?'الإطلاق':'Launch',ar?'ننشر ونتابع معك':'We launch and follow up']].map(([t,d2],i)=>`
-    <div class="step">
-      <div class="step-n">0${i+1}</div>
-      <div class="step-t">${t}</div>
-      <div class="step-d">${d2}</div>
-    </div>`).join('')}
-  </div>
-</section>
-<footer>© 2026 <span>${d.name}</span> · ${ar?'جميع الحقوق محفوظة':'All rights reserved'}</footer>
-</body></html>`,
-
-    restaurant:`<!DOCTYPE html>
-<html lang="${d.lang}" dir="${dir}">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${d.name}</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet"/>
-<style>${base}
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-  gap:1.3rem;padding:4rem 2rem;max-width:1100px;margin:0 auto}
-.dish{background:#fff;border-radius:10px;overflow:hidden;transition:.3s;
-  border:1px solid rgba(0,0,0,.07)}
-.dish:hover{box-shadow:0 14px 42px rgba(0,0,0,.12);transform:translateY(-4px)}
-.dish-img{height:170px;background:linear-gradient(135deg,${d.pr},${d.ac});
-  display:flex;align-items:center;justify-content:center;font-size:3rem}
-.dish-body{padding:1.1rem}
-.dish-name{font-weight:700;font-size:1rem;color:var(--pr);margin-bottom:.3rem}
-.dish-desc{font-size:.83rem;color:#666;line-height:1.6;margin-bottom:.7rem}
-.dish-price{font-weight:700;color:var(--ac);font-size:1.05rem}
-.reserve{background:var(--pr);padding:4rem 2rem;text-align:center;color:#fff}
-.reserve h2{color:var(--ac);margin-bottom:1rem}
-.reserve p{opacity:.75;margin-bottom:2rem}
-</style></head>
-<body>
-<nav><div class="logo">${d.name}</div>
-  <div class="nav-links">
-    <a href="#menu">${ar?'القائمة':'Menu'}</a>
-    ${d.wa?`<a href="https://wa.me/${d.wa}">${ar?'حجز':'Reserve'}</a>`:''}
-  </div>
-</nav>
-<section class="hero">
-  <h1>${d.name}</h1>
-  <p class="tagline">${d.tag||ar?'تجربة طعام لا تُنسى':'An unforgettable dining experience'}</p>
-  <div class="cta-group">
-    <a class="cta" href="#menu">${ar?'استعرض القائمة':'View Menu'}</a>
-    ${waBtn?`<a class="cta ghost" href="https://wa.me/${d.wa}">${ar?'احجز طاولة':'Reserve a Table'}</a>`:''}
-  </div>
-</section>
-<div class="menu-grid" id="menu">
-  ${[['🍕',ar?'بيتزا إيطالية':'Italian Pizza','55.00'],
-     ['🥗',ar?'سلطة طازجة':'Fresh Salad','32.00'],
-     ['🍰',ar?'كيكة الشوكولا':'Chocolate Cake','28.00'],
-     ['☕',ar?'قهوة مختصة':'Specialty Coffee','22.00']].map(([ico,n,p])=>`
-  <div class="dish">
-    <div class="dish-img">${ico}</div>
-    <div class="dish-body">
-      <div class="dish-name">${n}</div>
-      <div class="dish-desc">${ar?'وصف الطبق — طازج ولذيذ يومياً':'Dish description — fresh and delicious daily'}</div>
-      <div class="dish-price">${p} ${ar?'ريال':'SAR'}</div>
-    </div>
-  </div>`).join('')}
-</div>
-<section class="reserve">
-  <h2>${ar?'احجز طاولتك الآن':'Reserve Your Table'}</h2>
-  <p>${ar?'لا تفوّت تجربة العشاء الاستثنائية':'Don\'t miss the exceptional dining experience'}</p>
-  ${waBtn||`<a class="cta" href="#">${ar?'اتصل بنا':'Call Us'}</a>`}
-</section>
-<footer>© 2026 <span>${d.name}</span></footer>
-</body></html>`,
-  };
-  return templates[type]||templates.landing;
-}
-
-function genData(type, d){
-  const base={settings:{siteName:d.name,lang:d.lang,author:d.author,theme:{pr:d.pr,ac:d.ac,bg:d.bg}}};
-  if(type==='blog'||type==='portfolio') base.posts=[];
-  if(type==='store') base.products=[];
-  if(type==='restaurant') base.menu=[];
-  return JSON.stringify(base,null,2);
-}
-
-async function publish(){
-  if(!cfg){ toast(uiLang==='ar'?'اربط GitHub أولاً':'Connect GitHub first','warn'); openGH(); return; }
-  const btn=document.getElementById('pub-btn');
-  btn.disabled=true;
-  btn.innerHTML=`<span class="sp"></span> ${uiLang==='ar'?'جارٍ النشر…':'Publishing…'}`;
-  progress(10);
-  try{
-    const fls   = tplFiles(wizD.type);
-    const total = fls.length;
-    let done = 0;
-    for(const fname of fls){
-      let content='';
-      if(fname==='index.html')    content=genHTML(wizD.type, wizD);
-      else if(fname.endsWith('.json')) content=genData(wizD.type, wizD);
-      else content=`<!DOCTYPE html><html lang="${wizD.lang}" dir="${wizD.lang==='ar'?'rtl':'ltr'}">
-<head><meta charset="UTF-8"/><title>${wizD.name} — ${fname.replace('.html','')}</title></head>
-<body style="font-family:sans-serif;padding:2rem;direction:${wizD.lang==='ar'?'rtl':'ltr'}">
-<h1>${fname.replace('.html','')}</h1></body></html>`;
-      const existing = files.find(f=>f.path===fname);
-      await putFile(fname, content, `${wizD.type}: ${fname}`, existing?.sha||undefined);
-      done++;
-      progress(10+Math.round((done/total)*82));
-    }
-    progress(100);
-    toast(uiLang==='ar'?`🎉 نُشر ${total} ملف — موقعك جاهز!`:`🎉 ${total} files published — site is live!`,'ok');
-    setTimeout(()=>progress(0),700);
-    await loadFiles();
-    go('files');
-    // reset wizard
-    wizStep=0; wizD={type:'',name:'',lang:'ar',tag:'',author:'',wa:'',style:'dark-gold',pr:'#1a0f08',ac:'#c9a84c',bg:'#f5f0e8'};
-    for(let i=0;i<4;i++){
-      const ws=document.getElementById('ws'+i), wp=document.getElementById('wp'+i);
-      ws.classList.remove('on','done'); wp.classList.remove('on');
-    }
-    document.getElementById('ws0').classList.add('on');
-    document.getElementById('wp0').classList.add('on');
-    document.querySelectorAll('.tc').forEach(c=>c.classList.remove('sel'));
-  }catch(e){
-    progress(0);
-    toast(e.message,'err');
-  }finally{
-    btn.disabled=false;
-    btn.innerHTML=`🚀 <span id="pub-lbl">${getLang().pubLbl}</span>`;
-  }
-}
-
-/* ── UI HELPERS ─────────────────────────────────────── */
-function setDots(state, label){
-  ['rd1','rd2'].forEach(id=>{
-    const d=document.getElementById(id);
-    if(d) d.className='rdot'+(state==='on'?' on':state==='spin'?' spin':state==='err'?' err':'');
-  });
-  tx('repo-txt', label);
-  tx('gh-name',  label);
-  document.getElementById('repo-pill').classList.toggle('ok', state==='on');
-  const sub = document.getElementById('gh-sub');
-  if(sub) sub.textContent = cfg ? `${cfg.owner}/${cfg.repo}` : getLang().ghSetup;
-}
-
-function setSbar(type, html){
-  const b=document.getElementById('e-sbar');if(!b)return;
-  const i={info:'ℹ️',ok:'✅',warn:'⚠️',err:'❌'};
-  b.className=`sbar ${type}`;
-  b.innerHTML=`<span>${i[type]||'ℹ️'}</span><span>${html}</span>`;
-}
-
-function progress(p){ document.getElementById('pbar').style.width=p+'%'; }
-
-function toast(msg, type='ok'){
-  const i={ok:'✓',err:'✗',warn:'⚠',info:'i'};
-  const el=document.createElement('div');
-  el.className=`toast ${type}`;
-  el.innerHTML=`<span>${i[type]||''}</span>${esc(msg)}`;
-  document.getElementById('toasts').appendChild(el);
-  requestAnimationFrame(()=>el.classList.add('show'));
-  setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),380);},4000);
-}
-
-/* ── UTILS ──────────────────────────────────────────── */
-function gv(id){ return(document.getElementById(id)?.value||'').trim() }
-function sv(id,v){ const el=document.getElementById(id);if(el)el.value=v||'' }
-function tx(id,v){ const el=document.getElementById(id);if(el)el.textContent=v||'' }
-function at(id,a,v){ const el=document.getElementById(id);if(el)el.setAttribute(a,v) }
-function esc(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
-
-/* ── KEYBOARD ───────────────────────────────────────── */
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    ['m-gh','m-nf','m-del'].forEach(id=>document.getElementById(id).classList.remove('on'));
-    document.getElementById('sidebar').classList.remove('open');
-  }
-});
-window.addEventListener('resize',()=>{
-  document.getElementById('menu-ib').style.display=window.innerWidth<=768?'flex':'none';
-});
-if(window.innerWidth<=768) document.getElementById('menu-ib').style.display='flex';
-</script>
+    <div id="toast"><i data-lucide="check-circle"></i> <span id="toast-msg">تم الحفظ بنجاح</span></div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // State Management
+        let appState = {
+            token: localStorage.getItem('nj_token') || '',
+            repo: localStorage.getItem('nj_repo') || '',
+            fileSha: '',
+            jsonData: null
+        };
+
+        const FILE_PATH = 'data.json';
+
+        // Encoding helpers for Arabic UTF-8 Support
+        function utf8_to_b64(str) {
+            return window.btoa(unescape(encodeURIComponent(str)));
+        }
+        function b64_to_utf8(str) {
+            return decodeURIComponent(escape(window.atob(str)));
+        }
+
+        // On Load Check
+        window.onload = () => {
+            if(appState.token && appState.repo) {
+                document.getElementById('gh-token').value = appState.token;
+                document.getElementById('gh-repo').value = appState.repo;
+                authenticate(); // Auto login if exists
+            }
+        };
+
+        // Authenticate & Fetch
+        async function authenticate() {
+            const tokenInput = document.getElementById('gh-token').value.trim();
+            const repoInput = document.getElementById('gh-repo').value.trim();
+            const btn = document.getElementById('btn-login');
+
+            if(!tokenInput || !repoInput) return alert('الرجاء إدخال التوكن واسم المستودع');
+
+            btn.innerHTML = '<i data-lucide="loader" class="spin"></i> جاري الاتصال...';
+            lucide.createIcons();
+
+            appState.token = tokenInput;
+            appState.repo = repoInput;
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${appState.repo}/contents/${FILE_PATH}`, {
+                    headers: {
+                        'Authorization': `Bearer ${appState.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if(!response.ok) throw new Error('فشل الاتصال، تأكد من البيانات');
+
+                const data = await response.json();
+                appState.fileSha = data.sha;
+                
+                // Decode content
+                const decodedContent = b64_to_utf8(data.content);
+                appState.jsonData = JSON.parse(decodedContent);
+
+                // Save credentials safely
+                localStorage.setItem('nj_token', appState.token);
+                localStorage.setItem('nj_repo', appState.repo);
+
+                showDashboard();
+                populateForm();
+
+            } catch (error) {
+                alert(error.message);
+                btn.innerHTML = '<i data-lucide="key"></i> دخول للوحة';
+                lucide.createIcons();
+            }
+        }
+
+        // UI Transitions
+        function showDashboard() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'flex';
+            document.getElementById('repo-display').innerText = `المستودع المتصل: ${appState.repo}`;
+        }
+
+        function logout() {
+            localStorage.removeItem('nj_token');
+            localStorage.removeItem('nj_repo');
+            location.reload();
+        }
+
+        // Populate Form with JSON Data
+        function populateForm() {
+            const data = appState.jsonData;
+            if(!data) return;
+
+            document.getElementById('site_name').value = data.global_settings.site_name;
+            document.getElementById('currency').value = data.global_settings.currency;
+            
+            document.getElementById('hero_headline').value = data.hero_section.headline;
+            document.getElementById('hero_subheadline').value = data.hero_section.subheadline;
+            document.getElementById('hero_button').value = data.hero_section.button_text;
+
+            document.getElementById('link_whatsapp').value = data.social_links.whatsapp;
+            document.getElementById('link_instagram').value = data.social_links.instagram;
+        }
+
+        // Update JSON Object from Form
+        function updateDataObject() {
+            appState.jsonData.global_settings.site_name = document.getElementById('site_name').value;
+            appState.jsonData.global_settings.currency = document.getElementById('currency').value;
+            
+            appState.jsonData.hero_section.headline = document.getElementById('hero_headline').value;
+            appState.jsonData.hero_section.subheadline = document.getElementById('hero_subheadline').value;
+            appState.jsonData.hero_section.button_text = document.getElementById('hero_button').value;
+
+            appState.jsonData.social_links.whatsapp = document.getElementById('link_whatsapp').value;
+            appState.jsonData.social_links.instagram = document.getElementById('link_instagram').value;
+        }
+
+        // Save & Commit to GitHub
+        async function saveChanges() {
+            const btn = document.getElementById('btn-save');
+            btn.innerHTML = '<i data-lucide="loader"></i> جاري الرفع...';
+            lucide.createIcons();
+
+            updateDataObject();
+
+            const newContentStr = JSON.stringify(appState.jsonData, null, 2);
+            const base64Content = utf8_to_b64(newContentStr);
+
+            const bodyData = {
+                message: "Update website content via NJ-Admin ⚡",
+                content: base64Content,
+                sha: appState.fileSha
+            };
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${appState.repo}/contents/${FILE_PATH}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${appState.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if(!response.ok) throw new Error('فشل التحديث');
+
+                const result = await response.json();
+                appState.fileSha = result.content.sha; // Update SHA for next commit
+
+                showToast('تم تحديث الموقع بنجاح!');
+                
+            } catch (error) {
+                alert('حدث خطأ أثناء الحفظ: ' + error.message);
+            } finally {
+                btn.innerHTML = '<i data-lucide="cloud-upload"></i> حفظ ونشر التعديلات';
+                lucide.createIcons();
+            }
+        }
+
+        // Toast Helper
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
