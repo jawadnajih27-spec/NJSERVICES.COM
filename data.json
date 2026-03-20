@@ -1,0 +1,39 @@
+{
+  "global_settings": {
+    "site_name": "Golden NJ",
+    "language": "ar",
+    "currency": "MAD",
+    "primary_color": "#c9a84c",
+    "background_color": "#0a0906"
+  },
+  "hero_section": {
+    "is_active": true,
+    "headline": "ارتقِ بأناقتك إلى مستوى جديد",
+    "subheadline": "اكتشف مجموعتنا الحصرية من المنتجات الفاخرة",
+    "button_text": "اطلب الآن",
+    "hero_image": "assets/images/hero-bg.jpg"
+  },
+  "products": [
+    {
+      "id": "prod_001",
+      "name": "المنتج الفاخر الأول",
+      "price": "450",
+      "old_price": "600",
+      "image": "assets/images/product-1.jpg",
+      "is_available": true
+    },
+    {
+      "id": "prod_002",
+      "name": "المنتج الفاخر الثاني",
+      "price": "299",
+      "old_price": "400",
+      "image": "assets/images/product-2.jpg",
+      "is_available": true
+    }
+  ],
+  "social_links": {
+    "whatsapp": "+212600000000",
+    "instagram": "https://instagram.com/golden_nj",
+    "tiktok": "https://tiktok.com/@golden_nj"
+  }
+}
